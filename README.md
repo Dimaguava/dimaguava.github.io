@@ -158,8 +158,8 @@
 
     <!-- Контейнер для картинок. Скопируйте art-item для добавления новых -->
     <div class="gallery">
-        <div class="art-item" style="background-color: #111;">1</div>
-        <div class="art-item" style="background-color: #222;">2</div>
+        <div class="art-item" style="background-image: url('Screenshot_20260428_021401.jpg');">1</div>
+        <div class="art-item" style="background-image: url('https://github.com/Dimaguava/dimaguava.github.io/blob/main/Screenshot_20260428_021401.jpg');">2</div>
         <div class="art-item" style="background-color: #333;">3</div>
         <div class="art-item" style="background-color: #444;">4</div>
         <div class="art-item" style="background-color: #555;">5</div>
