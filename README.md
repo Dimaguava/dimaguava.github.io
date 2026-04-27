@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ануфриев Дмитрий - Digital Art</title>
+    <title>Ануфриев Дмитрий - Digital Art, композитор, diy noise, объекты в смешанной технике, Санкт-Петербург</title>
     <style>
         /* Основные стили и психоделический градиент */
         body, html {
@@ -107,13 +106,13 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s;
-            /* Сюда вставлять картинки: background-image: url('art.jpg'); */
+            /* Сюда вставлять картинки: background-image: url('https://vk.ru/photo136989858_457245651'); */
             background-size: cover;
             background-position: center;
         }
 
         .art-item:hover {
-            transform: scale(1.05) rotate(1deg);
+            transform: scale(1.2) rotate(3deg);
             border-color: #ff00ff;
             box-shadow: 0 0 15px #ff00ff;
         }
