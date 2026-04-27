@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ануфриев Дмитрий - Digital Art, композитор, diy noise, объекты в смешанной технике, Санкт-Петербург</title>
+    <title>Ануфриев Дмитрий - Digital Art,композитор,diy,noise,художник Санкт-Петербург,Circuit bend </title>
     <style>
         /* Основные стили и психоделический градиент */
         body, html {
@@ -106,13 +106,13 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s;
-            /* Сюда вставлять картинки: background-image: url('https://vk.ru/photo136989858_457245651'); */
+            /* Сюда вставлять картинки: background-image: url('https://raw.githubusercontent.com/Dimaguava/dimaguava.github.io/refs/heads/main/Screenshot_20260428_021401.jpg'); */
             background-size: cover;
             background-position: center;
         }
 
         .art-item:hover {
-            transform: scale(1.2) rotate(3deg);
+            transform: scale(1.05) rotate(1deg);
             border-color: #ff00ff;
             box-shadow: 0 0 15px #ff00ff;
         }
@@ -147,7 +147,7 @@
 
     <header>
         <h1>АНУФРИЕВ ДМИТРИЙ</h1>
-        <p>Psychedelic Digital Art</p>
+        <p>Psychedelic Digital Art, композитор <br> noise, объекты в смешанной технике, Санкт-Петербург</p>
     </header>
 
     <div class="menu">
