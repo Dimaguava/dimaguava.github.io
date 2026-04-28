@@ -8,7 +8,7 @@
 
 /* 1. ГЛОБАЛЬНЫЕ СЛОИ (СЕТКА И ТЕКСТ) */
 .global-overlay {
-    position: fixed;
+    position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
     pointer-events: none; /* Чтобы кнопки под ними работали */
@@ -42,11 +42,11 @@
     display: inline-block;
     padding: 5px 30px;
     mix-blend-mode: difference; /* ЭФФЕКТ ИНВЕРСИИ */
-    animation: textScroll 15s linear infinite;
+    animation: textScroll 9s linear infinite;
 }
 
 @keyframes textScroll {
-    0% { transform: translateX(100%); }
+    13% { transform: translateX(100%); }
     100% { transform: translateX(-100%); }
 }
 
@@ -187,8 +187,8 @@
         /* Двигающийся элемент (муха/глюк) */
         .moving-element {
             position: fixed;
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             background: rgba(255, 255, 0, 0.7);
             border-radius: 50%;
             animation: move-around 10s linear infinite;
