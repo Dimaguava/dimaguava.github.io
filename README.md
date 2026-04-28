@@ -5,56 +5,80 @@
     <title>Ануфриев Дмитрий - Digital Art,композитор,diy,noise,художник Санкт-Петербург,Circuit bend </title>
     
     <style>
-    #overlay {
-    display: none; /* Скрыто по умолчанию */
+
+/* Окно просмотра в стиле Alva Noto */
+#overlay {
+    display: none;
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95);
+    background: #000; /* Строгий черный фон */
     z-index: 1000;
-    cursor: zoom-out;
+    cursor: crosshair;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 #full-img-container {
     position: relative;
-    max-width: 90%;
-    max-height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #333;
 }
 
 #full-img {
-    max-width: 100%;
+    max-width: 95vw;
     max-height: 90vh;
-    border: 5px solid #0f0;
-    filter: contrast(120%) brightness(110%);
-    animation: imageGlitch 4s infinite alternate;
+    filter: grayscale(1) contrast(120%); /* ЧБ эффект как у Alva Noto */
+    display: block;
 }
 
-/* Слой с цветовым сдвигом поверх картинки */
-.glitch-layer {
+/* Бегущая горизонтальная линия (сканер) */
+.scan-line {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 10px white;
+    animation: scanMove 3s linear infinite;
+}
+
+/* Сетка (Grid) поверх изображения */
+.overlay-grid {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255,0,255,0.1);
-    mix-blend-mode: color-dodge;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
     pointer-events: none;
-    animation: colorFlash 0.2s infinite;
-    opacity: 0;
 }
 
-#overlay:hover .glitch-layer { opacity: 1; }
-
-@keyframes imageGlitch {
-    0% { transform: translate(0); filter: hue-rotate(0deg); }
-    10% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
-    20% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); filter: hue-rotate(360deg); }
+/* Бегущие строки текста с данными */
+.data-stream {
+    position: absolute;
+    font-family: monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    white-space: nowrap;
+    pointer-events: none;
+    animation: textScroll 10s linear infinite;
 }
 
-@keyframes colorFlash {
-    0% { background: rgba(255,0,255,0.2); }
-    50% { background: rgba(0,255,255,0.2); }
-    100% { background: rgba(0,255,0,0.2); }
+@keyframes scanMove {
+    0% { top: 0%; }
+    100% { top: 100%; }
 }
+
+@keyframes textScroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+
 
         /* Основные стили и психоделический градиент */
         body, html {
@@ -219,12 +243,22 @@
         <div class="art-item" style="background-color: #777;">7</div>
         <div class="art-item" style="background-color: #888;">8</div>
     </div>
+    
 <div id="overlay" onclick="closeFull()">
     <div id="full-img-container">
-        <img id="full-img" src="" alt="Full Art">
-        <div class="glitch-layer"></div>
+        <!-- Текст в стиле потока данных -->
+        <div class="data-stream" style="top: 10px;">01010100 01000101 01011000 01010100 ERROR_LOAD_UNIT_ANUFRIEV_DMITRY_SYSTEM_PROCESSED</div>
+        <div class="data-stream" style="bottom: 10px; animation-direction: reverse;">DATA_SENDER_NULL_VOLTAGE_STABLE_SIGNAL_RECOVERED_404_999_211</div>
+        
+        <img id="full-img" src="" alt="Art">
+        
+        <!-- Слой сетки -->
+        <div class="overlay-grid"></div>
+        <!-- Сканирующая линия -->
+        <div class="scan-line"></div>
     </div>
 </div>
+
 
 <script>
     function openFull(element) {
