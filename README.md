@@ -218,9 +218,9 @@ html, body {
     </header>
 
     <div class="menu">
-        <a href="#" class="glitch-button">Галерея</a>
+        <a href="gallery.html" class="glitch-button">Галерея</a>
         <a href="manifest.html" class="glitch-button">Обо мне</a>
-        <a href="#" class="glitch-button">Контакты</a>
+        <a href="contact.html" class="glitch-button">Контакты</a>
     </div>
 
     <!-- Контейнер для картинок. Скопируйте art-item для добавления новых -->
