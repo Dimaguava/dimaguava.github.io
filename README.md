@@ -3,6 +3,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ануфриев Дмитрий - Digital Art,композитор,diy,noise,художник Санкт-Петербург,Circuit bend </title>
+    
+    <style>
     #overlay {
     display: none; /* Скрыто по умолчанию */
     position: fixed;
@@ -54,7 +56,6 @@
     100% { background: rgba(0,255,0,0.2); }
 }
 
-    <style>
         /* Основные стили и психоделический градиент */
         body, html {
             margin: 0;
