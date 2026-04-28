@@ -42,7 +42,7 @@
     display: inline-block;
     padding: 5px 30px;
     mix-blend-mode: difference; /* ЭФФЕКТ ИНВЕРСИИ */
-    animation: textScroll 9s linear infinite;
+    animation: textScroll 12s linear infinite;
 }
 
 @keyframes textScroll {
