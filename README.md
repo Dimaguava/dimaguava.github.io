@@ -7,11 +7,13 @@
     <style>
 
 /* Окно просмотра в стиле Alva Noto */
+
+
 #overlay {
     display: none;
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: #000; /* Строгий черный фон */
+    background: #000;
     z-index: 1000;
     cursor: crosshair;
     align-items: center;
@@ -24,53 +26,48 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #333;
+    /* Убираем лишние рамки для чистоты стиля */
 }
 
 #full-img {
     max-width: 95vw;
     max-height: 90vh;
-    filter: grayscale(1) contrast(120%); /* ЧБ эффект как у Alva Noto */
     display: block;
+    position: relative;
+    z-index: 1; /* Картинка на нижнем слое */
 }
 
-/* Бегущая горизонтальная линия (сканер) */
-.scan-line {
+/* Контейнер для бегущих строк ПОВЕРХ картинки */
+.text-overlay-layer {
     position: absolute;
-    width: 100%;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.5);
-    top: 0;
-    left: 0;
-    box-shadow: 0 0 10px white;
-    animation: scanMove 3s linear infinite;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10; /* Текст на переднем плане */
+    pointer-events: none; /* Чтобы клик проходил сквозь текст на оверлей для закрытия */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-/* Сетка (Grid) поверх изображения */
+.data-stream {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 5px rgba(0,0,0,1); /* Чтобы текст читался на светлых фото */
+    white-space: nowrap;
+    animation: textScroll 8s linear infinite;
+    opacity: 0.7;
+}
+
+/* Сетка (Grid) тоже на переднем плане, но едва заметная */
 .overlay-grid {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background-image: 
-        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
+        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 5;
     pointer-events: none;
-}
-
-/* Бегущие строки текста с данными */
-.data-stream {
-    position: absolute;
-    font-family: monospace;
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.4);
-    white-space: nowrap;
-    pointer-events: none;
-    animation: textScroll 10s linear infinite;
-}
-
-@keyframes scanMove {
-    0% { top: 0%; }
-    100% { top: 100%; }
 }
 
 @keyframes textScroll {
@@ -246,18 +243,22 @@
     
 <div id="overlay" onclick="closeFull()">
     <div id="full-img-container">
-        <!-- Текст в стиле потока данных -->
-        <div class="data-stream" style="top: 10px;">01010100 01000101 01011000 01010100 ERROR_LOAD_UNIT_ANUFRIEV_DMITRY_SYSTEM_PROCESSED</div>
-        <div class="data-stream" style="bottom: 10px; animation-direction: reverse;">DATA_SENDER_NULL_VOLTAGE_STABLE_SIGNAL_RECOVERED_404_999_211</div>
+        <!-- Сетка поверх картинки -->
+        <div class="overlay-grid"></div>
+
+        <!-- Слой с бегущими строками -->
+        <div class="text-overlay-layer">
+            <div class="data-stream" style="animation-duration: 6s;">ANUFRIEV_DMITRY_ART_OBJECT_404_NULL_SEQUENCE_010101</div>
+            <div class="data-stream" style="animation-duration: 10s; animation-direction: reverse; color: #0f0;">REC_SIGNAL_STABLE_BITRATE_MAX_DATA_STREAM_PROCESSING</div>
+            <div class="data-stream" style="animation-duration: 7s;">ERROR_NO_METADATA_FOUND_SYSTEM_REBOOT_REQUIRED</div>
+            <div class="data-stream" style="animation-duration: 12s; animation-direction: reverse;">X_COORD_Y_COORD_Z_COORD_VIRTUAL_SPACE_RENDER</div>
+            <div class="data-stream" style="animation-duration: 5s; color: #f0f;">00110001 01110010 01111001 00100000 01100001 01110010 01110100</div>
+        </div>
         
         <img id="full-img" src="" alt="Art">
-        
-        <!-- Слой сетки -->
-        <div class="overlay-grid"></div>
-        <!-- Сканирующая линия -->
-        <div class="scan-line"></div>
     </div>
 </div>
+
 
 
 <script>
