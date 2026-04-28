@@ -226,10 +226,10 @@ html, body {
     <!-- Контейнер для картинок. Скопируйте art-item для добавления новых -->
     <div class="gallery">
         <div class="art-item" style="background-image: url('Screenshot_20260428_021401.jpg');"></div>
+        <div class="art-item" style="background-image: url('jPDAfbffEcI.jpg');"></div>
         <div class="art-item" style="background-image: url('IMG_20260428_030610_579.jpg');"></div>
-        <div class="art-item" style="background-image: url('IMG_20260428_030458_887.jpg');"></div>
-        <div class="art-item" style="background-color: #444;">ыыыы </div>
-        <div class="art-item" style="background-color: #555;">5</div>
+        <div class="art-item" style="background-image: url('m8SBsQvwA1GV72MMnlgVWp44seLJrT8WaTv9afzo5WxXMD0l7YVujDSqhfVcNCjlj39k82osW109nA-llm2B6MLq.jpg');"></div>
+        <div class="art-item" style="background-image: url('IMG_20260428_030458_887');"></div>
         <div class="art-item" style="background-color: #666;">6</div>
         <div class="art-item" style="background-color: #777;">7</div>
         <div class="art-item" style="background-color: #888;">8</div>
