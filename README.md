@@ -15,7 +15,7 @@ html, body {
 
 /* Общий стиль для всех полос */
 .noto-stream {
-    position: fixed;
+    position: sticky;
     left: 0;
     width: 100%;
     z-index: 9999;
