@@ -3,6 +3,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ануфриев Дмитрий - Digital Art,композитор,diy,noise,художник Санкт-Петербург,Circuit bend </title>
+    #overlay {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    cursor: zoom-out;
+    align-items: center;
+    justify-content: center;
+}
+
+#full-img-container {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+#full-img {
+    max-width: 100%;
+    max-height: 90vh;
+    border: 5px solid #0f0;
+    filter: contrast(120%) brightness(110%);
+    animation: imageGlitch 4s infinite alternate;
+}
+
+/* Слой с цветовым сдвигом поверх картинки */
+.glitch-layer {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255,0,255,0.1);
+    mix-blend-mode: color-dodge;
+    pointer-events: none;
+    animation: colorFlash 0.2s infinite;
+    opacity: 0;
+}
+
+#overlay:hover .glitch-layer { opacity: 1; }
+
+@keyframes imageGlitch {
+    0% { transform: translate(0); filter: hue-rotate(0deg); }
+    10% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+    20% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); filter: hue-rotate(360deg); }
+}
+
+@keyframes colorFlash {
+    0% { background: rgba(255,0,255,0.2); }
+    50% { background: rgba(0,255,255,0.2); }
+    100% { background: rgba(0,255,0,0.2); }
+}
+
     <style>
         /* Основные стили и психоделический градиент */
         body, html {
@@ -167,6 +218,33 @@
         <div class="art-item" style="background-color: #777;">7</div>
         <div class="art-item" style="background-color: #888;">8</div>
     </div>
+<div id="overlay" onclick="closeFull()">
+    <div id="full-img-container">
+        <img id="full-img" src="" alt="Full Art">
+        <div class="glitch-layer"></div>
+    </div>
+</div>
+
+<script>
+    function openFull(element) {
+        // Достаем URL картинки из стиля background-image
+        const bg = element.style.backgroundImage;
+        const url = bg.replace(/url\(['"]?(.*?)['"]?\)/i, '$1');
+        
+        document.getElementById('full-img').src = url;
+        document.getElementById('overlay').style.display = 'flex';
+    }
+
+    function closeFull() {
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    // Автоматически добавляем клик на все карточки арт-объектов
+    document.querySelectorAll('.art-item').forEach(item => {
+        item.setAttribute('onclick', 'openFull(this)');
+    });
+</script>
+
 
 </body>
 </html>
