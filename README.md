@@ -277,11 +277,8 @@ window.addEventListener('scroll', function() {
         el.style.transform = `translateY(${scrolled * speed}px)`;
     });
 });
-</script>
 
 
-
-<script>
     function openFull(element) {
         // Достаем URL картинки из стиля background-image
         const bg = element.style.backgroundImage;
