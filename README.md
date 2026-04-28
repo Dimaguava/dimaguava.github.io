@@ -15,7 +15,7 @@ html, body {
 
 /* Общий стиль для всех полос */
 .noto-stream {
-    position: fixed;
+    position: sticky;
     left: 0;
     width: 100%;
     z-index: 9999;
@@ -186,7 +186,7 @@ html, body {
             height: 70px;
             background: rgba(255, 255, 0, 0.7);
             border-radius: 50%;
-            animation: move-around 10s linear infinite;
+            animation: move-around 14s linear infinite;
             pointer-events: none;
             mix-blend-mode: difference;
             z-index: 100;
@@ -235,7 +235,7 @@ html, body {
 
 <!-- ASCII элементы по углам -->
 <div class="ascii-corner" style="top:10px; left:10px;">
-    █║▌│█│║▌║││█║▌<br>ANUFRIEV_DMITRY<br>V.2.0.2.4
+    █║▌│█│║▌║││█║▌<br>ANUFRIEV_DMITRY<br>V.2.0.2.6
 </div>
 <div class="ascii-corner" style="bottom:10px; right:10px; text-align: right;">
     [SYSTEM_STABLE]<br>___/‾‾\___<br>ALVA_NOTO_MODE
