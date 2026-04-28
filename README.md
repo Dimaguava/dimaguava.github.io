@@ -219,7 +219,7 @@ html, body {
 
     <div class="menu">
         <a href="#" class="glitch-button">Галерея</a>
-        <a href="#" class="glitch-button">Обо мне</a>
+        <a href="manifest.html" class="glitch-button">Обо мне</a>
         <a href="#" class="glitch-button">Контакты</a>
     </div>
 
