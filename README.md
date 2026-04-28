@@ -239,37 +239,65 @@ html, body {
 </head>
 <body>
 
-<!-- Музыкальный файл -->
-<audio id="bg-music" src="audio1.mp3" loop></audio>
 
-<!-- Черный экран выбора -->
+<!-- ПЛЕЕР -->
+<audio id="bg-music" src="music1.mp3" loop></audio>
+
+<!-- БЕЛЫЙ БАННЕР (OVERLAY) -->
 <div id="overlay" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: white; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 999999; /* Перекрывает всё, включая твои z-99 */
     transition: opacity 0.5s ease;
 ">
-    <div style="display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;">
+    <div style="
+        display: flex; 
+        gap: 5%; /* Гибкий отступ между картинками */
+        width: 90%; 
+        max-width: 1000px; 
+        justify-content: center; 
+        align-items: center;
+    ">
         
-        <!-- Левая картинка (просто ссылка) -->
-        <a href="https://google.com" style="cursor: pointer;">
-            <img src="img_left.jpg" alt="Link" style="width: 250px; height: 400px; object-fit: cover; border: 2px solid #333; border-radius: 10px;">Тишина мой проводник
-        </a>
+        <!-- Левая картинка (Ссылка) -->
+        <a href="https://google.com" style="display: block; flex: 1; max-width: 45%;">
+            <img src="left_img.jpg" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;">
+        Я люблю покой </a>
 
-        <!-- Правая картинка (убирает баннер и включает музыку) -->
-        <div id="start-music" style="cursor: pointer;">
-            <img src="img_right.jpg" alt="Play Music" style="width: 250px; height: 400px; object-fit: cover; border: 2px solid #333; border-radius: 10px;">Бум бум мы любим шум
+        <!-- Правая картинка (Музыка и выход) -->
+        <div onclick="startSite()" style="display: block; flex: 1; max-width: 45%; cursor: pointer;">
+            <img src="right_img.jpg" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
         </div>
 
     </div>
 </div>
+
+<script>
+    function startSite() {
+        var audio = document.getElementById('bg-music');
+        var banner = document.getElementById('overlay');
+        
+        // Включаем музыку
+        audio.play().catch(function(error) {
+            console.log("Ошибка автоплея:", error);
+        });
+        
+        // Убираем баннер
+        banner.style.opacity = '0';
+        banner.style.pointerEvents = 'none'; // Чтобы нельзя было кликнуть сквозь прозрачный баннер во время анимации
+        
+        setTimeout(function() {
+            banner.remove();
+        }, 500);
+    }
+</script>
 
 <script>
     const overlay = document.getElementById('overlay');
