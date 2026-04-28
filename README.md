@@ -15,7 +15,7 @@ html, body {
 
 /* Общий стиль для всех полос */
 .noto-stream {
-    position: sticky;
+    position: fixed;
     left: 0;
     width: 100%;
     z-index: 9999;
@@ -186,7 +186,7 @@ html, body {
             height: 70px;
             background: rgba(255, 255, 0, 0.7);
             border-radius: 50%;
-            animation: move-around 14s linear infinite;
+            animation: move-around 10s linear infinite;
             pointer-events: none;
             mix-blend-mode: difference;
             z-index: 100;
