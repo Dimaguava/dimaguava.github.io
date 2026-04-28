@@ -15,7 +15,7 @@ html, body {
 
 /* Общий стиль для всех полос */
 .noto-stream {
-    position: sticky;
+    position: absolute;
     left: 0;
     width: 100%;
     z-index: 9999;
@@ -203,6 +203,11 @@ html, body {
     </style>
 </head>
 <body>
+
+<div id="overlay" onclick="closeFull()" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; align-items: center; justify-content: center; cursor: zoom-out;">
+    <img id="full-img" src="" style="max-width: 90%; max-height: 90vh; border: 1px solid white;">
+</div>
+
 
     <!-- Двигающийся элемент -->
     <div class="moving-element"></div>
