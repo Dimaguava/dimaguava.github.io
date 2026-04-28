@@ -6,18 +6,68 @@
     
     <style>
 
-<!-- Глобальные элементы на весь сайт -->
-<div class="global-overlay global-grid"></div>
-<div class="global-overlay global-text-streams">
-    <div class="data-stream-wrapper"><div class="data-stream">ANUFRIEV_DMITRY_ART_SEQUENCE_0101010101</div></div>
-    <div class="data-stream-wrapper"><div class="data-stream" style="animation-direction: reverse; animation-duration: 25s;">SYSTEM_ERROR_DATA_STREAM_ALVA_NOTO_RECOVERY</div></div>
-    <div class="data-stream-wrapper"><div class="data-stream" style="animation-duration: 12s;">PROCESS_RENDER_404_NULL_POINTER_STABLE</div></div>
-</div>
+/* 1. ГЛОБАЛЬНЫЕ СЛОИ (СЕТКА И ТЕКСТ) */
+.global-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; /* Чтобы кнопки под ними работали */
+    z-index: 999;
+}
 
-<!-- Окно для картинок (чистое, так как сетка уже есть везде) -->
-<div id="overlay" onclick="closeFull()">
-    <img id="full-img" src="" alt="">
-</div>
+.global-grid {
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mix-blend-mode: difference;
+}
+
+.global-text-streams {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Равномерно по высоте */
+    padding: 2vh 0;
+}
+
+.data-stream-wrapper { width: 100%; overflow: hidden; }
+
+.data-stream {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(14px, 2vw, 20px);
+    font-weight: bold;
+    white-space: nowrap;
+    background: white; /* Белая плашка */
+    color: black;      /* Черный текст */
+    display: inline-block;
+    padding: 5px 30px;
+    mix-blend-mode: difference; /* ЭФФЕКТ ИНВЕРСИИ */
+    animation: textScroll 15s linear infinite;
+}
+
+@keyframes textScroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* 2. ОКНО ПРОСМОТРА КАРТИНКИ */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000; /* Выше всего */
+    cursor: zoom-out;
+    align-items: center;
+    justify-content: center;
+}
+
+#full-img {
+    max-width: 90%;
+    max-height: 90vh;
+    border: 1px solid #555;
+}
 
 
 
