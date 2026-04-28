@@ -186,7 +186,7 @@ html, body {
             height: 70px;
             background: rgba(255, 255, 0, 0.7);
             border-radius: 50%;
-            animation: move-around 14s linear infinite;
+            animation: move-around 9s linear infinite;
             pointer-events: none;
             mix-blend-mode: difference;
             z-index: 100;
@@ -199,6 +199,41 @@ html, body {
             75% { top: 20%; left: 60%; }
             100% { top: 10%; left: 10%; }
         }
+
+/* Панель управления ползунками */
+.controls-panel {
+    position: fixed;
+    bottom: 20px;
+    left: 10px;
+    z-index: 10001; /* Поверх всего */
+    background: rgba(0, 0, 0, 0.0);
+    padding: 3px;
+    border: 1px solid #fff;
+    font-family: monospace;
+    color: white;
+    pointer-events: auto;
+    width: 130px;
+    height: 80px;
+}
+
+.control-group { margin-bottom: 10px; }
+.control-group label { display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 5px; }
+
+/* Наш круг (обновленный) */
+.moving-element, .float-eye {
+    /* Используем переменные. Если их нет, возьмутся значения по умолчанию */
+    width: var(--circle-size, 80px);
+    height: var(--circle-size, 80px);
+    animation-duration: var(--circle-speed, 11s) !important;
+    
+    position: fixed;
+    border-radius: 50%;
+    background: yellow;
+    mix-blend-mode: difference;
+    z-index: 10000;
+    pointer-events: none;
+}
+
 
     </style>
 </head>
@@ -216,6 +251,18 @@ html, body {
         <h1>АНУФРИЕВ ДМИТРИЙ</h1>
         <p>Psychedelic Digital Art, композитор <br> noise, объекты в смешанной технике, Санкт-Петербург</p>
     </header>
+
+<div class="controls-panel">
+    <div class="control-group">
+        <label>Рзмр Крг</label>
+        <input type="range" id="sizeRange" min="20" max="1000" value="80">
+    </div>
+    <div class="control-group">
+        <label>Скрст Крг</label>
+        <input type="range" id="speedRange" min="0" max="31" value="9">
+    </div>
+</div>
+
 
     <div class="menu">
         <a href="gallery.html" class="glitch-button">Галерея</a>
@@ -288,6 +335,28 @@ html, body {
     document.querySelectorAll('.art-item').forEach(item => {
         item.setAttribute('onclick', 'openFull(this)');
     });
+</script>
+
+
+<script>
+    const sizeInput = document.getElementById('sizeRange');
+    const speedInput = document.getElementById('speedRange');
+    const circle = document.querySelector('.moving-element') || document.querySelector('.float-eye');
+
+    if (circle) {
+        // Регулировка размера
+        sizeInput.addEventListener('input', (e) => {
+            const size = e.target.value + 'px';
+            circle.style.setProperty('--circle-size', size);
+        });
+
+        // Регулировка скорости
+        speedInput.addEventListener('input', (e) => {
+            // Инвертируем значение, чтобы чем больше ползунок, тем быстрее (меньше секунд) анимация
+            const speed = (31 - e.target.value) + 's';
+            circle.style.setProperty('--circle-speed', speed);
+        });
+    }
 </script>
 
 
