@@ -264,6 +264,22 @@ html, body {
 </div>
 
 
+<script>
+window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    // Находим все полоски
+    const streams = document.querySelectorAll('.noto-stream-fixed');
+    
+    streams.forEach((el, index) => {
+        // Двигаем каждую полоску со своей скоростью (параллакс)
+        // 0.2 или 0.5 — это коэффициент "отставания" от скролла
+        const speed = 0.3 + (index * 0.1); 
+        el.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+});
+</script>
+
+
 
 <script>
     function openFull(element) {
