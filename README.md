@@ -241,7 +241,7 @@ html, body {
 
 
 <!-- ПЛЕЕР -->
-<audio id="bg-music" src="music1.mp3" loop></audio>
+<audio id="bg-music" src="audio1.mp3" loop></audio>
 
 <!-- БЕЛЫЙ БАННЕР (OVERLAY) -->
 <div id="overlay" style="
@@ -273,7 +273,16 @@ html, body {
 
         <!-- Правая картинка (Музыка и выход) -->
         <div onclick="startSite()" style="display: block; flex: 1; max-width: 45%; cursor: pointer;">
-            <img src="img_right.jpg" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"> я люблю ШУМ
+            <img src="img_right.jpg" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"><p style="
+        margin-top: 15px; 
+        font-family: sans-serif; 
+        font-size: 1.2rem; 
+        color: #333; 
+        text-align: center;
+        font-weight: 500;
+    ">
+        Я люблю ШУМ
+    </p>
         </div>
 
     </div>
