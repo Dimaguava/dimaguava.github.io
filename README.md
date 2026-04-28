@@ -268,12 +268,12 @@ html, body {
         
         <!-- Левая картинка (Ссылка) -->
         <a href="https://google.com" style="display: block; flex: 1; max-width: 45%;">
-            <img src="left_img.jpg" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;">
+            <img src="img_left.jpg" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;">
         Я люблю покой </a>
 
         <!-- Правая картинка (Музыка и выход) -->
         <div onclick="startSite()" style="display: block; flex: 1; max-width: 45%; cursor: pointer;">
-            <img src="right_img.jpg" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <img src="img_right.jpg" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"> я люблю ШУМ
         </div>
 
     </div>
