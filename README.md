@@ -239,6 +239,59 @@ html, body {
 </head>
 <body>
 
+<!-- Музыкальный файл -->
+<audio id="bg-music" src="audio1.mp3" loop></audio>
+
+<!-- Черный экран выбора -->
+<div id="overlay" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+">
+    <div style="display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;">
+        
+        <!-- Левая картинка (просто ссылка) -->
+        <a href="https://google.com" style="cursor: pointer;">
+            <img src="img_left.jpg" alt="Link" style="width: 250px; height: 400px; object-fit: cover; border: 2px solid #333; border-radius: 10px;">Тишина мой проводник
+        </a>
+
+        <!-- Правая картинка (убирает баннер и включает музыку) -->
+        <div id="start-music" style="cursor: pointer;">
+            <img src="img_right.jpg" alt="Play Music" style="width: 250px; height: 400px; object-fit: cover; border: 2px solid #333; border-radius: 10px;">Бум бум мы любим шум
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const overlay = document.getElementById('overlay');
+    const startMusicBtn = document.getElementById('start-music');
+    const audio = document.getElementById('bg-music');
+
+    startMusicBtn.addEventListener('click', () => {
+        // 1. Запускаем музыку
+        audio.play().catch(e => console.log("Ошибка воспроизведения:", e));
+        
+        // 2. Делаем баннер прозрачным
+        overlay.style.opacity = '0';
+        
+        // 3. Полностью удаляем баннер через 0.5 сек, чтобы он не мешал кликать по сайту
+        setTimeout(() => {
+            overlay.remove();
+        }, 500);
+    });
+</script>
+
+
+
 <div id="overlay" onclick="closeFull()" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; align-items: center; justify-content: center; cursor: zoom-out;">
     <img id="full-img" src="" style="max-width: 90%; max-height: 90vh; border: 1px solid white;">
 </div>
