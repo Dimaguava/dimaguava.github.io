@@ -30,7 +30,7 @@
     padding: 2vh 0;
 }
 
-.data-stream-wrapper { width: 100%; overflow: hidden; }
+.data-stream-wrapper { width: 100%; overflow: visible; }
 
 .data-stream {
     font-family: 'Courier New', monospace;
