@@ -6,74 +6,18 @@
     
     <style>
 
-/* Окно просмотра в стиле Alva Noto */
+<!-- Глобальные элементы на весь сайт -->
+<div class="global-overlay global-grid"></div>
+<div class="global-overlay global-text-streams">
+    <div class="data-stream-wrapper"><div class="data-stream">ANUFRIEV_DMITRY_ART_SEQUENCE_0101010101</div></div>
+    <div class="data-stream-wrapper"><div class="data-stream" style="animation-direction: reverse; animation-duration: 25s;">SYSTEM_ERROR_DATA_STREAM_ALVA_NOTO_RECOVERY</div></div>
+    <div class="data-stream-wrapper"><div class="data-stream" style="animation-duration: 12s;">PROCESS_RENDER_404_NULL_POINTER_STABLE</div></div>
+</div>
 
-
-#overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: #000;
-    z-index: 1000;
-    cursor: crosshair;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-#full-img-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Убираем лишние рамки для чистоты стиля */
-}
-
-#full-img {
-    max-width: 95vw;
-    max-height: 90vh;
-    display: block;
-    position: relative;
-    z-index: 1; /* Картинка на нижнем слое */
-}
-
-/* Контейнер для бегущих строк ПОВЕРХ картинки */
-.text-overlay-layer {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 10; /* Текст на переднем плане */
-    pointer-events: none; /* Чтобы клик проходил сквозь текст на оверлей для закрытия */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.data-stream {
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
-    text-shadow: 0 0 5px rgba(0,0,0,1); /* Чтобы текст читался на светлых фото */
-    white-space: nowrap;
-    animation: textScroll 8s linear infinite;
-    opacity: 0.7;
-}
-
-/* Сетка (Grid) тоже на переднем плане, но едва заметная */
-.overlay-grid {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: 
-        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 30px 30px;
-    z-index: 5;
-    pointer-events: none;
-}
-
-@keyframes textScroll {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
+<!-- Окно для картинок (чистое, так как сетка уже есть везде) -->
+<div id="overlay" onclick="closeFull()">
+    <img id="full-img" src="" alt="">
+</div>
 
 
 
@@ -240,23 +184,18 @@
         <div class="art-item" style="background-color: #777;">7</div>
         <div class="art-item" style="background-color: #888;">8</div>
     </div>
-    
-<div id="overlay" onclick="closeFull()">
-    <div id="full-img-container">
-        <!-- Сетка поверх картинки -->
-        <div class="overlay-grid"></div>
 
-        <!-- Слой с бегущими строками -->
-        <div class="text-overlay-layer">
-            <div class="data-stream" style="animation-duration: 6s;">ANUFRIEV_DMITRY_ART_OBJECT_404_NULL_SEQUENCE_010101</div>
-            <div class="data-stream" style="animation-duration: 10s; animation-direction: reverse; color: #0f0;">REC_SIGNAL_STABLE_BITRATE_MAX_DATA_STREAM_PROCESSING</div>
-            <div class="data-stream" style="animation-duration: 7s;">ERROR_NO_METADATA_FOUND_SYSTEM_REBOOT_REQUIRED</div>
-            <div class="data-stream" style="animation-duration: 12s; animation-direction: reverse;">X_COORD_Y_COORD_Z_COORD_VIRTUAL_SPACE_RENDER</div>
-            <div class="data-stream" style="animation-duration: 5s; color: #f0f;">00110001 01110010 01111001 00100000 01100001 01110010 01110100</div>
-        </div>
-        
-        <img id="full-img" src="" alt="Art">
-    </div>
+<!-- Глобальные элементы на весь сайт -->
+<div class="global-overlay global-grid"></div>
+<div class="global-overlay global-text-streams">
+    <div class="data-stream-wrapper"><div class="data-stream">ANUFRIEV_DMITRY_ART_SEQUENCE_0101010101</div></div>
+    <div class="data-stream-wrapper"><div class="data-stream" style="animation-direction: reverse; animation-duration: 25s;">SYSTEM_ERROR_DATA_STREAM_ALVA_NOTO_RECOVERY</div></div>
+    <div class="data-stream-wrapper"><div class="data-stream" style="animation-duration: 12s;">PROCESS_RENDER_404_NULL_POINTER_STABLE</div></div>
+</div>
+
+<!-- Окно для картинок (чистое, так как сетка уже есть везде) -->
+<div id="overlay" onclick="closeFull()">
+    <img id="full-img" src="" alt="">
 </div>
 
 
