@@ -6,67 +6,62 @@
     
     <style>
 
-/* 1. ГЛОБАЛЬНЫЕ СЛОИ (СЕТКА И ТЕКСТ) */
-.global-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none; /* Чтобы кнопки под ними работали */
-    z-index: 999;
+/* Убираем тряску страницы */
+html, body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
-.global-grid {
-    background-image: 
-        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mix-blend-mode: difference;
+/* Общий стиль для всех полос */
+.noto-stream {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    pointer-events: none; /* Сквозь них можно кликать */
+    mix-blend-mode: difference; /* ИНВЕРСИЯ */
 }
 
-.global-text-streams {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around; /* Равномерно по высоте */
-    padding: 2vh 0;
-}
-
-.data-stream-wrapper { width: 100%; overflow: visible; }
-
-.data-stream {
-    font-family: 'Courier New', monospace;
-    font-size: clamp(14px, 2vw, 20px);
-    font-weight: bold;
-    white-space: nowrap;
-    background: white; /* Белая плашка */
-    color: black;      /* Черный текст */
+.noto-bar {
     display: inline-block;
-    padding: 5px 30px;
-    mix-blend-mode: difference; /* ЭФФЕКТ ИНВЕРСИИ */
-    animation: textScroll 12s linear infinite;
+    background: white; /* Белая плашка для инверсии */
+    color: black;      /* Черный текст */
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 4px 50px;
+    white-space: nowrap;
+    animation: alvaScroll 20s linear infinite;
 }
 
-@keyframes textScroll {
-    13% { transform: translateX(100%); }
+/* Сетка Alva Noto на весь экран */
+.alva-grid {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mix-blend-mode: difference;
+    z-index: 9998;
+    pointer-events: none;
+}
+
+@keyframes alvaScroll {
+    0% { transform: translateX(100%); }
     100% { transform: translateX(-100%); }
 }
 
-/* 2. ОКНО ПРОСМОТРА КАРТИНКИ */
-#overlay {
-    display: none;
+/* Текстовые ASCII вставки (неподвижные по углам) */
+.ascii-corner {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 2000; /* Выше всего */
-    cursor: zoom-out;
-    align-items: center;
-    justify-content: center;
-}
-
-#full-img {
-    max-width: 90%;
-    max-height: 90vh;
-    border: 1px solid #555;
+    font-family: monospace;
+    font-size: 10px;
+    color: white;
+    mix-blend-mode: difference;
+    z-index: 10000;
+    line-height: 1;
 }
 
 
@@ -235,17 +230,37 @@
         <div class="art-item" style="background-color: #888;">8</div>
     </div>
 
-<!-- Глобальные элементы на весь сайт -->
-<div class="global-overlay global-grid"></div>
-<div class="global-overlay global-text-streams">
-    <div class="data-stream-wrapper"><div class="data-stream">ANUFRIEV_DMITRY_ART_SEQUENCE_0101010101</div></div>
-    <div class="data-stream-wrapper"><div class="data-stream" style="animation-direction: reverse; animation-duration: 25s;">SYSTEM_ERROR_DATA_STREAM_ALVA_NOTO_RECOVERY</div></div>
-    <div class="data-stream-wrapper"><div class="data-stream" style="animation-duration: 12s;">PROCESS_RENDER_404_NULL_POINTER_STABLE</div></div>
+<!-- Сетка -->
+<div class="alva-grid"></div>
+
+<!-- ASCII элементы по углам -->
+<div class="ascii-corner" style="top:10px; left:10px;">
+    █║▌│█│║▌║││█║▌<br>ANUFRIEV_DMITRY<br>V.2.0.2.4
+</div>
+<div class="ascii-corner" style="bottom:10px; right:10px; text-align: right;">
+    [SYSTEM_STABLE]<br>___/‾‾\___<br>ALVA_NOTO_MODE
 </div>
 
-<!-- Окно для картинок (чистое, так как сетка уже есть везде) -->
-<div id="overlay" onclick="closeFull()">
-    <img id="full-img" src="" alt="">
+<!-- Бегущие инвертирующие полосы -->
+<!-- Полоса 1 -->
+<div class="noto-stream" style="top: 15vh;">
+    <div class="noto-bar">
+        ░▒▓█ ERROR_0101010101010101_SYSTEM_FAILURE_RECOVERY_SIGNAL_STABLE_░▒▓█
+    </div>
+</div>
+
+<!-- Полоса 2 -->
+<div class="noto-stream" style="top: 45vh;">
+    <div class="noto-bar" style="animation-direction: reverse; animation-duration: 30s; height: 30px; font-size: 24px;">
+        ██████████████  DATA_STREAM_ANUFRIEV_██████████████
+    </div>
+</div>
+
+<!-- Полоса 3 -->
+<div class="noto-stream" style="top: 80vh;">
+    <div class="noto-bar" style="animation-duration: 15s;">
+        [ +++ ]  SIGNAL_LOST  [ +++ ]  ALVA_NOTO_STYLIZATION  [ +++ ]  ASCII_CODE_PROCESSED
+    </div>
 </div>
 
 
