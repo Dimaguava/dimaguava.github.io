@@ -179,6 +179,12 @@ html, body {
             box-shadow: 0 0 15px #ff00ff;
         }
 
+        .art-item.tall {
+    grid-row: span 2; /* Растягивает ячейку на две строки вниз */
+    height: 715px;    /* Высота (2 ячейки по 350px + отступ 15px) */
+}
+
+
         /* Двигающийся элемент (муха/глюк) */
         .moving-element {
             position: fixed;
@@ -370,12 +376,12 @@ html, body {
        <h4> сайт пока в разработке Я изучаю вообще как это всё работает по одной добавляю картинке Но конечно непонятно уже что это портфолио или самодостаточный арт-объект в котором я в очередной раз показываю принципы осознанной пассивности/ эстетики капитуляции которая не формирует объект по своему образу и подобию отвечающим поставленным задачам а позволяет ему быть таким какой он есть Напоминаю что я про сайт напоминаю также о принципах изменчивости поэтому вполне возможно послезавтра здесь будет другоослезавти другой дибудет</h4> 
 
         
-        <div class="art-item" style="background-image: url('IMG_20260428_030249_945.jpg');"></div>
-        <div class="art-item" style="background-image: url('long.jpg');">6</div>
-        <div class="art-item" style="background-image: url('snow.jpg');">7</div>
-        <div class="art-item" style="background-image: url('marine.jpg');">8</div>
+<div class="art-item" style="background-image: url('IMG_20260428_030249_945.jpg');"></div>
+<div class="art-item tall" style="background-image: url('long.jpg');">6</div>
+<div class="art-item" style="background-image: url('snow.jpg');">7</div>
+<div class="art-item" style="background-image: url('marine.jpg');">8</div>
     </div>
-<div class="art-item" style="background-image: url('people.jpg');">8</div>
+<div class="art-item tall" style="background-image: url('people.jpg');">8</div>
     </div>
 <!-- Сетка -->
 <div class="alva-grid"></div>
