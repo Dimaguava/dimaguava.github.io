@@ -6,6 +6,24 @@
     
     <style>
 
+
+    /* Стиль для видео-карточек */
+.art-video {
+    width: 100%;
+    display: block;
+    outline: none;
+}
+
+/* Скрываем стандартные кнопки, если хочешь чистый вид */
+video::-webkit-media-controls {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+video:hover::-webkit-media-controls {
+    opacity: 1;
+}
+
+
 /* Убираем тряску страницы */
 html, body {
     overflow-x: hidden;
@@ -371,6 +389,19 @@ html, body {
         <div class="art-item" style="background-image: url('Screenshot_20260428_021401.jpg');"></div>
         <div class="art-item" style="background-image: url('jPDAfbffEcI.jpg');"></div>
         <div class="art-item" style="background-image: url('IMG_20260428_030610_579.jpg');"></div>
+
+<div class="art-item">
+    <video class="art-video" loop muted playsinline onmouseover="this.play()" onmouseout="this.pause()" onclick="this.muted = !this.muted">
+        <source src="vacuum.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
+
+   <h4>вакуумные работы где я смешиваю органику и неорганику останавливая время и разделяю объект из зрителя непроницаемой прозрачной мембраной отвратительной становится интересным а прекрасное теряет свою привлекательность и становится плоским</h4> 
+    
+    <div style="font-size: 8px; padding: 5px; color: #0f0;">[ CLICK FOR SOUND ]</div>
+</div>
+
+        
         <div class="art-item" style="background-image: url('m8SBsQvwA1GV72MMnlgVWp44seLJrT8WaTv9afzo5WxXMD0l7YVujDSqhfVcNCjlj39k82osW109nA-llm2B6MLq.jpg');"></div>
 
        <h4> сайт пока в разработке Я изучаю вообще как это всё работает по одной добавляю картинке Но конечно непонятно уже что это портфолио или самодостаточный арт-объект в котором я в очередной раз показываю принципы осознанной пассивности/ эстетики капитуляции которая не формирует объект по своему образу и подобию отвечающим поставленным задачам а позволяет ему быть таким какой он есть Напоминаю что я про сайт напоминаю также о принципах изменчивости поэтому вполне возможно послезавтра здесь будет другоослезавти другой дибудет</h4> 
