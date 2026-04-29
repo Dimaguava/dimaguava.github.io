@@ -367,7 +367,7 @@ html, body {
         <div class="art-item" style="background-image: url('IMG_20260428_030610_579.jpg');"></div>
         <div class="art-item" style="background-image: url('m8SBsQvwA1GV72MMnlgVWp44seLJrT8WaTv9afzo5WxXMD0l7YVujDSqhfVcNCjlj39k82osW109nA-llm2B6MLq.jpg');"></div>
         <div class="art-item" style="background-image: url('IMG_20260428_030249_945.jpg');"></div>
-        <div class="art-item" style="background-color: #666;">6</div>
+        <div class="art-item" style="background-image: url('long.jpg');">6</div>
         <div class="art-item" style="background-color: #777;">7</div>
         <div class="art-item" style="background-color: #888;">8</div>
     </div>
