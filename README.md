@@ -357,10 +357,6 @@ html, body {
 </div>
 
 
-    <img id="full-img" src="" style="max-width: 90%; max-height: 90vh; border: 1px solid white;">
-</div>
-
-
     <!-- Двигающийся элемент -->
     <div class="moving-element"></div>
 
