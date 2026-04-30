@@ -160,11 +160,15 @@
     <div class="art-item">
         <img src="hand.jpg" alt="">
     </div>
+    <div class="art-item">
+        <img src="long.jpg" alt="">
+    </div>
+
 
     <!-- Твое Видео (Добавь ссылку вместо vacuum.mp4) -->
     <div class="art-item">
         <video loop muted autoplay playsinline>
-            <source src="video1.mp4" type="video/mp4">
+            <source src="vacuum.mp4" type="video/mp4">
         </video>
     </div>
 
