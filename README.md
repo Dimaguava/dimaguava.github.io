@@ -68,7 +68,7 @@
 
         /* ГАЛЕРЕЯ (МЕЙСОНРИ ДЛЯ РАЗНОЙ ВЫСОТЫ) */
         .gallery {
-            column-count: 3; column-gap: 15px; padding: 20px; max-width: 1400px; margin: 0 auto;
+            column-count: 2; column-gap: 15px; padding: 20px; max-width: 1400px; margin: 0 auto;
         }
         .art-item {
             display: inline-block; width: 100%; margin-bottom: 15px;
@@ -163,9 +163,19 @@
     <div class="art-item">
         <img src="long.jpg" alt="">
     </div>
-
-
-    <!-- Твое Видео (Добавь ссылку вместо vacuum.mp4) -->
+    <div class="art-item">
+        <img src="snow.jpg" alt="">
+    </div>
+<div class="art-item">
+        <img src="marine.jpg" alt="">
+    </div>
+<div class="art-item">
+        <img src="IMG_20260428_030249_945.jpg" alt="">
+    </div>
+<div class="art-item">
+        <img src="IMG_20260428_030458_887.jpg" alt="">
+    </div>
+    
     <div class="art-item">
         <video loop muted autoplay playsinline>
             <source src="vacuum.mp4" type="video/mp4">
