@@ -352,8 +352,11 @@ html, body {
 </script>
 
 
+<div id="overlay" onclick="closeFull()">
+    <div id="full-content-container"></div>
+</div>
 
-<div id="overlay" onclick="closeFull()" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; align-items: center; justify-content: center; cursor: zoom-out;">
+
     <img id="full-img" src="" style="max-width: 90%; max-height: 90vh; border: 1px solid white;">
 </div>
 
@@ -448,26 +451,70 @@ html, body {
 </div>
 
 
+function openFull(url, isVideo = false) {
+    const overlay = document.getElementById('overlay');
+    const container = document.getElementById('full-content-container');
+    
+    // Очищаем контейнер от старого контента
+    container.innerHTML = '';
+    document.body.classList.add('no-scroll'); // Запрещаем скролл сайта
 
-<script>
-    function openFull(element) {
-        // Достаем URL картинки из стиля background-image
-        const bg = element.style.backgroundImage;
-        const url = bg.replace(/url\(['"]?(.*?)['"]?\)/i, '$1');
+    if (isVideo) {
+        const video = document.createElement('video');
+        video.src = url;
+        video.controls = true;
+        video.autoplay = true;
+        video.muted = false; // Пытаемся запустить со звуком
+        video.loop = true;
+        video.style.maxWidth = "90vw";
+        video.style.maxHeight = "90vh";
+        video.style.border = "1px solid white";
+        container.appendChild(video);
         
-        document.getElementById('full-img').src = url;
-        document.getElementById('overlay').style.display = 'flex';
+        // Попытка автоплея (браузеры могут блокировать звук без клика)
+        video.play().catch(() => {
+            video.muted = true; // Если заблокировано, включаем без звука
+            video.play();
+        });
+    } else {
+        const img = document.createElement('img');
+        img.src = url;
+        img.style.maxWidth = "90vw";
+        img.style.maxHeight = "90vh";
+        img.style.border = "1px solid white";
+        container.appendChild(img);
+    }
+    
+    overlay.style.display = 'flex';
+}
+
+function closeFull() {
+    const overlay = document.getElementById('overlay');
+    const container = document.getElementById('full-content-container');
+    container.innerHTML = ''; // Удаляем видео, чтобы звук прекратился
+    overlay.style.display = 'none';
+    document.body.classList.remove('no-scroll');
+}
+
+// Универсальный обработчик кликов в галерее
+document.addEventListener('click', function(e) {
+    const item = e.target.closest('.art-item');
+    if (!item) return;
+
+    // Если кликнули по видео в сетке
+    const videoInGrid = item.querySelector('video');
+    if (videoInGrid) {
+        openFull(videoInGrid.querySelector('source').src, true);
+        return;
     }
 
-    function closeFull() {
-        document.getElementById('overlay').style.display = 'none';
+    // Если кликнули по картинке или GIF в сетке
+    const imgInGrid = item.querySelector('img');
+    if (imgInGrid) {
+        openFull(imgInGrid.src, false);
     }
+});
 
-    // Автоматически добавляем клик на все карточки арт-объектов
-    document.querySelectorAll('.art-item').forEach(item => {
-        item.setAttribute('onclick', 'openFull(this)');
-    });
-</script>
 
 
 <script>
