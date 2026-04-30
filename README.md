@@ -447,69 +447,68 @@ html, body {
 </div>
 
 
-function openFull(url, isVideo = false) {
-    const overlay = document.getElementById('overlay');
-    const container = document.getElementById('full-content-container');
-    
-    // Очищаем контейнер от старого контента
-    container.innerHTML = '';
-    document.body.classList.add('no-scroll'); // Запрещаем скролл сайта
-
-    if (isVideo) {
-        const video = document.createElement('video');
-        video.src = url;
-        video.controls = true;
-        video.autoplay = true;
-        video.muted = false; // Пытаемся запустить со звуком
-        video.loop = true;
-        video.style.maxWidth = "90vw";
-        video.style.maxHeight = "90vh";
-        video.style.border = "1px solid white";
-        container.appendChild(video);
+<script>
+    // 1. Функция открытия (создает контент внутри окна)
+    function openFull(url, isVideo = false) {
+        const overlay = document.getElementById('overlay');
+        const container = document.getElementById('full-content-container') || document.getElementById('overlay');
         
-        // Попытка автоплея (браузеры могут блокировать звук без клика)
-        video.play().catch(() => {
-            video.muted = true; // Если заблокировано, включаем без звука
-            video.play();
-        });
-    } else {
-        const img = document.createElement('img');
-        img.src = url;
-        img.style.maxWidth = "90vw";
-        img.style.maxHeight = "90vh";
-        img.style.border = "1px solid white";
-        container.appendChild(img);
-    }
-    
-    overlay.style.display = 'flex';
-}
+        // Очищаем окно от старого контента
+        container.innerHTML = '';
+        document.body.classList.add('no-scroll');
 
-function closeFull() {
-    const overlay = document.getElementById('overlay');
-    const container = document.getElementById('full-content-container');
-    container.innerHTML = ''; // Удаляем видео, чтобы звук прекратился
-    overlay.style.display = 'none';
-    document.body.classList.remove('no-scroll');
-}
-
-// Универсальный обработчик кликов в галерее
-document.addEventListener('click', function(e) {
-    const item = e.target.closest('.art-item');
-    if (!item) return;
-
-    // Если кликнули по видео в сетке
-    const videoInGrid = item.querySelector('video');
-    if (videoInGrid) {
-        openFull(videoInGrid.querySelector('source').src, true);
-        return;
+        if (isVideo) {
+            // Если это видео
+            const video = document.createElement('video');
+            video.src = url;
+            video.controls = true;
+            video.autoplay = true;
+            video.loop = true;
+            video.style.maxWidth = "90vw";
+            video.style.maxHeight = "90vh";
+            container.appendChild(video);
+        } else {
+            // Если это картинка или GIF
+            const img = document.createElement('img');
+            img.src = url;
+            img.style.maxWidth = "90vw";
+            img.style.maxHeight = "90vh";
+            container.appendChild(img);
+        }
+        
+        overlay.style.display = 'flex';
     }
 
-    // Если кликнули по картинке или GIF в сетке
-    const imgInGrid = item.querySelector('img');
-    if (imgInGrid) {
-        openFull(imgInGrid.src, false);
+    // 2. Функция закрытия
+    function closeFull() {
+        const overlay = document.getElementById('overlay');
+        const container = document.getElementById('full-content-container') || document.getElementById('overlay');
+        container.innerHTML = ''; // Удаляем видео, чтобы звук выключился
+        overlay.style.display = 'none';
+        document.body.classList.remove('no-scroll');
     }
-});
+
+    // 3. Умный обработчик кликов
+    document.addEventListener('click', function(e) {
+        const item = e.target.closest('.art-item');
+        if (!item) return;
+
+        // Ищем видео внутри карточки
+        const video = item.querySelector('video');
+        if (video) {
+            // Берем ссылку из тега <source> или из самого видео
+            const videoSrc = video.querySelector('source') ? video.querySelector('source').src : video.src;
+            openFull(videoSrc, true);
+            return;
+        }
+
+        // Ищем картинку или GIF внутри карточки
+        const img = item.querySelector('img');
+        if (img) {
+            openFull(img.src, false);
+        }
+    });
+</script>
 
 
 
