@@ -7,21 +7,7 @@
     <style>
 
 
-    /* Стиль для видео-карточек */
-.art-video {
-    width: 100%;
-    display: block;
-    outline: none;
-}
-
-/* Скрываем стандартные кнопки, если хочешь чистый вид */
-video::-webkit-media-controls {
-    opacity: 0.5;
-    transition: opacity 0.3s;
-}
-video:hover::-webkit-media-controls {
-    opacity: 1;
-}
+    
 
 
 /* Убираем тряску страницы */
@@ -186,9 +172,7 @@ html, body {
             position: relative;
             overflow: hidden;
             transition: transform 0.3s;
-            /* Сюда вставлять картинки: background-image: url('https://raw.githubusercontent.com/Dimaguava/dimaguava.github.io/refs/heads/main/Screenshot_20260428_021401.jpg'); */
-            background-size: cover;
-            background-position: center;
+            ;
         }
 
         .art-item:hover {
@@ -267,52 +251,23 @@ html, body {
 <!-- ПЛЕЕР -->
 <audio id="bg-music" src="audio1.mp3" loop></audio>
 
-<!-- БЕЛЫЙ БАННЕР (OVERLAY) -->
-<div id="overlay" style="
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background: white; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    z-index: 999999; /* Перекрывает всё, включая твои z-99 */
-    transition: opacity 0.5s ease;
-">
-    <div style="
-        display: flex; 
-        gap: 5%; /* Гибкий отступ между картинками */
-        width: 90%; 
-        max-width: 1000px; 
-        justify-content: center; 
-        align-items: center;
-    ">
-        
-        <!-- Левая картинка (Ссылка) -->
-        <a href="nice.html" style="display: block; flex: 1; max-width: 45%;">
-            <img src="img_left.jpg" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;">
-        Я люблю покой </a>
-
-        <!-- Правая картинка (Музыка и выход) -->
-        <div onclick="startSite()" style="display: block; flex: 1; max-width: 45%; cursor: pointer;">
-            <img src="img_right.jpg" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"><p style="
-        margin-top: 15px; 
-        font-family: sans-serif; 
-        font-size: 1.2rem; 
-        color: #333; 
-        text-align: center;
-        font-weight: 500;
-    ">
-        Я люблю ШУМ
-    </p>
+<!-- БАННЕР ВХОДА -->
+<div id="entry-banner">
+    <div style="text-align: center; color: black; display: flex; gap: 20px; font-family: monospace;">
+        <div onclick="location.href='nice.html'" style="cursor:pointer;">
+             <img src="img_left.jpg" width="200" style="border-radius:10px;"><br>Я ЛЮБЛЮ ПОКОЙ
         </div>
-
+        <div onclick="startSite()" style="cursor:pointer;">
+             <img src="img_right.jpg" width="200" style="border-radius:10px;"><br>ШУМ / ВХОД
+        </div>
     </div>
 </div>
 
+
+
 <script>
+
+    
     function startSite() {
         var audio = document.getElementById('bg-music');
         var banner = document.getElementById('overlay');
