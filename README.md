@@ -68,10 +68,10 @@
 
         /* ГАЛЕРЕЯ (МЕЙСОНРИ ДЛЯ РАЗНОЙ ВЫСОТЫ) */
         .gallery {
-            column-count: 2; column-gap: 15px; padding: 20px; max-width: 1400px; margin: 0 auto;
+            column-count: 2; column-gap: 5px; padding: 5px; max-width: none; margin: 0 auto;
         }
         .art-item {
-            display: inline-block; width: 100%; margin-bottom: 15px;
+            display: inline-block; width: 100%; margin-bottom: 5px;
             background-color: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
             transition: transform 0.3s; cursor: pointer;
         }
@@ -82,7 +82,7 @@
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); z-index: 1000000; align-items: center; justify-content: center;
         }
-        #viewer-content img, #viewer-content video { max-width: 90vw; max-height: 90vh; border: 1px solid white; }
+        #viewer-content img, #viewer-content video { max-width: 95vw; max-height: 95vh; border: 1px solid white; }
 
         /* КРУГ И ПАНЕЛЬ */
         .moving-element {
