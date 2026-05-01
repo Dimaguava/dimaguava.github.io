@@ -68,7 +68,7 @@
 
         /* ГАЛЕРЕЯ (МЕЙСОНРИ ДЛЯ РАЗНОЙ ВЫСОТЫ) */
         .gallery {
-            column-count: 2; column-gap: 5px; padding: 5px; max-width: none; margin: 0 auto;
+            column-count: 2; column-gap: 12px; padding: 5px; max-width: none; margin: 0 auto;
         }
         .art-item {
             display: inline-block; width: 100%; margin-bottom: 5px;
