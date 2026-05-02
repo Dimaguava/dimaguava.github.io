@@ -59,7 +59,7 @@ body, html {
     margin: 0; padding: 0; width: 100%;
     font-family: 'Courier New', Courier, monospace;
     background: linear-gradient(125deg, #f4d03f, #cd6155, #ff0000, #0000ff);
-    background-size: 800% 800%;
+    background-size: 200% 200%;
     animation: gradientBG 15s ease infinite;
     color: white; overflow-x: hidden;
 }
@@ -268,6 +268,7 @@ h1::after {
 <div id="viewer-overlay" onclick="closeFull()">
     <div id="viewer-content" onclick="event.stopPropagation()"></div>
 </div>
+
 
 <script>
     function startSite() {
