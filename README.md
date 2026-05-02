@@ -48,19 +48,19 @@
 .ascii-corner {
     position: fixed;
     font-family: monospace;
-    font-size: 10px;
+    font-size: 11px;
     color: white;
     mix-blend-mode: difference;
     z-index: 10000;
-    line-height: 1;
+    line-height: 2;
 }
 
 body, html {
     margin: 0; padding: 0; width: 100%;
     font-family: 'Courier New', Courier, monospace;
-    background: linear-gradient(125deg, #ff00ff, #00ffff, #ff0000, #0000ff);
+    background: linear-gradient(125deg, #f4d03f, #cd6155, #ff0000, #0000ff);
     background-size: 800% 800%;
-    animation: gradientBG 10s ease infinite;
+    animation: gradientBG 15s ease infinite;
     color: white; overflow-x: hidden;
 }
 
@@ -73,7 +73,7 @@ body, html {
 header { text-align: center; padding: 50px 20px; position: relative; }
 h1 { font-size: 4em; text-transform: uppercase; position: relative; display: inline-block; }
 h1::after {
-    content: 'АНУФРИЕВ ДМИТРИю'; position: absolute; left: 2px; text-shadow: -2px 0 red;
+    content: 'ЭЛЕКТРОХОЛМ'; position: absolute; left: 2px; text-shadow: -2px 0 red;
     top: 0; color: white; background: transparent; overflow: hidden;
     clip: rect(0, 900px, 0, 0); animation: glitch-anim 2s infinite linear alternate-reverse;
 }
@@ -85,12 +85,12 @@ h1::after {
 
 
 .menu {
-    position: fixed; /* Прижимаем к экрану */
-    top: 20px;       /* Отступ сверху */
-    right: 20px;     /* Отступ справа */
+    position: absolute;
+    top: 15px;       /* Отступ сверху */
+    right: 15px;     /* Отступ справа */
     display: flex;
     flex-direction: column; /* Выстраиваем в столбик */
-    gap: 8px;        /* Расстояние между кнопками */
+    gap: 5px;        /* Расстояние между кнопками */
     z-index: 10002;  /* Выше полосок и круга, чтобы всегда можно было нажать */
     align-items: flex-end; /* Выравнивание по правому краю */
 }
@@ -105,12 +105,37 @@ h1::after {
 }
 !-->
 
-.glitch-button:hover { background: #0f0; color: black; box-shadow: 0 0 20px #0f0; }
+
+.glitch-button {
+    padding: 6px 12px;           /* Уменьшили отступы вокруг текста */
+    background: rgba(0, 0, 0, 0.4); /* Черный фон с прозрачностью 40% */
+    color: #0f0;                 /* Цвет текста (зеленый) */
+    border: 1px solid rgba(0, 255, 0, 0.5); /* Полупрозрачная рамка */
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    
+    /* НАСТРОЙКИ РАЗМЕРА ТЕКСТА */
+    font-size: 9px;              /* Делаем шрифт очень мелким */
+    letter-spacing: 1px;         /* Добавим межбуквенный интервал для читаемости */
+    
+    text-decoration: none;
+    transition: all 0.3s ease;   /* Плавный переход при наведении */
+    white-space: nowrap;
+    backdrop-filter: blur(2px);  /* Легкое размытие ФОНА под кнопкой (эффект стекла
+    }
+
+.glitch-button:hover {
+    background: rgba(0, 255, 0, 0.8); /* При наведении становится почти плотной и зеленой */
+    color: black;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
 
 /* ГАЛЕРЕЯ ДВЕ КОЛОНКИ */
 .gallery {
     column-count: 2; column-gap: 10px; padding: 8px; max-width: none; margin: 0 auto;
 }
+
 .art-item {
     display: inline-block; width: 100%; margin-bottom: 10px;
     background-color: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
