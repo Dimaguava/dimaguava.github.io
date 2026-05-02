@@ -93,10 +93,10 @@ h1::after {
 
 /* ГАЛЕРЕЯ ДВЕ КОЛОНКИ */
 .gallery {
-    column-count: 2; column-gap: 12px; padding: 10px; max-width: none; margin: 0 auto;
+    column-count: 2; column-gap: 10px; padding: 8px; max-width: none; margin: 0 auto;
 }
 .art-item {
-    display: inline-block; width: 100%; margin-bottom: 12px;
+    display: inline-block; width: 100%; margin-bottom: 10px;
     background-color: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
     transition: transform 0.3s; cursor: pointer;
 }
@@ -163,7 +163,7 @@ h1::after {
 
 <div class="noto-stream" style="top: 15vh;"><div class="noto-bar">░▒▓█ ERROR_01010101_SYSTEM_FAILURE_RECOVERY_░▒▓█</div></div>
 <div class="noto-stream" style="top: 45vh;"><div class="noto-bar" style="animation-direction: reverse;">██████████ DATA_STREAM_ANUFRIEV_██████████</div></div>
-<div class="noto-stream" style="top: 80vh;"><div class="noto-bar" style="animation-duration: 15s;">[ +++ ] SIGNAL_LOST [ +++ ] ALVA_NOTO_MODE</div></div>
+<div class="noto-stream" style="top: 80vh;"><div class="noto-bar" style="animation-duration: 15s;">[ +++ ] ЭЛЕКТРОХОЛМ [ +++ ] ALVA_NOTO_MODE  [ +++ ] ELECTRXOLM</div></div>
 
 <div class="moving-element"></div>
 
@@ -177,24 +177,33 @@ h1::after {
 
 <div class="controls-panel">
     <div class="control-group">
-        <label>SIZE</label>
-        <input type="range" id="sizeRange" min="20" max="900" value="70">
+        <label>Рзмр крг</label>
+        <input type="range" id="sizeRange" min="20" max="900" value="200">
     </div>
     <div class="control-group">
         <label>SPEED</label>
-        <input type="range" id="speedRange" min="1" max="31" value="8">
+        <input type="range" id="speedRange" min="0" max="33" value="1">
     </div>
 </div>
 
+
+<!-- Одиночное изображение во всю ширину -->
+<div class="art-item-full">
+    <img src="Screenshot_20260428_021401.jpg" alt="Featured Art">
+</div>
+
+
 <div class="gallery">
     <!-- КАРТИНКИ ТЕПЕРЬ ВСТАВЛЯЮТСЯ ТАК (ЧЕРЕЗ ТЕГ IMG), ЧТОБЫ КОЛОНКИ РАБОТАЛИ -->
-    <div class="art-item"><img src="Screenshot_20260428_021401.jpg" alt=""></div>
+    <div class="art-item"><img src="hand.jpg" alt=""></div>
     <div class="art-item"><img src="jPDAfbffEcI.jpg" alt=""></div>
     <div class="art-item"><img src="IMG_20260428_030610_579.jpg" alt=""></div>
     <div class="art-item">
-        <video loop muted autoplay playsinline><source src="video1.mp4" type="video/mp4"></video>
+        <video loop muted autoplay playsinline><source src="vacuum.mp4" type="video/mp4"></video>
     </div>
 </div>
+
+<div class="art-item"><img src="long.jpg" alt=""></div>
 
 <div id="viewer-overlay" onclick="closeFull()">
     <div id="viewer-content" onclick="event.stopPropagation()"></div>
