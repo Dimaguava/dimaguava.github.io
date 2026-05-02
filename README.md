@@ -277,20 +277,56 @@ h1::after {
         document.getElementById('bg-music').play().catch(() => {});
     }
 
-    function openFull(url, isVideo = false) {
-        const overlay = document.getElementById('viewer-overlay');
-        const container = document.getElementById('viewer-content');
-        container.innerHTML = isVideo ? `<video src="${url}" controls autoplay loop></video>` : `<img src="${url}">`;
-        overlay.style.display = 'flex';
-        document.body.classList.add('no-scroll');
-    }
 
-    function closeFull() {
-        document.getElementById('viewer-overlay').style.display = 'none';
-        document.getElementById('viewer-content').innerHTML = '';
-        document.body.classList.remove('no-scroll');
-    }
 
+// Функция открытия
+function openFull(url, isVideo = false) {
+    const overlay = document.getElementById('viewer-overlay');
+    const container = document.getElementById('viewer-content');
+    const bgMusic = document.getElementById('bg-music'); // Находим фоновую музыку
+    
+    container.innerHTML = '';
+    
+    if (isVideo) {
+        // Если открывается видео, СТАВИМ НА ПАУЗУ фоновую музыку
+        if (bgMusic) bgMusic.pause();
+        
+        const video = document.createElement('video');
+        video.src = url; 
+        video.controls = true; 
+        video.autoplay = true; 
+        video.loop = true;
+        container.appendChild(video);
+    } else {
+        const img = document.createElement('img');
+        img.src = url;
+        container.appendChild(img);
+    }
+    
+    overlay.style.display = 'flex';
+    document.body.classList.add('no-scroll');
+}
+
+// Функция закрытия
+function closeFull() {
+    const overlay = document.getElementById('viewer-overlay');
+    const container = document.getElementById('viewer-content');
+    const bgMusic = document.getElementById('bg-music'); // Находим фоновую музыку
+    
+    // ПРОВЕРЯЕМ: если внутри оверлея сейчас играет видео
+    const currentVideo = container.querySelector('video');
+    
+    overlay.style.display = 'none';
+    container.innerHTML = ''; // Удаляем контент (видео перестает звучать)
+    document.body.classList.remove('no-scroll');
+    
+    // Если мы закрыли именно видео, ВОЗОБНОВЛЯЕМ фоновую музыку
+    if (currentVideo && bgMusic) {
+        bgMusic.play().catch(e => console.log("Музыка не смогла включиться автоматически"));
+    }
+}
+
+    
     document.addEventListener('click', (e) => {
         const item = e.target.closest('.art-item');
         if (!item) return;
