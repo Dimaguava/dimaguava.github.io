@@ -12,8 +12,9 @@
     transform: translateX(-50%);
     z-index: 100003;
     font-family: monospace;
-    font-size: 10px;
-    color: #fff;
+    font-size: 11px;
+    color: #ffffff;     
+    font-weight: 900 !important;
     cursor: pointer;
     mix-blend-mode: difference;
     pointer-events: auto;
@@ -23,8 +24,7 @@
     padding: 3px 8px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     margin: 0 2px;
-    color: #ffffff !important;      
-    font-weight: 900 !important;     
+         
 }
 .music-player span:hover { color: #0f0; border-color: #0f0; }
 
@@ -98,7 +98,7 @@ body, html {
 header { text-align: center; padding: 50px 20px; position: relative; }
 h1 { font-size: 4em; text-transform: uppercase; position: relative; display: inline-block; }
 h1::after {
-    content: 'Ануфриев Дмитрий'; position: absolute; left: 2px; text-shadow: -2px 0 red;
+    content: 'Ануфриев Всегда '; position: absolute; left: 2px; text-shadow: -2px 0 red;
     top: 0; color: white; background: transparent; overflow: hidden;
     clip: rect(0, 900px, 0, 0); animation: glitch-anim 2s infinite linear alternate-reverse;
 }
@@ -122,7 +122,7 @@ h1::after {
 
 .glitch-button {
     padding: 6px 12px;           
-    background: rgba(0, 0, 0, 0.4); 
+    background: rgba(0, 0, 0, 0); 
     color: #0f0;                 
     border: 1px solid rgba(0, 255, 0, 0.5); 
     text-transform: uppercase;
@@ -134,7 +134,7 @@ h1::after {
     transition: all 0.3s ease;   
     white-space: nowrap;
     backdrop-filter: blur(2px);  
-} /* <--- ВОТ ЭТА СКОБКА БЫЛА ПРОПУЩЕНА, ТЕПЕРЬ ВСЁ ОК */
+} 
 
 .glitch-button:hover {
     background: rgba(0, 255, 0, 0.8); 
@@ -300,21 +300,18 @@ h1::after {
     <div class="art-item">
         <video loop muted autoplay playsinline><source src="VID_20260502_072915_864.mp4" type="video/mp4"></video>
     </div>
-а что если добавить текст в таблицу только на самом деле это все уже было 
 
 <div class="art-item"><img src="m8SBsQvwA1GV72MMnlgVWp44seLJrT8WaTv9afzo5WxXMD0l7YVujDSqhfVcNCjlj39k82osW109nA-llm2B6MLq.jpg" alt=""></div>
     <div class="art-item"><img src="vaka.jpg" alt=""></div>
+    
+а что если добавить текст в таблицу только на самом деле это все уже было 
 
   <div class="art-item">
         <video loop muted autoplay playsinline><source src="VID_20260502_072919_416.mp4" type="video/mp4"></video>
     </div>
 <div class="art-item">
-        <video loop muted autoplay playsinline><source src="VID_20260502_072919_416.mp4" type="video/mp4"></video>
+        <video loop muted autoplay playsinline><source src="VID_20260502_082928_229.mp4" type="video/mp4"></video>
     </div>
-
-
-    <!-- конец галереи --!>
-    галерея заканчивается здесь ..здесь .дальше начинается пустое пространство, как будто степь, бесконечное поле, усыпанное снегом.. Я бы хотел чтобы текст наслаивался и переходил в белое, бы хотел чтобы каждый текст наслаивался и переходил в белое. так наслаивается человек.
 </div>
 галерея заканчивается здесь ..здесь .дальше начинается пустое пространство, как будто степь, бесконечное поле, усыпанное снегом.. Я бы хотел чтобы <h1>текст</h1> наслаивался и переходил в <h1>белое</h1>, я бы хотел чтобы каждый текст наслаивался и переходил в белое. так наслаивается <h1>человек</h1>.
 
