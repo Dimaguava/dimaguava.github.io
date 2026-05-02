@@ -404,8 +404,8 @@ function toggleMusic() {
 function nextTrack() {
     let current = parseInt(audio.getAttribute('data-current'));
     
-    // Если играл 1 трек - включаем 2, если играл 2 - возвращаемся на 1
-    let next = (current === 1) ? 2 : 1;
+    // Если текущий трек 7, то сбрасываем на 1. Иначе просто прибавляем 1.
+    let next = (current >= 7) ? 1 : current + 1;
     
     audio.src = 'audio' + next + '.mp3';
     audio.setAttribute('data-current', next);
