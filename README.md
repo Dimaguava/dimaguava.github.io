@@ -73,7 +73,7 @@ body, html {
 header { text-align: center; padding: 50px 20px; position: relative; }
 h1 { font-size: 4em; text-transform: uppercase; position: relative; display: inline-block; }
 h1::after {
-    content: 'ЭЛЕКТРОХОЛМ'; position: absolute; left: 2px; text-shadow: -2px 0 red;
+    content: 'Ануфриев Дмитрий'; position: absolute; left: 2px; text-shadow: -2px 0 red;
     top: 0; color: white; background: transparent; overflow: hidden;
     clip: rect(0, 900px, 0, 0); animation: glitch-anim 2s infinite linear alternate-reverse;
 }
