@@ -186,7 +186,7 @@ h1::after {
 
 <div class="noto-stream" style="top: 15vh;"><div class="noto-bar">░▒▓█ ERROR_01010101_SYSTEM_FAILURE_RECOVERY_░▒▓█</div></div>
 <div class="noto-stream" style="top: 45vh;"><div class="noto-bar" style="animation-direction: reverse;">██████████ DATA_STREAM_ANUFRIEV_██████████</div></div>
-<div class="noto-stream" style="top: 80vh;"><div class="noto-bar" style="animation-duration: 15s;">[ +++ ] ЭЛЕКТРОХОЛМ [ +++ ] ALVA_NOTO_MODE  [ +++ ] ELECTRXOLM</div></div>
+<div class="noto-stream" style="top: 80vh;"><div class="noto-bar" style="animation-duration: 15s;">[ +++ ] ЭЛЕКТРОХОЛМ [ +++ ] ALVA_NOTO_MODE  [ +++ ] ELECTROXOLM</div></div>
 
 <div class="moving-element"></div>
 
@@ -212,7 +212,7 @@ h1::after {
 
 <!-- Одиночное изображение во всю ширину -->
 <div style="padding: 10px;">
-    <div class="art-item" style="margin-bottom: 12px;">
+    <div class="art-item" style="margin-bottom: 6px;">
         <img src="Screenshot_20260428_021401.jpg" alt="">
     </div>
 </div>
@@ -226,9 +226,16 @@ h1::after {
     <div class="art-item">
         <video loop muted autoplay playsinline><source src="vacuum.mp4" type="video/mp4"></video>
     </div>
+    <div class="art-item"><img src="long.jpg" alt=""></div>
+
+    
 </div>
 
-<div class="art-item"><img src="long.jpg" alt=""></div>
+
+
+
+
+
 
 <div id="viewer-overlay" onclick="closeFull()">
     <div id="viewer-content" onclick="event.stopPropagation()"></div>
