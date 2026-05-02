@@ -96,12 +96,12 @@
         }
         .glitch-button:hover { background: #0f0; color: black; box-shadow: 0 0 20px #0f0; }
 
-        /* ГАЛЕРЕЯ НА 110% ШИРИНЫ */
+        /* ГАЛЕРЕЯ НА 100% ШИРИНЫ */
         .gallery {
             column-count: 2; column-gap: 8px; padding: 10px; max-width: none; margin: 0 auto;
         }
         .art-item {
-            display: inline-block; width: 110%; margin-bottom: 12px;
+            display: inline-block; width: 100%; margin-bottom: 12px;
             background-color: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
             transition: transform 0.3s; cursor: pointer;
         }
@@ -130,8 +130,8 @@
 
         .controls-panel {
             position: fixed; bottom: 20px; left: 10px; z-index: 10001;
-            background: rgba(0, 0, 0, 0.7); padding: 8px; border: 1px solid #fff;
-            width: 130px; color: white; font-family: monospace;
+            background: rgba(0, 0, 0, 0.0); padding: 8px; border: 1px solid #fff;
+            width: 130px; color: none; font-family: monospace;
         }
         .control-group label { display: block; font-size: 10px; margin-bottom: 5px; }
 
@@ -212,11 +212,11 @@
 <div class="controls-panel">
     <div class="control-group">
         <label>SIZE</label>
-        <input type="range" id="sizeRange" min="20" max="300" value="70">
+        <input type="range" id="sizeRange" min="20" max="900" value="70">
     </div>
     <div class="control-group">
         <label>SPEED</label>
-        <input type="range" id="speedRange" min="1" max="30" value="11">
+        <input type="range" id="speedRange" min="1" max="31" value="8">
     </div>
 </div>
 
