@@ -286,8 +286,27 @@ h1::after {
         <video loop muted autoplay playsinline><source src="vacuum.mp4" type="video/mp4"></video>
     </div>
     <div class="art-item"><img src="long.jpg" alt=""></div>
+<div class="art-item">
+        <video loop muted autoplay playsinline><source src="2_5453932549736797835.mp4" type="video/mp4"></video>
+    </div>
 
-    
+<div class="art-item">
+        <video loop muted autoplay playsinline><source src="VID_20260502_072620_076.mp4" type="video/mp4"></video>
+    </div>
+<div class="art-item"><img src="marine.jpg" alt=""></div>
+    <div class="art-item"><img src="IMG_20260428_030249_945.jpg" alt=""></div>
+    <div class="art-item">
+        <video loop muted autoplay playsinline><source src="VID_20260502_072915_864.mp4" type="video/mp4"></video>
+    </div>
+
+<div class="art-item"><img src="m8SBsQvwA1GV72MMnlgVWp44seLJrT8WaTv9afzo5WxXMD0l7YVujDSqhfVcNCjlj39k82osW109nA-llm2B6MLq.jpg" alt=""></div>
+    <div class="art-item"><img src="vaka.jpg" alt=""></div>
+
+  <div class="art-item">
+        <video loop muted autoplay playsinline><source src="VID_20260502_072919_416.mp4" type="video/mp4"></video>
+    </div>
+
+    <!--конец галереи--!>
 </div>
 
 
