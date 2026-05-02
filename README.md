@@ -114,11 +114,9 @@ h1::after {
     text-transform: uppercase;
     cursor: pointer;
     font-weight: bold;
-    
     /* НАСТРОЙКИ РАЗМЕРА ТЕКСТА */
     font-size: 9px;              /* Делаем шрифт очень мелким */
     letter-spacing: 1px;         /* Добавим межбуквенный интервал для читаемости */
-    
     text-decoration: none;
     transition: all 0.3s ease;   /* Плавный переход при наведении */
     white-space: nowrap;
