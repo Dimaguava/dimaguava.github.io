@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -74,7 +73,7 @@ body, html {
 header { text-align: center; padding: 50px 20px; position: relative; }
 h1 { font-size: 4em; text-transform: uppercase; position: relative; display: inline-block; }
 h1::after {
-    content: 'АНУФРИЕВ ДМИТРИЙ'; position: absolute; left: 2px; text-shadow: -2px 0 red;
+    content: 'АНУФРИЕВ ДМИТРИю'; position: absolute; left: 2px; text-shadow: -2px 0 red;
     top: 0; color: white; background: transparent; overflow: hidden;
     clip: rect(0, 900px, 0, 0); animation: glitch-anim 2s infinite linear alternate-reverse;
 }
@@ -84,11 +83,28 @@ h1::after {
     100% { clip: rect(60px, 9999px, 80px, 0); }
 }
 
+
+.menu {
+    position: fixed; /* Прижимаем к экрану */
+    top: 20px;       /* Отступ сверху */
+    right: 20px;     /* Отступ справа */
+    display: flex;
+    flex-direction: column; /* Выстраиваем в столбик */
+    gap: 8px;        /* Расстояние между кнопками */
+    z-index: 10002;  /* Выше полосок и круга, чтобы всегда можно было нажать */
+    align-items: flex-end; /* Выравнивание по правому краю */
+}
+
+
+<!--  старое меню
+
 .menu { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px; }
 .glitch-button {
     padding: 15px 30px; background: black; color: #0f0; border: 2px solid #0f0;
     text-transform: uppercase; cursor: pointer; font-weight: bold; text-decoration: none;
 }
+!-->
+
 .glitch-button:hover { background: #0f0; color: black; box-shadow: 0 0 20px #0f0; }
 
 /* ГАЛЕРЕЯ ДВЕ КОЛОНКИ */
@@ -204,7 +220,7 @@ h1::after {
         <input type="range" id="sizeRange" min="20" max="900" value="200">
     </div>
     <div class="control-group">
-        <label>SPEED</label>
+        <label>Скрст крг</label>
         <input type="range" id="speedRange" min="0" max="33" value="1">
     </div>
 </div>
