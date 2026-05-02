@@ -5,6 +5,29 @@
     <title>Ануфриев Дмитрий - Digital Art, композитор, diy, noise, художник Санкт-Петербург, Circuit bend</title>
     
     <style>
+
+.music-player {
+    position: fixed;
+    top: 10px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 100003;
+    font-family: monospace;
+    font-size: 10px;
+    color: #fff;
+    cursor: pointer;
+    mix-blend-mode: difference;
+    pointer-events: auto;
+}
+.music-player span {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 3px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 0 2px;
+}
+.music-player span:hover { color: #0f0; border-color: #0f0; }
+
+
+    
 /* ОБЩИЙ СТИЛЬ ДЛЯ ВСЕХ ПОЛОС */
 .noto-stream {
     position: fixed;
@@ -58,7 +81,7 @@
 body, html {
     margin: 0; padding: 0; width: 100%;
     font-family: 'Courier New', Courier, monospace;
-    background: linear-gradient(125deg, #f4d03f, #cd6155, #ff0000, #0000ff);
+    background: linear-gradient(125deg, #f4d03f, #cd6155, blue, #0000ff);
     background-size: 200% 200%;
     animation: gradientBG 15s ease infinite;
     color: white; overflow-x: hidden;
@@ -190,7 +213,15 @@ h1::after {
 </head>
 <body>
 
-<audio id="bg-music" src="audio1.mp3" loop></audio>
+<div class="music-player">
+    <span id="audio-control" onclick="toggleMusic()">[ || ]</span>
+    <span id="next-track" onclick="nextTrack()">[ >> ]</span>
+</div>
+
+
+<audio id="bg-music" src="audio1.mp3" loop data-current="1"></audio>
+
+
 
 <div id="entry-banner">
     <div style="text-align: center; color: black; display: flex; gap: 20px; font-family: monospace;">
@@ -335,6 +366,37 @@ function closeFull() {
         else { const img = item.querySelector('img'); if (img) openFull(img.src, false); }
     });
 
+
+const audio = document.getElementById('bg-music');
+
+// Функция Пауза / Плей
+function toggleMusic() {
+    const btn = document.getElementById('audio-control');
+    if (audio.paused) {
+        audio.play();
+        btn.innerHTML = '[ || ]';
+    } else {
+        audio.pause();
+        btn.innerHTML = '[ ▶ ]';
+    }
+}
+
+// Функция переключения на следующий трек
+function nextTrack() {
+    let current = parseInt(audio.getAttribute('data-current'));
+    
+    // Если играл 1 трек - включаем 2, если играл 2 - возвращаемся на 1
+    let next = (current === 1) ? 2 : 1;
+    
+    audio.src = 'audio' + next + '.mp3';
+    audio.setAttribute('data-current', next);
+    
+    audio.play();
+    document.getElementById('audio-control').innerHTML = '[ || ]';
+}
+
+
+    
     const circle = document.querySelector('.moving-element');
     document.getElementById('sizeRange').addEventListener('input', (e) => {
         circle.style.setProperty('--circle-size', e.target.value + 'px');
