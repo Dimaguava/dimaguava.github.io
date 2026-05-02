@@ -211,8 +211,10 @@ h1::after {
 
 
 <!-- Одиночное изображение во всю ширину -->
-<div class="art-item-full">
-    <img src="Screenshot_20260428_021401.jpg" alt="Featured Art">
+<div style="padding: 10px;">
+    <div class="art-item" style="margin-bottom: 12px;">
+        <img src="Screenshot_20260428_021401.jpg" alt="">
+    </div>
 </div>
 
 
