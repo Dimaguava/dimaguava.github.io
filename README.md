@@ -24,10 +24,11 @@
     padding: 3px 8px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     margin: 0 2px;
-         
+         color: #ffffff !important;
+    font-weight: 900 !important;
+    font-size: 8px !important;
 }
 .music-player span:hover { color: #0f0; border-color: #0f0; }
-
 
     
 /* ОБЩИЙ СТИЛЬ ДЛЯ ВСЕХ ПОЛОС */
@@ -200,7 +201,7 @@ h1::after {
 
 .controls-panel {
     position: fixed; bottom: 20px; left: 10px; z-index: 10001;
-    background: rgba(0, 0, 0, 0.7); padding: 8px; border: 1px solid #fff;
+    background: rgba(0, 0, 0, 0); padding: 8px; border: 1px solid #fff;
     width: 130px; color: white; font-family: monospace;
 }
 .control-group label { display: block; font-size: 10px; margin-bottom: 5px; }
