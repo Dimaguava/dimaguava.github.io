@@ -95,39 +95,28 @@ h1::after {
     align-items: flex-end; /* Выравнивание по правому краю */
 }
 
-
-<!--  старое меню
-
-.menu { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px; }
 .glitch-button {
-    padding: 15px 30px; background: black; color: #0f0; border: 2px solid #0f0;
-    text-transform: uppercase; cursor: pointer; font-weight: bold; text-decoration: none;
-}
-!-->
-
-
-.glitch-button {
-    padding: 6px 12px;           /* Уменьшили отступы вокруг текста */
-    background: rgba(0, 0, 0, 0.4); /* Черный фон с прозрачностью 40% */
-    color: #0f0;                 /* Цвет текста (зеленый) */
-    border: 1px solid rgba(0, 255, 0, 0.5); /* Полупрозрачная рамка */
+    padding: 6px 12px;           
+    background: rgba(0, 0, 0, 0.4); 
+    color: #0f0;                 
+    border: 1px solid rgba(0, 255, 0, 0.5); 
     text-transform: uppercase;
     cursor: pointer;
     font-weight: bold;
-    /* НАСТРОЙКИ РАЗМЕРА ТЕКСТА */
-    font-size: 9px;              /* Делаем шрифт очень мелким */
-    letter-spacing: 1px;         /* Добавим межбуквенный интервал для читаемости */
+    font-size: 9px;              
+    letter-spacing: 1px;         
     text-decoration: none;
-    transition: all 0.3s ease;   /* Плавный переход при наведении */
+    transition: all 0.3s ease;   
     white-space: nowrap;
-    backdrop-filter: blur(2px);  /* Легкое размытие ФОНА под кнопкой (эффект стекла
-    }
+    backdrop-filter: blur(2px);  
+} /* <--- ВОТ ЭТА СКОБКА БЫЛА ПРОПУЩЕНА, ТЕПЕРЬ ВСЁ ОК */
 
 .glitch-button:hover {
-    background: rgba(0, 255, 0, 0.8); /* При наведении становится почти плотной и зеленой */
+    background: rgba(0, 255, 0, 0.8); 
     color: black;
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
 }
+
 
 /* ГАЛЕРЕЯ ДВЕ КОЛОНКИ */
 .gallery {
