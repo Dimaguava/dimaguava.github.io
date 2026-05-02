@@ -102,6 +102,29 @@ h1::after {
 }
 .art-item img, .art-item video { width: 100%; display: block; height: auto; }
 
+/* Стиль для полноэкранной одиночной картинки */
+.art-item-full {
+    width: 100%;
+    margin-bottom: 12px; /* Такой же отступ, как у маленьких карточек */
+    background-color: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.art-item-full img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.art-item-full:hover img {
+    transform: scale(1.01); /* Легкий зум при наведении */
+}
+
+
 /* ОКНО ПРОСМОТРА (OVERLAY) */
 #viewer-overlay {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
