@@ -263,7 +263,9 @@ h1::after {
 </div>
 
 
-<audio id="bg-music" src="audio1.mp3" loop data-current="1"></audio>
+
+<audio id="bg-music" loop data-current="1"></audio>
+
 
 
 
@@ -381,22 +383,60 @@ h1::after {
 </div>
 
 
+
 <script>
+
+    
     function startSite() {
-        document.getElementById('entry-banner').style.opacity = '0';
-        setTimeout(() => document.getElementById('entry-banner').style.display = 'none', 500);
+        // Убираем баннер
+        const banner = document.getElementById('entry-banner');
+        banner.style.opacity = '0';
+        setTimeout(() => banner.style.display = 'none', 500);
 
         const audio = document.getElementById('bg-music');
-    // Генерируем случайное число от 1 до 7
-    const randomTrack = Math.floor(Math.random() * 7) + 1;
-    
-    // Подставляем случайный файл
-    audio.src = 'audio' + randomTrack + '.mp3';
-    audio.setAttribute('data-current', randomTrack);
-    
-    audio.play().catch(() => {});
+        
+        // Рандом от 1 до 7
+        const randomTrack = Math.floor(Math.random() * 7) + 1;
+        
+        // Установка трека
+        audio.src = 'audio' + randomTrack + '.mp3';
+        audio.setAttribute('data-current', randomTrack);
+        
+        // Принудительная загрузка и старт
+        audio.load();
+        audio.play().catch(e => console.log("Audio play blocked"));
     }
 
+    function toggleMusic() {
+        const audio = document.getElementById('bg-music');
+        const btn = document.getElementById('audio-control');
+        if (audio.paused) {
+            audio.play();
+            btn.innerHTML = '[ || ]';
+        } else {
+            audio.pause();
+            btn.innerHTML = '[ ▶ ]';
+        }
+    }
+
+    function nextTrack() {
+        const audio = document.getElementById('bg-music');
+        let current = parseInt(audio.getAttribute('data-current')) || 1;
+        
+        // Листаем вперед
+        let next = (current >= 7) ? 1 : current + 1;
+        
+        audio.src = 'audio' + next + '.mp3';
+        audio.setAttribute('data-current', next);
+        
+        audio.load();
+        audio.play();
+        
+        const btn = document.getElementById('audio-control');
+        if (btn) btn.innerHTML = '[ || ]';
+    }
+
+    
 
 
 // Функция открытия
