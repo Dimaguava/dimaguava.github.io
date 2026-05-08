@@ -385,7 +385,16 @@ h1::after {
     function startSite() {
         document.getElementById('entry-banner').style.opacity = '0';
         setTimeout(() => document.getElementById('entry-banner').style.display = 'none', 500);
-        document.getElementById('bg-music').play().catch(() => {});
+
+        const audio = document.getElementById('bg-music');
+    // Генерируем случайное число от 1 до 7
+    const randomTrack = Math.floor(Math.random() * 7) + 1;
+    
+    // Подставляем случайный файл
+    audio.src = 'audio' + randomTrack + '.mp3';
+    audio.setAttribute('data-current', randomTrack);
+    
+    audio.play().catch(() => {});
     }
 
 
@@ -461,12 +470,18 @@ function toggleMusic() {
     }
 }
 
-// Функция переключения на следующий трек
+
 function nextTrack() {
+    const audio = document.getElementById('bg-music');
     let current = parseInt(audio.getAttribute('data-current'));
     
-    // Если текущий трек 7, то сбрасываем на 1. Иначе просто прибавляем 1.
+    // Листаем вперед: если был 7-й, включаем 1-й
     let next = (current >= 7) ? 1 : current + 1;
+    
+    audio.src = 'audio' + next + '.mp3';
+    audio.setAttribute('data-current', next);
+    
+    audio.play();
     
     audio.src = 'audio' + next + '.mp3';
     audio.setAttribute('data-current', next);
