@@ -362,12 +362,12 @@ h1::after {
 <div class="white-steppe">
     <div class="layering-text">
         <!-- Тексты с разным смещением, чтобы они наслаивались друг на друга -->
-        <h1 style="transform: translate(-5%, -10%);">человек</h1>
-        <h1 style="transform: translate(10%, 5%); opacity: 0.7;">наслаивается</h1>
-        <h1 style="transform: translate(-2%, 20%); font-size: 15vw;">БЕЛОЕ</h1>
-        <h1 style="transform: translate(15%, -25%); opacity: 0.4;">человек</h1>
+        <h1 style="transform: translate(-5%, -40%);">человек</h1>
+        <h1 style="transform: translate(70%, 5%); opacity: 0.7;">наслаивается</h1>
+        <h1 style="transform: translate(-2%, 20%); font-size: 150vw;">БЕЛОЕ</h1>
+        <h1 style="transform: translate(15%, -5%); opacity: 0.4;">человек</h1>
         <h1 style="transform: translate(-10%, 40%); filter: blur(5px);">СТЕПЬ</h1>
-        <h1 style="transform: translate(0, 0); font-size: 20vw; opacity: 0.2;">ЧЕЛОВЕК</h1>
+        <h1 style="transform: translate(0, 0); font-size: 200vw; opacity: 0.2;">ЧЕЛОВЕК</h1>
     </div>
 </div>
 
