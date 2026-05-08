@@ -212,7 +212,53 @@ h1::after {
     z-index: 9999999; transition: opacity 0.5s ease;
 }
 .no-scroll { overflow: hidden; }
+
+
+
+
+
+
+
+.white-steppe {
+    position: relative;
+    padding-top: 100vh; /* Отступ, чтобы создать ощущение пустоты после галереи */
+    background: transparent;
+}
+
+.layering-text {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.layering-text h1 {
+    position: absolute;
+    font-size: 8vw;
+    color: white;
+    mix-blend-mode: overlay; /* Или lighten, чтобы текст "съедал" фон */
+    opacity: 0.8;
+    transition: transform 0.1s ease-out;
+}
+
+/* Эффект выбеливания фона при скролле в конце */
+.white-out {
+    height: 200vh; 
+    background: linear-gradient(to bottom, transparent, white 80%);
+}
+
+
+
+
+
     </style>
+
+    
 </head>
 <body>
 
@@ -315,6 +361,19 @@ h1::after {
     </div>
 </div>
 галерея заканчивается здесь ..здесь .дальше начинается пустое пространство, как будто степь, бесконечное поле, усыпанное снегом.. Я бы хотел чтобы <h1>текст</h1> наслаивался и переходил в <h1>белое</h1>, я бы хотел чтобы каждый текст наслаивался и переходил в белое. так наслаивается <h1>человек</h1>.
+
+
+<div class="white-steppe">
+    <div class="layering-text">
+        <h1 style="transform: translate(-10px, -20px);">ЧЕЛОВЕК</h1>
+        <h1 style="transform: translate(20px, 40px); opacity: 0.5;">ЧЕЛОВЕК</h1>
+        <h1 style="transform: translate(-40px, 80px); opacity: 0.3;">НАСЛАИВАЕТСЯ</h1>
+        <h1 style="transform: translate(50px, -60px); opacity: 0.6;">БЕЛОЕ</h1>
+        <h1 style="font-size: 15vw; filter: blur(2px);">ЧЕЛОВЕК</h1>
+    </div>
+</div>
+<div class="white-out"></div>
+
 
 
 
