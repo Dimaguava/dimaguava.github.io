@@ -12,9 +12,9 @@
     transform: translateX(-50%);
     z-index: 100003;
     font-family: monospace;
-    font-size: 11px;
+    font-size: 14px;
     color: #ffffff;     
-    font-weight: 900 !important;
+    font-weight: 1000 !important;
     cursor: pointer;
     mix-blend-mode: difference;
     pointer-events: auto;
@@ -22,11 +22,11 @@
 .music-player span {
     background: rgba(0, 0, 0, 0.4);
     padding: 3px 8px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    margin: 0 2px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    margin: 0 3px;
          color: #ffffff !important;
-    font-weight: 900 !important;
-    font-size: 8px !important;
+    font-weight: 1000 !important;
+    font-size: 11px !important;
 }
 .music-player span:hover { color: #0f0; border-color: #0f0; }
 
@@ -364,10 +364,10 @@ h1::after {
         <!-- Тексты с разным смещением, чтобы они наслаивались друг на друга -->
         <h1 style="transform: translate(-5%, -40%);">человек</h1>
         <h1 style="transform: translate(70%, 5%); opacity: 0.7;">наслаивается</h1>
-        <h1 style="transform: translate(-2%, 20%); font-size: 150vw;">БЕЛОЕ</h1>
+        <h1 style="transform: translate(-2%, 20%); font-size: 70vw;">БЕЛОЕ</h1>
         <h1 style="transform: translate(15%, -5%); opacity: 0.4;">человек</h1>
         <h1 style="transform: translate(-10%, 40%); filter: blur(5px);">СТЕПЬ</h1>
-        <h1 style="transform: translate(0, 0); font-size: 200vw; opacity: 0.2;">ЧЕЛОВЕК</h1>
+        <h1 style="transform: translate(0, 0); font-size: 90vw; opacity: 0.2;">ЧЕЛОВЕК</h1>
     </div>
 </div>
 
