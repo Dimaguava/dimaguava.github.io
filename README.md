@@ -222,7 +222,7 @@ h1::after {
 
 .white-steppe {
     position: relative;
-    margin-top: -100px; /* Наплыв на галерею */
+    margin-top: -130px; /* Наплыв на галерею */
     background: linear-gradient(to bottom, transparent, #ffffff 40%); /* Быстрый уход в белый */
     min-height: 200vh;
 }
@@ -387,7 +387,7 @@ h1::after {
     <!-- Форма -->
     <div style="margin: 20px 0 30px 0; display: flex; gap: 10px; flex-wrap: wrap;">
         <input type="text" id="guestName" placeholder="ИМЯ/Контакт" 
-               style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 12px; outline: none;">
+               style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 11px; outline: none;">
     
 
 <!-- (Тег textarea для многострочного текста): -->
@@ -399,7 +399,7 @@ h1::after {
     </div>
 
     <!-- Сюда будет подгружаться текст -->
-    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 13px; line-height: 1.2; white-space: pre-wrap; font-family: 'Courier New', monospace;">
+    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 14px; line-height: 1.2; white-space: pre-wrap; font-family: 'Courier New', monospace;">
         ЗАГРУЗКА СООБЩЕНИЙ...
     </div>
 </div>
