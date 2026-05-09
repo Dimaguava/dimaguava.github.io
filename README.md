@@ -373,9 +373,6 @@ h1::after {
         <h1 style="transform: translate(-10%, 40%); filter: blur(5px);">СТЕПЬ</h1>
         <h1 style="transform: translate(0, 0); font-size: 90vw; opacity: 0.2;">ЧЕЛОВЕК</h1>
     </div>
-</div>
-
-
 
 
 
@@ -398,9 +395,9 @@ h1::after {
     <div id="messages-container" style="border-top: 1px solid #555; padding-top: 10px;">
         ЗАГРУЗКА СООБЩЕНИЙ...
     </div>
+  </div>
+
 </div>
-
-
 
 <script>
 
