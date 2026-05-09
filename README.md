@@ -384,10 +384,60 @@ h1::after {
     <div id="viewer-content" ></div>
 </div>
 
+<div id="guestbook" style="padding: 20px; color: white; font-family: monospace;">
+    <h2 style="font-size: 14px; color: #0f0;">ОСТАВИТЬ СЛЕД [GUESTBOOK]</h2>
+    
+    <!-- Форма -->
+    <div style="margin-bottom: 30px;">
+        <input type="text" id="guestName" placeholder="ИМЯ/Контакт" style="background:black; color:#0f0; border:1px solid #555; padding:5px;">
+        <input type="text" id="guestMsg" placeholder="Текст/ASCII рисунок" style="background:black; color:#0f0; border:1px solid #555; padding:5px; width: 60%;">
+        <button onclick="sendSignal()" class="glitch-button">ОТПРАВИТЬ</button>
+    </div>
+
+    <!-- Сюда будет подгружаться текст -->
+    <div id="messages-container" style="border-top: 1px solid #555; padding-top: 10px;">
+        ЗАГРУЗКА СООБЩЕНИЙ...
+    </div>
+</div>
+
 
 
 <script>
 
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwAJniua--GKUxm8kwll3-ZGNVGjbAwTv4r9F9ewc_WCKhhO0Js605YVL9cy1DER3jD/exec'; // Твоя ссылка из Google Apps Script
+
+// Функция отправки
+function sendSignal() {
+    const name = document.getElementById('guestName').value;
+    const message = document.getElementById('guestMsg').value;
+    
+    fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({ name, message })
+    }).then(() => location.reload()); // Перезагрузка, чтобы увидеть текст
+}
+
+// Функция загрузки сообщений при входе
+function loadMessages() {
+    fetch(SCRIPT_URL)
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('messages-container');
+            container.innerHTML = data.map(row => `
+                <div style="margin-bottom: 10px; border-bottom: 1px dashed #333;">
+                    <span style="color: #0f0;">[${row[1] || 'АНОНИМ'}]</span>: ${row[2]}
+                </div>
+            `).join('');
+        });
+}
+
+// Запускаем загрузку
+window.addEventListener('load', loadMessages);
+  
+
+
+    
     
     function startSite() {
         // Убираем баннер
