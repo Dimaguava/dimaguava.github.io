@@ -455,34 +455,26 @@ function loadGalleryElements() {
 
     
 // ГЛАВНЫЙ ДИСПЕТЧЕР ОЧЕРЕДНОСТИ
+// НАВЕДЕНИЕ ПОРЯДКА В ОЧЕРЕДНОСТИ
 document.addEventListener('DOMContentLoaded', () => {
     
-    // ЭТАП 1: Первым делом запрашиваем сообщения из Google Таблицы
+    // ЭТАП 1: Загружаем ТОЛЬКО сообщения из Google Таблицы
     fetch(SCRIPT_URL)
         .then(res => res.json())
         .then(data => {
             const container = document.getElementById('messages-container');
             container.innerHTML = data.reverse().map(row => `<div style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px; font-family: 'Courier New', monospace; white-space: pre-wrap; line-height: 1.1; letter-spacing: -0.5px;"><span style="font-weight: bold; display: block; margin-bottom: 8px; color: black;">[${row[1] || 'АНОНИМ'}]</span>${row[2]}</div>`).join('');
             
-            // ЭТАП 2: Как только сообщения отрисовались, подгружаем аудиофайл
-            const audio = document.getElementById('bg-music');
-            if (audio) {
-                const randomTrack = Math.floor(Math.random() * 7) + 1;
-                audio.src = 'audio' + randomTrack + '.mp3';
-                audio.setAttribute('data-current', randomTrack);
-                audio.load(); // Буферизируем музыку в фоновом потоке
-            }
-
-            // ЭТАП 3: Даем зеленый свет тяжелой галерее
-            // Используем минимальную задержку в 100мс, чтобы поток интерфейса не завис
-            setTimeout(loadGalleryElements, 50);
+            // ЭТАП 2: Даем зеленый свет тяжелой галерее
+            // Музыку отсюда полностью убрали, теперь она не конфликтует с баннером!
+            setTimeout(loadGalleryElements, 100);
         })
         .catch(err => {
             console.error("Критический сбой очереди:", err);
-            // Если Google Таблица упала, всё равно принудительно включаем галерею
-            loadGalleryElements(); 
+            loadGalleryElements(); // В случае сбоя бэкенда всё равно включаем галерею
         });
 });
+
   
 
 
