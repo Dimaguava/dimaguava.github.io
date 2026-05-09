@@ -397,7 +397,7 @@ h1::after {
     </div>
 
     <!-- Сюда будет подгружаться текст -->
-    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 12px; line-height: 1.2; white-space: pre-wrap; font-family: 'Courier New', monospace;">
+    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 13px; line-height: 1.2; white-space: pre-wrap; font-family: 'Courier New', monospace;">
         ЗАГРУЗКА СООБЩЕНИЙ...
     </div>
 </div>
@@ -427,12 +427,8 @@ function loadMessages() {
         .then(res => res.json())
         .then(data => {
             const container = document.getElementById('messages-container');
-            // Переворачиваем массив .reverse(), чтобы новые сообщения были сверху
-            container.innerHTML = data.reverse().map(row => `
-<div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-<span style="font-weight: bold; display: block; margin-bottom: 5px;">[${row[1] || 'АНОНИМ'}]</span>
-${row[2]}
-</div>`).join('');
+            // Переворачиваем массив, чтобы новые сообщения были сверху
+            container.innerHTML = data.reverse().map(row => `<div style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px; font-family: 'Courier New', monospace; white-space: pre-wrap; line-height: 1.1; letter-spacing: -0.5px;"><span style="font-weight: bold; display: block; margin-bottom: 8px; color: black;">[${row[1] || 'АНОНИМ'}]</span>${row[2]}</div>`).join('');
         });
 }
 
