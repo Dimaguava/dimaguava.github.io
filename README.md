@@ -395,7 +395,7 @@ h1::after {
 
         
         <button onclick="sendSignal()" class="glitch-button" 
-                style="background: black; color: white; border: 1px solid black; cursor: pointer; padding: 8px 15px; font-size: 10px;">ОТПРАВИТЬ</button>
+                style="background: transparent; color: black; border: 1px solid black; cursor: pointer; padding: 8px 15px; font-size: 10px;">ОТПРАВИТЬ</button>
     </div>
 
     <!-- Сюда будет подгружаться текст -->
