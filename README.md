@@ -388,9 +388,11 @@ h1::after {
     <div style="margin: 20px 0 30px 0; display: flex; gap: 10px; flex-wrap: wrap;">
         <input type="text" id="guestName" placeholder="ИМЯ/Контакт" 
                style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 12px; outline: none;">
-        
-        <input type="text" id="guestMsg" placeholder="Текст/ASCII рисунок" 
-               style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 12px; width: 50%; outline: none;">
+    
+
+<!-- (Тег textarea для многострочного текста): -->
+<textarea id="guestMsg" placeholder="Текст/ASCII рисунок" rows="6" style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: 'Courier New', monospace; font-size: 12px; width: 60%; outline: none; resize: vertical; display: block; margin-top: 10px;"></textarea>
+
         
         <button onclick="sendSignal()" class="glitch-button" 
                 style="background: black; color: white; border: 1px solid black; cursor: pointer; padding: 8px 15px; font-size: 10px;">ОТПРАВИТЬ</button>
