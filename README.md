@@ -6,20 +6,6 @@
     
     <style>
 
-#messages-container {
-    border-top: 1px solid black;
-    padding-top: 15px;
-    color: black;
-    font-size: 13px;
-    line-height: 1.1; 
-    white-space: pre-wrap; 
-    font-family: 'Courier New', monospace;
-    letter-spacing: -0.5px; /* Чтобы символы стояли плотнее друг к другу */
-}
-
-
-    
-
 .music-player {
     position: fixed;
     top: 10px; left: 50%;
@@ -411,7 +397,7 @@ h1::after {
     </div>
 
     <!-- Сюда будет подгружаться текст -->
-    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 12px; line-height: 1.2;">
+    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 12px; line-height: 1.6;">
         ЗАГРУЗКА СООБЩЕНИЙ...
     </div>
 </div>
@@ -441,13 +427,6 @@ function loadMessages() {
         .then(res => res.json())
         .then(data => {
             const container = document.getElementById('messages-container');
-            // Переворачиваем массив .reverse(), чтобы новые сообщения были сверху
-            container.innerHTML = data.reverse().map(row => `
-<div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-<span style="font-weight: bold; display: block; margin-bottom: 5px;">[${row[1] || 'АНОНИМ'}]</span>
-${row[2]}
-</div>`).join('');
-        });
             container.innerHTML = data.map(row => `
                 <div style="margin-bottom: 10px; border-bottom: 1px dashed #333;">
                     <span style="color: #0f0;">[${row[1] || 'АНОНИМ'}]</span>: ${row[2]}
