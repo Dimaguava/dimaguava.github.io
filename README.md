@@ -445,6 +445,9 @@ h1::after {
 function openFull(url, isVideo = false) {
     const overlay = document.getElementById('viewer-overlay');
     const container = document.getElementById('viewer-content');
+    img.onclick = () => closeFull(); 
+    container.appendChild(img);
+}
     const bgMusic = document.getElementById('bg-music'); // Находим фоновую музыку
     
     container.innerHTML = '';
@@ -474,7 +477,7 @@ function openFull(url, isVideo = false) {
 function closeFull() {
     const overlay = document.getElementById('viewer-overlay');
     const container = document.getElementById('viewer-content');
-        const content = document.getElementById('viewer-content');
+
     const bgMusic = document.getElementById('bg-music'); // Находим фоновую музыку
     
     // ПРОВЕРЯЕМ: если внутри оверлея сейчас играет видео
