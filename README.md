@@ -472,8 +472,9 @@ function openFull(url, isVideo = false) {
 // Функция закрытия
 
 function closeFull() {
-    const overlay = document.getElementById('viewer-content');
+    const overlay = document.getElementById('viewer-overlay');
     const container = document.getElementById('viewer-content');
+        const content = document.getElementById('viewer-content');
     const bgMusic = document.getElementById('bg-music'); // Находим фоновую музыку
     
     // ПРОВЕРЯЕМ: если внутри оверлея сейчас играет видео
