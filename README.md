@@ -187,6 +187,8 @@ h1::after {
 #viewer-content { max-width: 95vw; max-height: 95vh; }
 #viewer-content img, #viewer-content video { max-width: 95vw; max-height: 95vh; border: 1px solid white; }
 
+#viewer-content img { pointer-events: none; }
+
 .moving-element {
     position: fixed; border-radius: 50%; background: yellow; mix-blend-mode: difference;
     z-index: 10000; pointer-events: none;
@@ -468,6 +470,7 @@ function openFull(url, isVideo = false) {
 }
 
 // Функция закрытия
+
 function closeFull() {
     const overlay = document.getElementById('viewer-overlay');
     const container = document.getElementById('viewer-content');
