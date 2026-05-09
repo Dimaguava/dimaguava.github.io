@@ -381,21 +381,27 @@ h1::after {
     <div id="viewer-content" ></div>
 </div>
 
-<div id="guestbook" style="padding: 20px; color: white; font-family: monospace;">
-    <h2 style="font-size: 14px; color: #0f0;">ОСТАВИТЬ СЛЕД [GUESTBOOK]</h2>
+<div id="guestbook" style="padding: 20px; color: black; font-family: monospace; position: relative; z-index: 10003;">
+    <h2 style="font-size: 14px; color: black; text-transform: uppercase; border-bottom: 1px solid black; display: inline-block;">ОСТАВИТЬ СЛЕД [GUESTBOOK]</h2>
     
     <!-- Форма -->
-    <div style="margin-bottom: 30px;">
-        <input type="text" id="guestName" placeholder="ИМЯ/Контакт" style="background:black; color:#0f0; border:1px solid #555; padding:5px;">
-        <input type="text" id="guestMsg" placeholder="Текст/ASCII рисунок" style="background:black; color:#0f0; border:1px solid #555; padding:5px; width: 60%;">
-        <button onclick="sendSignal()" class="glitch-button">ОТПРАВИТЬ</button>
+    <div style="margin: 20px 0 30px 0; display: flex; gap: 10px; flex-wrap: wrap;">
+        <input type="text" id="guestName" placeholder="ИМЯ/Контакт" 
+               style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 12px; outline: none;">
+        
+        <input type="text" id="guestMsg" placeholder="Текст/ASCII рисунок" 
+               style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 12px; width: 50%; outline: none;">
+        
+        <button onclick="sendSignal()" class="glitch-button" 
+                style="background: black; color: white; border: 1px solid black; cursor: pointer; padding: 8px 15px; font-size: 10px;">ОТПРАВИТЬ</button>
     </div>
 
     <!-- Сюда будет подгружаться текст -->
-    <div id="messages-container" style="border-top: 1px solid #555; padding-top: 10px;">
+    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 12px; line-height: 1.6;">
         ЗАГРУЗКА СООБЩЕНИЙ...
     </div>
-  </div>
+</div>
+
 
 </div>
 
