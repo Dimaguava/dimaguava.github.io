@@ -26,7 +26,7 @@
     margin: 0 3px;
          color: #ffffff !important;
     font-weight: 1000 !important;
-    font-size: 11px !important;
+    font-size: 12px !important;
 }
 .music-player span:hover { color: #0f0; border-color: #0f0; }
 
@@ -222,7 +222,7 @@ h1::after {
 
 .white-steppe {
     position: relative;
-    margin-top: -200px; /* Наплыв на галерею */
+    margin-top: -300px; /* Наплыв на галерею */
     background: linear-gradient(to bottom, transparent, #ffffff 40%); /* Быстрый уход в белый */
     min-height: 200vh;
 }
@@ -350,7 +350,7 @@ h1::after {
 <div class="art-item"><img src="m8SBsQvwA1GV72MMnlgVWp44seLJrT8WaTv9afzo5WxXMD0l7YVujDSqhfVcNCjlj39k82osW109nA-llm2B6MLq.jpg" alt=""></div>
     <div class="art-item"><img src="vaka.jpg" alt=""></div>
     
-а что если добавить текст в таблицу только на самом деле это все уже было 
+Здесь будет наш с вами проект Если вы напишите мне, а пока здесь просто буквы 
 
   <div class="art-item">
         <video loop muted autoplay playsinline><source data-src="VID_20260502_072919_416.mp4" type="video/mp4"></video>
@@ -372,14 +372,9 @@ h1::after {
         <h1 style="transform: translate(15%, -5%); opacity: 0.4;">человек</h1>
         <h1 style="transform: translate(-10%, 40%); filter: blur(5px);">СТЕПЬ</h1>
         <h1 style="transform: translate(0, 0); font-size: 90vw; opacity: 0.2;">ЧЕЛОВЕК</h1>
+        <h1 style="transform: translate(-30%, 40%); font-size: 70vw;">Снег</h1>
     </div>
 
-
-
-
-<div id="viewer-overlay" onclick="closeFull()">
-    <div id="viewer-content" ></div>
-</div>
 
 <div id="guestbook" style="padding: 20px; color: black; font-family: monospace; position: relative; z-index: 10003;">
     <h2 style="font-size: 11px; color: black; text-transform: uppercase; border-bottom: 1px solid black; display: inline-block;">ОСТАВИТЬ СЛЕД [GUESTBOOK]</h2>
@@ -406,6 +401,11 @@ h1::after {
 
 
 </div>
+
+<div id="viewer-overlay" onclick="closeFull()">
+    <div id="viewer-content" ></div>
+</div>
+
 
 <script>
 
@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // ЭТАП 3: Даем зеленый свет тяжелой галерее
             // Используем минимальную задержку в 100мс, чтобы поток интерфейса не завис
-            setTimeout(loadGalleryElements, 100);
+            setTimeout(loadGalleryElements, 50);
         })
         .catch(err => {
             console.error("Критический сбой очереди:", err);
