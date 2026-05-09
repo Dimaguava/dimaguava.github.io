@@ -397,8 +397,8 @@ h1::after {
     </div>
 
     <!-- Сюда будет подгружаться текст -->
-    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 13px; line-height: 1.2; white-space: pre-wrap; 
-    font-family: 'Courier New', monospace;>
+    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 12px; line-height: 1.2; white-space: pre-wrap; 
+    font-family: 'Courier New', monospace;">
         ЗАГРУЗКА СООБЩЕНИЙ...
     </div>
 </div>
