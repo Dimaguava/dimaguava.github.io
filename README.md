@@ -445,9 +445,11 @@ h1::after {
 function openFull(url, isVideo = false) {
     const overlay = document.getElementById('viewer-overlay');
     const container = document.getElementById('viewer-content');
-    img.onclick = () => closeFull(); 
+
+    img.onclick = closeFull; 
+    
     container.appendChild(img);
-}
+    
     const bgMusic = document.getElementById('bg-music'); // Находим фоновую музыку
     
     container.innerHTML = '';
