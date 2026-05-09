@@ -381,7 +381,7 @@ h1::after {
 
 
 <div id="viewer-overlay" onclick="closeFull()">
-    <div id="viewer-content" onclick="event.stopPropagation()"></div>
+    <div id="viewer-content" ()"></div>
 </div>
 
 
@@ -446,7 +446,6 @@ function openFull(url, isVideo = false) {
     const overlay = document.getElementById('viewer-overlay');
     const container = document.getElementById('viewer-content');
 
-    container.appendChild(img);
     
     const bgMusic = document.getElementById('bg-music'); // Находим фоновую музыку
     
