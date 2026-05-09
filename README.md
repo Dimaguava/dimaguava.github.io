@@ -250,7 +250,20 @@ h1::after {
 }
 
 
-
+/* Этот блок сработает только на экранах меньше 768 пикселей (смартфоны) */
+@media (max-width: 768px) {
+    #guestbook {
+        margin-top: -350px !important; /* Принудительно затягиваем форму вверх */
+        position: relative;
+        z-index: 10005; /* Поднимаем её выше залипающего текста */
+        background: rgba(255, 255, 255, 0.9); /* Добавляем легкую белую подложку, чтобы сквозь форму не просвечивали другие элементы */
+        padding: 15px;
+    }
+    
+    .white-steppe {
+        min-height: 180vh; /* Слегка уменьшаем высоту степи для мобильных, чтобы не было гигантских пустых экранов */
+    }
+}
 
 
     </style>
@@ -367,9 +380,9 @@ h1::after {
     <div class="layering-text">
         <!-- Тексты с разным смещением, чтобы они наслаивались друг на друга -->
         <h1 style="transform: translate(-5%, -40%);">человек</h1>
-        <h1 style="transform: translate(70%, 5%); opacity: 0.7;">наслаивается</h1>
+        <h1 style="transform: translate(40%, 15%); opacity: 0.7; font-size: 20vw;">наслаивается</h1>
         <h1 style="transform: translate(-2%, 20%); font-size: 70vw;">БЕЛОЕ</h1>
-        <h1 style="transform: translate(15%, -5%); opacity: 0.4;">человек</h1>
+        <h1 style="transform: translate(15%, -5%); opacity: 0.4; font-size: 20vw;">человек</h1>
         <h1 style="transform: translate(-10%, 40%); filter: blur(5px);">СТЕПЬ</h1>
         <h1 style="transform: translate(0, 0); font-size: 90vw; opacity: 0.2;">ЧЕЛОВЕК</h1>
         <h1 style="transform: translate(-30%, 40%); font-size: 70vw;">Снег</h1>
