@@ -185,7 +185,7 @@ h1::after {
     background: rgba(0,0,0,0.95); z-index: 1000000; align-items: center; justify-content: center;
 }
 #viewer-content { max-width: 95vw; max-height: 95vh; }
-#viewer-content img, #viewer-content video { max-width: 95vw; max-height: 95vh; border: 1px solid white; }
+#viewer-content img, #viewer-content video { max-width: 95vw; max-height: 95vh; border: 0px solid white; }
 
 #viewer-content img { pointer-events: none; }
 
@@ -222,7 +222,7 @@ h1::after {
 
 .white-steppe {
     position: relative;
-    margin-top: -150px; /* Наплыв на галерею */
+    margin-top: -200px; /* Наплыв на галерею */
     background: linear-gradient(to bottom, transparent, #ffffff 40%); /* Быстрый уход в белый */
     min-height: 200vh;
 }
@@ -230,7 +230,7 @@ h1::after {
 .layering-text {
     position: sticky;
     top: 0;
-    height: 100vh;
+    height: 130vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -331,20 +331,20 @@ h1::after {
     <div class="art-item"><img src="jPDAfbffEcI.jpg" alt=""></div>
     <div class="art-item"><img src="IMG_20260428_030610_579.jpg" alt=""></div>
     <div class="art-item">
-        <video loop muted autoplay playsinline><source src="vacuum.mp4" type="video/mp4"></video>
+        <video loop muted autoplay playsinline><source data-src="vacuum.mp4" type="video/mp4"></video>
     </div>
-    <div class="art-item"><img src="long.jpg" alt=""></div>
+    <div class="art-item"><img data-src="long.jpg" alt=""></div>
 <div class="art-item">
-        <video loop muted autoplay playsinline><source src="2_5453932549736797835.mp4" type="video/mp4"></video>
+        <video loop muted autoplay playsinline><source data-src="2_5453932549736797835.mp4" type="video/mp4"></video>
     </div>
 
 <div class="art-item">
-        <video loop muted autoplay playsinline><source src="VID_20260502_072620_076.mp4" type="video/mp4"></video>
+        <video loop muted autoplay playsinline><source data-src="VID_20260502_072620_076.mp4" type="video/mp4"></video>
     </div>
 <div class="art-item"><img src="marine.jpg" alt=""></div>
     <div class="art-item"><img src="IMG_20260428_030249_945.jpg" alt=""></div>
     <div class="art-item">
-        <video loop muted autoplay playsinline><source src="VID_20260502_072915_864.mp4" type="video/mp4"></video>
+        <video loop muted autoplay playsinline><source data-src="VID_20260502_072915_864.mp4" type="video/mp4"></video>
     </div>
 
 <div class="art-item"><img src="m8SBsQvwA1GV72MMnlgVWp44seLJrT8WaTv9afzo5WxXMD0l7YVujDSqhfVcNCjlj39k82osW109nA-llm2B6MLq.jpg" alt=""></div>
@@ -353,10 +353,10 @@ h1::after {
 а что если добавить текст в таблицу только на самом деле это все уже было 
 
   <div class="art-item">
-        <video loop muted autoplay playsinline><source src="VID_20260502_072919_416.mp4" type="video/mp4"></video>
+        <video loop muted autoplay playsinline><source data-src="VID_20260502_072919_416.mp4" type="video/mp4"></video>
     </div>
 <div class="art-item">
-        <video loop muted autoplay playsinline><source src="VID_20260502_082928_229.mp4" type="video/mp4"></video>
+        <video loop muted autoplay playsinline><source data-src="VID_20260502_082928_229.mp4" type="video/mp4"></video>
     </div>
 </div>
 галерея заканчивается здесь ..здесь .дальше начинается пустое пространство, как будто степь, бесконечное поле, усыпанное снегом.. Я бы хотел чтобы <h1>текст</h1> наслаивался и переходил в <h1>белое</h1>, я бы хотел чтобы каждый текст наслаивался и переходил в белое. так наслаивается <h1>человек</h1>.
@@ -435,8 +435,54 @@ function loadMessages() {
 }
 
 
-// Запускаем загрузку
-window.addEventListener('load', loadMessages);
+// Функция, которая находит пустые картинки/видео и наполняет их контентом
+function loadGalleryElements() {
+    // Загружаем картинки
+    document.querySelectorAll('.art-item img[data-src]').forEach(img => {
+        img.src = img.getAttribute('data-src');
+        img.removeAttribute('data-src'); // Очищаем маркер
+    });
+
+    // Загружаем видео
+    document.querySelectorAll('.art-item video source[data-src]').forEach(source => {
+        const video = source.closest('video');
+        source.src = source.getAttribute('data-src');
+        source.removeAttribute('data-src');
+        video.load(); // Принудительно перезапускаем плеер для старта видео
+    });
+}
+
+
+    
+// ГЛАВНЫЙ ДИСПЕТЧЕР ОЧЕРЕДНОСТИ
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // ЭТАП 1: Первым делом запрашиваем сообщения из Google Таблицы
+    fetch(SCRIPT_URL)
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('messages-container');
+            container.innerHTML = data.reverse().map(row => `<div style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px; font-family: 'Courier New', monospace; white-space: pre-wrap; line-height: 1.1; letter-spacing: -0.5px;"><span style="font-weight: bold; display: block; margin-bottom: 8px; color: black;">[${row[1] || 'АНОНИМ'}]</span>${row[2]}</div>`).join('');
+            
+            // ЭТАП 2: Как только сообщения отрисовались, подгружаем аудиофайл
+            const audio = document.getElementById('bg-music');
+            if (audio) {
+                const randomTrack = Math.floor(Math.random() * 7) + 1;
+                audio.src = 'audio' + randomTrack + '.mp3';
+                audio.setAttribute('data-current', randomTrack);
+                audio.load(); // Буферизируем музыку в фоновом потоке
+            }
+
+            // ЭТАП 3: Даем зеленый свет тяжелой галерее
+            // Используем минимальную задержку в 100мс, чтобы поток интерфейса не завис
+            setTimeout(loadGalleryElements, 100);
+        })
+        .catch(err => {
+            console.error("Критический сбой очереди:", err);
+            // Если Google Таблица упала, всё равно принудительно включаем галерею
+            loadGalleryElements(); 
+        });
+});
   
 
 
