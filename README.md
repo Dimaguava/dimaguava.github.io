@@ -472,7 +472,7 @@ function openFull(url, isVideo = false) {
 // Функция закрытия
 
 function closeFull() {
-    const overlay = document.getElementById('viewer-overlay');
+    const overlay = document.getElementById('viewer-content');
     const container = document.getElementById('viewer-content');
     const bgMusic = document.getElementById('bg-music'); // Находим фоновую музыку
     
