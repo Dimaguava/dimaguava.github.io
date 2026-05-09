@@ -381,7 +381,7 @@ h1::after {
 
 
 <div id="viewer-overlay" onclick="closeFull()">
-    <div id="viewer-content" onclick="event.stopPropagation()"></div>
+    <div id="viewer-content" ></div>
 </div>
 
 
