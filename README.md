@@ -405,7 +405,7 @@ h1::after {
 <script>
 
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwAJniua--GKUxm8kwll3-ZGNVGjbAwTv4r9F9ewc_WCKhhO0Js605YVL9cy1DER3jD/exec'; // Твоя ссылка из Google Apps Script
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzcjJn7VluyxowHJF-3KFlUwyn68WhAnuLk23_sIRWpNefGX8XWwQuxCO-F15DnhsQ9/exec'; // Твоя ссылка из Google Apps Script
 
 // Функция отправки
 function sendSignal() {
