@@ -381,7 +381,7 @@ h1::after {
 
 
 <div id="viewer-overlay" onclick="closeFull()">
-    <div id="viewer-content" ></div>
+    <div id="viewer-content" onclick="event.stopPropagation()"></div>
 </div>
 
 
@@ -444,8 +444,7 @@ h1::after {
 // Функция открытия
 function openFull(url, isVideo = false) {
     const overlay = document.getElementById('viewer-overlay');
-    const container = document.getElementById('viewer-container');
-    
+    const container = document.getElementById('viewer-content');
     const bgMusic = document.getElementById('bg-music'); // Находим фоновую музыку
     
     container.innerHTML = '';
@@ -475,7 +474,6 @@ function openFull(url, isVideo = false) {
 function closeFull() {
     const overlay = document.getElementById('viewer-overlay');
     const container = document.getElementById('viewer-content');
-
     const bgMusic = document.getElementById('bg-music'); // Находим фоновую музыку
     
     // ПРОВЕРЯЕМ: если внутри оверлея сейчас играет видео
