@@ -343,6 +343,10 @@ h1::after {
         <label>speed</label>
         <input type="range" id="speedRange" min="0" max="33" value="1">
     </div>
+    <!-- ДОБАВЬ ЭТУ КНОПКУ СЮДА: -->
+    <div class="control-group" style="margin-top: 10px; border-top: 1px dashed #555; padding-top: 10px; text-align: center;">
+        <span onclick="activateGyro()" style="font-size: 9px; color: #0f0; cursor: pointer; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">[ ВКЛЮЧИТЬ ГИРОСКОП ]</span>
+    </div>
 </div>
 
 
@@ -662,6 +666,67 @@ function nextTrack() {
     document.getElementById('speedRange').addEventListener('input', (e) => {
         circle.style.setProperty('--circle-speed', (32 - e.target.value) + 's');
     });
+
+// Функция, которая вызывается по клику на надпись в панели
+function activateGyro() {
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        // Запрос прав для современных iPhone (iOS)
+        DeviceOrientationEvent.requestPermission()
+            .then(permissionState => {
+                if (permissionState === 'granted') {
+                    window.addEventListener('deviceorientation', handleGravityTilt);
+                    alert("ГИРОСКОП АКТИВИРОВАН");
+                } else {
+                    alert("ДОСТУП ОТКЛОНЕН");
+                }
+            })
+            .catch(err => alert("Ошибка доступа: " + err));
+    } else {
+        // Автоматический старт для Android устройств
+        window.addEventListener('deviceorientation', handleGravityTilt);
+        alert("ГИРОСКОП АКТИВИРОВАН");
+    }
+}
+
+// Программа, которая смещает объекты при наклоне
+function handleGravityTilt(e) {
+    if (!e) return;
+    let x = e.gamma || 0; 
+    let y = e.beta || 0;  
+    let targetY = y - 45; // Коррекция под естественный наклон рук
+
+    let moveX = x * 0.8;
+    let moveY = targetY * 0.8;
+
+    // 1. Двигаем заголовок H1
+    const mainTitle = document.querySelector('header h1');
+    if (mainTitle) mainTitle.style.transform = `translate(${moveX * 1.5}px, ${moveY * 1.5}px)`;
+
+    // 2. Двигаем картинки и видео в галерее
+    document.querySelectorAll('.art-item').forEach((item, index) => {
+        let speed = (index % 2 === 0) ? 0.6 : 0.4;
+        item.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+    });
+
+    // 3. Двигаем полосы Noto-Stream
+    document.querySelectorAll('.noto-stream').forEach((stream, index) => {
+        let direction = (index % 2 === 0) ? 1 : -1;
+        stream.style.transform = `translateX(${moveX * 2 * direction}px)`;
+    });
+
+    // 4. Двигаем текст в "Белой степи"
+    document.querySelectorAll('.layering-text h1').forEach((h1, index) => {
+        let speed = 0.3 + (index * 0.2);
+        h1.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+    });
+
+    // 5. Двигаем Гостевую Книгу
+    const guestbook = document.getElementById('guestbook');
+    if (guestbook) guestbook.style.transform = `translate(${moveX * 0.3}px, ${moveY * 0.3}px)`;
+}
+
+
+    
 </script>
 
 </body>
