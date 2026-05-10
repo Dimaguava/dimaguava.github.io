@@ -514,6 +514,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const banner = document.getElementById('entry-banner');
         banner.style.opacity = '0';
         setTimeout(() => banner.style.display = 'none', 500);
+    
+
+    // Запрос доступа к гироскопу для iOS (Apple)
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission()
+            .then(permissionState => {
+                if (permissionState === 'granted') {
+                    window.addEventListener('deviceorientation', handleTilt);
+                }
+            })
+            .catch(console.error);
+    } else {
+        // Для Android и старых iOS доступ работает сразу
+        window.addEventListener('deviceorientation', handleTilt);
+    }
+}
+
+        
 
         const audio = document.getElementById('bg-music');
         
@@ -662,6 +680,53 @@ function nextTrack() {
     document.getElementById('speedRange').addEventListener('input', (e) => {
         circle.style.setProperty('--circle-speed', (32 - e.target.value) + 's');
     });
+
+function handleGravityTilt(event) {
+    // Получаем углы наклона устройства
+    let x = event.gamma || 0; // Наклон влево/вправо (от -90 до 90)
+    let y = event.beta || 0;  // Наклон вперед/назад (от -180 до 180)
+
+    // Корректируем базовое положение: люди обычно держат телефон под углом ~45 градусов к себе
+    let targetY = y - 45;
+
+    // Рассчитываем физическое смещение (умножаем на коэффициент чувствительности)
+    let moveX = x * 0.8;
+    let moveY = targetY * 0.8;
+
+    // 1. Двигаем основной заголовок H1 (тяжелый сдвиг)
+    const mainTitle = document.querySelector('header h1');
+    if (mainTitle) mainTitle.style.transform = `translate(${moveX * 1.5}px, ${moveY * 1.5}px)`;
+
+    // 2. Двигаем все картинки и видео в галерее (индивидуальный хаотичный параллакс)
+    document.querySelectorAll('.art-item').forEach((item, index) => {
+        // Разная скорость для четных и нечетных элементов, чтобы они "сталкивались"
+        let speed = (index % 2 === 0) ? 0.6 : 0.4;
+        item.style.transition = 'transform 0.1s ease-out'; // Плавность хода
+        item.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+    });
+
+    // 3. Двигаем инвертирующие полосы Noto-Stream (только по горизонтали)
+    document.querySelectorAll('.noto-stream').forEach((stream, index) => {
+        let direction = (index % 2 === 0) ? 1 : -1;
+        stream.style.transform = `translateX(${moveX * 2 * direction}px)`;
+    });
+
+    // 4. Двигаем наслоенный текст "ЧЕЛОВЕК / БЕЛОЕ" в финальной степи
+    document.querySelectorAll('.layering-text h1').forEach((h1, index) => {
+        let speed = 0.3 + (index * 0.2); // Чем глубже слой, тем сильнее он уплывает
+        h1.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+    });
+
+    // 5. Двигаем панель управления ползунками и Гостевую Книгу
+    const controls = document.querySelector('.controls-panel');
+    if (controls) controls.style.transform = `translate(${moveX * 0.5}px, ${moveY * 0.5}px)`;
+    
+    const guestbook = document.getElementById('guestbook');
+    if (guestbook) guestbook.style.transform = `translate(${moveX * 0.3}px, ${moveY * 0.3}px)`;
+}
+
+
+    
 </script>
 
 </body>
