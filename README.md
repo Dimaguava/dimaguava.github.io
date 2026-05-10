@@ -345,7 +345,7 @@ h1::after {
     </div>
     <!-- ДОБАВЬ ЭТУ КНОПКУ СЮДА: -->
     <div class="control-group" style="margin-top: 10px; border-top: 1px dashed #555; padding-top: 10px; text-align: center;">
-        <span onclick="activateGyro()" style="font-size: 9px; color: #0f0; cursor: pointer; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">[ ВКЛЮЧИТЬ ГИРОСКОП ]</span>
+        <span onclick="activateGyro()" style="font-size: 9px; color: black; cursor: pointer; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">[ВКЛЮЧИТЬ ГИРОСКОП]</span>
     </div>
 </div>
 
@@ -689,41 +689,78 @@ function activateGyro() {
 }
 
 // Программа, которая смещает объекты при наклоне
+// Переменные для хранения текущего смещения (накапливают сдвиг)
+let currentPosX = 0;
+let currentPosY = 0;
+let gravityInterval = null;
+
 function handleGravityTilt(e) {
     if (!e) return;
+    
+    // Получаем углы наклона устройства
     let x = e.gamma || 0; 
     let y = e.beta || 0;  
-    let targetY = y - 45; // Коррекция под естественный наклон рук
+    let targetY = y - 45; // Коррекция под хват рук
 
-    let moveX = x * 0.8;
-    let moveY = targetY * 0.8;
+    // Запускаем непрерывный цикл движения, если он еще не запущен
+    if (!gravityInterval) {
+        gravityInterval = setInterval(() => {
+            // Рассчитываем скорость "качения" в зависимости от крутизны наклона
+            // Чем сильнее наклонен телефон, тем быстрее летят объекты
+            let speedX = x * 0.4; 
+            let speedY = targetY * 0.4;
 
-    // 1. Двигаем заголовок H1
-    const mainTitle = document.querySelector('header h1');
-    if (mainTitle) mainTitle.style.transform = `translate(${moveX * 1.5}px, ${moveY * 1.5}px)`;
+            // Накапливаем координаты (элементы катятся непрерывно)
+            currentPosX += speedX;
+            currentPosY += speedY;
 
-    // 2. Двигаем картинки и видео в галерее
-    document.querySelectorAll('.art-item').forEach((item, index) => {
-        let speed = (index % 2 === 0) ? 0.6 : 0.4;
-        item.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
-    });
+            // Устанавливаем жесткие лимиты (края экрана), чтобы объекты не улетали в бесконечность
+            // Ограничим качение в пределах половины ширины/высоты экрана
+            let maxW = window.innerWidth * 0.6;
+            let maxH = window.innerHeight * 0.8;
 
-    // 3. Двигаем полосы Noto-Stream
-    document.querySelectorAll('.noto-stream').forEach((stream, index) => {
-        let direction = (index % 2 === 0) ? 1 : -1;
-        stream.style.transform = `translateX(${moveX * 2 * direction}px)`;
-    });
+            if (currentPosX > maxW) currentPosX = maxW;
+            if (currentPosX < -maxW) currentPosX = -maxW;
+            if (currentPosY > maxH) currentPosY = maxH;
+            if (currentPosY < -maxH) currentPosY = -maxH;
 
-    // 4. Двигаем текст в "Белой степи"
-    document.querySelectorAll('.layering-text h1').forEach((h1, index) => {
-        let speed = 0.3 + (index * 0.2);
-        h1.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
-    });
+            // Применяем накопленное смещение к элементам сайта
+            
+            // 1. Сносим заголовок H1
+            const mainTitle = document.querySelector('header h1');
+            if (mainTitle) mainTitle.style.transform = `translate(${currentPosX * 1.2}px, ${currentPosY * 1.2}px)`;
 
-    // 5. Двигаем Гостевую Книгу
-    const guestbook = document.getElementById('guestbook');
-    if (guestbook) guestbook.style.transform = `translate(${moveX * 0.3}px, ${moveY * 0.3}px)`;
+            // 2. Галерея сваливается в кучу к краю экрана (разная скорость создает хаос и наслоение карточек)
+            document.querySelectorAll('.art-item').forEach((item, index) => {
+                let weight = (index % 2 === 0) ? 1.1 : 0.8;
+                item.style.transform = `translate(${currentPosX * weight}px, ${currentPosY * weight}px)`;
+            });
+
+            // 3. Полосы Noto-Stream улетают по горизонтали
+            document.querySelectorAll('.noto-stream').forEach((stream, index) => {
+                let direction = (index % 2 === 0) ? 1 : -1;
+                stream.style.transform = `translateX(${currentPosX * 1.5 * direction}px)`;
+            });
+
+            // 4. Текст в "Белой степи" уплывает за границы
+            document.querySelectorAll('.layering-text h1').forEach((h1, index) => {
+                let weight = 0.5 + (index * 0.2);
+                h1.style.transform = `translate(${currentPosX * weight}px, ${currentPosY * weight}px)`;
+            });
+
+            // 5. Гостевая Книга уезжает со своего места
+            const guestbook = document.getElementById('guestbook');
+            if (guestbook) guestbook.style.transform = `translate(${currentPosX * 0.7}px, ${currentPosY * 0.7}px)`;
+
+        }, 16); // ~60 кадров в секунду для идеальной плавности
+    }
+
+    // Обновляем текущие углы наклона в фоновом режиме при движении рук
+    x = e.gamma || 0;
+    y = e.beta || 0;
+    targetY = y - 45;
 }
+
 
 
     
