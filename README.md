@@ -688,35 +688,9 @@ function activateGyro() {
     }
 }
 
-// 1. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ (для непрерывного контроля физики)
-let gyroX = 0;
-let gyroY = 0;
-let currentPosX = 0;
-let currentPosY = 0;
-let gravityInterval = null;
-
-// 2. АКТИВАЦИЯ КНОПКОЙ
-function activateGyro() {
-    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-        DeviceOrientationEvent.requestPermission()
-            .then(permissionState => {
-                if (permissionState === 'granted') {
-                    startGravityEngine();
-                    alert("ГИРОСКОП АКТИВИРОВАН");
-                } else {
-                    alert("ДОСТУП ОТКЛОНЕН");
-                }
-            })
-            .catch(err => alert("Ошибка доступа: " + err));
-    } else {
-        startGravityEngine();
-        alert("ГИРОСКОП АКТИВИРОВАН");
-    }
-}
-
-// 3. ЗАПУСК ДВИЖКА КАЧЕНИЯ
+// 3. ЗАПУСК ДВИЖКА КАЧЕНИЯ И ЦВЕТОВОГО ФИЛЬТРА
 function startGravityEngine() {
-    // Слушатель только обновляет углы наклона при движении рук
+    // Слушатель непрерывно обновляет углы наклона при движении рук
     window.addEventListener('deviceorientation', (e) => {
         gyroX = e.gamma || 0; 
         let rawY = e.beta || 0;  
@@ -726,16 +700,13 @@ function startGravityEngine() {
     // Запускаем плавный цикл отрисовки (60 кадров в секунду)
     if (!gravityInterval) {
         gravityInterval = setInterval(() => {
-            // Рассчитываем скорость качения (чем сильнее наклон, тем быстрее катятся)
-            // Занизили коэффициент до 0.15, чтобы объекты не улетали мгновенно, а катились плавно
+            // 1. ФИЗИКА ДВИЖЕНИЯ ОБЪЕКТОВ
             let speedX = gyroX * 0.15; 
             let speedY = gyroY * 0.15;
 
-            // Накапливаем координаты движения
             currentPosX += speedX;
             currentPosY += speedY;
 
-            // Вычисляем жесткие границы экрана (60% от ширины и 80% от высоты), чтобы объекты не исчезали навсегда
             let maxW = window.innerWidth * 0.6;
             let maxH = window.innerHeight * 0.8;
 
@@ -744,37 +715,47 @@ function startGravityEngine() {
             if (currentPosY > maxH) currentPosY = maxH;
             if (currentPosY < -maxH) currentPosY = -maxH;
 
-            // ПРИМЕНЯЕМ СМЕЩЕНИЕ К ЭЛЕМЕНТАМ СТРАНИЦЫ
-            
-            // Заголовок H1
+            // Применение координат к элементам (остается как было)
             const mainTitle = document.querySelector('header h1');
             if (mainTitle) mainTitle.style.transform = `translate(${currentPosX * 1.2}px, ${currentPosY * 1.2}px)`;
 
-            // Карточки галереи (разный вес элементов создает хаос при качении)
             document.querySelectorAll('.art-item').forEach((item, index) => {
                 let weight = (index % 2 === 0) ? 1.1 : 0.8;
                 item.style.transform = `translate(${currentPosX * weight}px, ${currentPosY * weight}px)`;
             });
 
-            // Полосы Noto-Stream (реагируют только на горизонтальный наклон)
             document.querySelectorAll('.noto-stream').forEach((stream, index) => {
                 let direction = (index % 2 === 0) ? 1 : -1;
                 stream.style.transform = `translateX(${currentPosX * 1.5 * direction}px)`;
             });
 
-            // Наслоенный текст в "Белой степи"
             document.querySelectorAll('.layering-text h1').forEach((h1, index) => {
                 let weight = 0.5 + (index * 0.2);
                 h1.style.transform = `translate(${currentPosX * weight}px, ${currentPosY * weight}px)`;
             });
 
-            // Гостевая книга
             const guestbook = document.getElementById('guestbook');
             if (guestbook) guestbook.style.transform = `translate(${currentPosX * 0.7}px, ${currentPosY * 0.7}px)`;
+
+
+            // 2. УПРАВЛЕНИЕ ЦВЕТОВЫМ ФИЛЬТРОМ САЙТА (МАТЕМАТИКА ЦВЕТА)
+            
+            // Hue-rotate принимает значения в градусах (от 0deg до 360deg).
+            // Привязываем смещение оттенка к горизонтальному наклону gyroX.
+            let hueAngle = Math.floor(gyroX * 4); // Умножаем на 4 для более динамичной смены спектра
+            
+            // Invert принимает значения от 0 до 1 (или от 0% до 100%).
+            // Вертикальный наклон gyroY плавно инвертирует цвета, когда телефон сильно наклоняют к себе или от себя.
+            let invertValue = Math.abs(gyroY) * 1.5; // Вычисляем модуль отклонения
+            if (invertValue > 80) invertValue = 80;   // Ограничиваем до 80%, чтобы сайт не уходил в полный глухой негатив
+
+            // Применяем фильтр ко всей странице разом через тег document.documentElement (html)
+            document.documentElement.style.filter = `hue-rotate(${hueAngle}deg) invert(${invertValue}%)`;
 
         }, 16); 
     }
 }
+
 
 
 
