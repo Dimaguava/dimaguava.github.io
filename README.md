@@ -394,7 +394,7 @@ h1::after {
     <!-- Форма -->
     <div style="margin: 20px 0 30px 0; display: flex; gap: 10px; flex-wrap: wrap;">
         <input type="text" id="guestName" placeholder="ИМЯ/Контакт" 
-               style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 12px; font-weight: normal; outline: none;">
+               style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 10px; font-weight: normal; outline: none;">
     
 
 <!-- (Тег textarea для многострочного текста): -->
