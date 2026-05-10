@@ -773,11 +773,7 @@ function startGravityEngine() {
             if (guestbook) guestbook.style.transform = `translate(${currentPosX * 0.7}px, ${currentPosY * 0.7}px)`;
 
             // Смещение спектра (оттенков) привязано к наклону влево/вправо (gyroX)
-            let hueAngle = Math.floor(gyroX * 3); 
-            
-            // Плавная инверсия (негатив) привязана к наклону вперед/назад (gyroY)
-            let invertValue = Math.abs(gyroY) * 1.2; 
-            if (invertValue > 75) invertValue = 75; // Ограничение, чтобы сайт не слепил глаза
+            let hueAngle = Math.floor(gyroX * 0.4); 
 
             // Применяем фильтры ко всему документу разом
             document.documentElement.style.filter = `hue-rotate(${hueAngle}deg) invert(${invertValue}%)`;
