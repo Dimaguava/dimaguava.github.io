@@ -286,7 +286,7 @@ h1::after {
     <div style="text-align: center; color: black; display: flex; flex-direction: column; align-items: center; gap: 30px; font-family: monospace;">
         
         <!-- ВОТ ЭТОТ ТЕКСТ ПОЯВИТСЯ НАД ФОТОГРАФИЯМИ: -->
-        <div style="font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid black; padding-bottom: 10px; max-width: 420px; line-height: 1.4;">
+        <div style="font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid black; padding-bottom: 10px; max-width: 420px; line-height: 1.4;">
 этот сайт представляет собой самодостаточный арт-объект. Нажмите на правую картинку чтобы получить полный экспириенс. в верхней части  находятся кнопки управления звукоз, в нижней - кругом. пожалуйста оставьте комментарий внизу сайта.
         </div>
 
