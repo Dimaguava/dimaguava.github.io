@@ -759,7 +759,7 @@ function startGravityEngine() {
             // Полосы Noto-Stream (реагируют только на горизонтальный наклон)
             document.querySelectorAll('.noto-stream').forEach((stream, index) => {
                 let direction = (index % 2 === 0) ? 1 : -1;
-                stream.style.transform = `translateX(${currentPosX * 1.5 * direction}px)`;
+                stream.style.transform = `translateX(${currentPosX * 1.2}px, ${currentPosY * 0.5}px)`;
             });
 
             // Наслоенный текст в "Белой степи"
@@ -772,11 +772,6 @@ function startGravityEngine() {
             const guestbook = document.getElementById('guestbook');
             if (guestbook) guestbook.style.transform = `translate(${currentPosX * 0.7}px, ${currentPosY * 0.7}px)`;
 
-            // Смещение спектра (оттенков) привязано к наклону влево/вправо (gyroX)
-            let hueAngle = Math.floor(gyroX * 0.4); 
-
-            // Применяем фильтры ко всему документу разом
-            document.documentElement.style.filter = `hue-rotate(${hueAngle}deg) invert(${invertValue}%)`;
 
             
         }, 16); 
