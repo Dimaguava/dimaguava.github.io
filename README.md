@@ -345,7 +345,7 @@ h1::after {
     </div>
     <!-- ДОБАВЬ ЭТУ КНОПКУ СЮДА: -->
     <div class="control-group" style="margin-top: 10px; border-top: 1px dashed #555; padding-top: 10px; text-align: center;">
-        <span onclick="activateGyro()" style="font-size: 9px; color: black; cursor: pointer; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">[ВКЛЮЧИТЬ ГИРОСКОП]</span>
+        <span onclick="activateGyro()" style="font-size: 11px; color: white; cursor: pointer; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; border: 1px;">[ВКЛЮЧИТЬ ГИРОСКОП]</span>
     </div>
 </div>
 
@@ -688,34 +688,54 @@ function activateGyro() {
     }
 }
 
-// Программа, которая смещает объекты при наклоне
-// Переменные для хранения текущего смещения (накапливают сдвиг)
+// 1. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ (для непрерывного контроля физики)
+let gyroX = 0;
+let gyroY = 0;
 let currentPosX = 0;
 let currentPosY = 0;
 let gravityInterval = null;
 
-function handleGravityTilt(e) {
-    if (!e) return;
-    
-    // Получаем углы наклона устройства
-    let x = e.gamma || 0; 
-    let y = e.beta || 0;  
-    let targetY = y - 45; // Коррекция под хват рук
+// 2. АКТИВАЦИЯ КНОПКОЙ
+function activateGyro() {
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission()
+            .then(permissionState => {
+                if (permissionState === 'granted') {
+                    startGravityEngine();
+                    alert("ГИРОСКОП АКТИВИРОВАН");
+                } else {
+                    alert("ДОСТУП ОТКЛОНЕН");
+                }
+            })
+            .catch(err => alert("Ошибка доступа: " + err));
+    } else {
+        startGravityEngine();
+        alert("ГИРОСКОП АКТИВИРОВАН");
+    }
+}
 
-    // Запускаем непрерывный цикл движения, если он еще не запущен
+// 3. ЗАПУСК ДВИЖКА КАЧЕНИЯ
+function startGravityEngine() {
+    // Слушатель только обновляет углы наклона при движении рук
+    window.addEventListener('deviceorientation', (e) => {
+        gyroX = e.gamma || 0; 
+        let rawY = e.beta || 0;  
+        gyroY = rawY - 45; // Коррекция под естественный хват рук (~45 градусов)
+    });
+
+    // Запускаем плавный цикл отрисовки (60 кадров в секунду)
     if (!gravityInterval) {
         gravityInterval = setInterval(() => {
-            // Рассчитываем скорость "качения" в зависимости от крутизны наклона
-            // Чем сильнее наклонен телефон, тем быстрее летят объекты
-            let speedX = x * 0.4; 
-            let speedY = targetY * 0.4;
+            // Рассчитываем скорость качения (чем сильнее наклон, тем быстрее катятся)
+            // Занизили коэффициент до 0.15, чтобы объекты не улетали мгновенно, а катились плавно
+            let speedX = gyroX * 0.15; 
+            let speedY = gyroY * 0.15;
 
-            // Накапливаем координаты (элементы катятся непрерывно)
+            // Накапливаем координаты движения
             currentPosX += speedX;
             currentPosY += speedY;
 
-            // Устанавливаем жесткие лимиты (края экрана), чтобы объекты не улетали в бесконечность
-            // Ограничим качение в пределах половины ширины/высоты экрана
+            // Вычисляем жесткие границы экрана (60% от ширины и 80% от высоты), чтобы объекты не исчезали навсегда
             let maxW = window.innerWidth * 0.6;
             let maxH = window.innerHeight * 0.8;
 
@@ -724,42 +744,38 @@ function handleGravityTilt(e) {
             if (currentPosY > maxH) currentPosY = maxH;
             if (currentPosY < -maxH) currentPosY = -maxH;
 
-            // Применяем накопленное смещение к элементам сайта
+            // ПРИМЕНЯЕМ СМЕЩЕНИЕ К ЭЛЕМЕНТАМ СТРАНИЦЫ
             
-            // 1. Сносим заголовок H1
+            // Заголовок H1
             const mainTitle = document.querySelector('header h1');
             if (mainTitle) mainTitle.style.transform = `translate(${currentPosX * 1.2}px, ${currentPosY * 1.2}px)`;
 
-            // 2. Галерея сваливается в кучу к краю экрана (разная скорость создает хаос и наслоение карточек)
+            // Карточки галереи (разный вес элементов создает хаос при качении)
             document.querySelectorAll('.art-item').forEach((item, index) => {
                 let weight = (index % 2 === 0) ? 1.1 : 0.8;
                 item.style.transform = `translate(${currentPosX * weight}px, ${currentPosY * weight}px)`;
             });
 
-            // 3. Полосы Noto-Stream улетают по горизонтали
+            // Полосы Noto-Stream (реагируют только на горизонтальный наклон)
             document.querySelectorAll('.noto-stream').forEach((stream, index) => {
                 let direction = (index % 2 === 0) ? 1 : -1;
                 stream.style.transform = `translateX(${currentPosX * 1.5 * direction}px)`;
             });
 
-            // 4. Текст в "Белой степи" уплывает за границы
+            // Наслоенный текст в "Белой степи"
             document.querySelectorAll('.layering-text h1').forEach((h1, index) => {
                 let weight = 0.5 + (index * 0.2);
                 h1.style.transform = `translate(${currentPosX * weight}px, ${currentPosY * weight}px)`;
             });
 
-            // 5. Гостевая Книга уезжает со своего места
+            // Гостевая книга
             const guestbook = document.getElementById('guestbook');
             if (guestbook) guestbook.style.transform = `translate(${currentPosX * 0.7}px, ${currentPosY * 0.7}px)`;
 
-        }, 16); // ~60 кадров в секунду для идеальной плавности
+        }, 16); 
     }
-
-    // Обновляем текущие углы наклона в фоновом режиме при движении рук
-    x = e.gamma || 0;
-    y = e.beta || 0;
-    targetY = y - 45;
 }
+
 
 
 
