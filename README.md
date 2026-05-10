@@ -287,7 +287,7 @@ h1::after {
     <div style="text-align: center; color: black; display: flex; gap: 20px; font-family: monospace;">
         
 <div style="font-size: 12px; font letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid black; padding-bottom: 10px; max-width: 420px; line-height: 1.4;">
-            ВЫБЕРИТЕ РЕЖИМ ВОСПРИЯТИЯ / SELECT MODE
+            этот сайт представляет собой самодостаточный арт-объект Нажмите на правую картинку чтобы получить полный экспириенс в верхней части сайта находятся кнопки управления звуком в Нижней - кругом <br>
         </div>
     
         <div onclick="location.href='nice.html'" style="cursor:pointer;">
