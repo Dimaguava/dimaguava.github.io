@@ -281,23 +281,33 @@ h1::after {
 <!-- Добавь onended="nextTrack()" внутрь тега: -->
 <audio id="bg-music" data-current="1" onended="nextTrack()"></audio>
 
-
-
-<div id="entry-banner"> 
-    <div style="text-align: center; color: black; display: flex; gap: 20px; font-family: monospace;">
+<div id="entry-banner">
+    <!-- Главный контейнер теперь выстраивает элементы сверху вниз (column) -->
+    <div style="text-align: center; color: black; display: flex; flex-direction: column; align-items: center; gap: 30px; font-family: monospace;">
         
-<div style="font-size: 12px; font letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid black; padding-bottom: 10px; max-width: 420px; line-height: 1.4;">
-            этот сайт представляет собой самодостаточный арт-объект Нажмите на правую картинку чтобы получить полный экспириенс в верхней части сайта находятся кнопки управления звуком в Нижней - кругом <br>
+        <!-- ВОТ ЭТОТ ТЕКСТ ПОЯВИТСЯ НАД ФОТОГРАФИЯМИ: -->
+        <div style="font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid black; padding-bottom: 10px; max-width: 420px; line-height: 1.4;">
+этот сайт представляет собой самодостаточный арт-объект Нажмите на правую картинку чтобы получить полный экспириенс в верхней части сайта находятся кнопки управления звуком в Нижней - кругом
         </div>
-    
-        <div onclick="location.href='nice.html'" style="cursor:pointer;">
-             <img src="img_left.jpg" width="200" style="border-radius:10px;"><br>Я ЛЮБЛЮ ПОКОЙ
+
+        <!-- Контейнер с двумя картинками (остался как был, но обернут для точности) -->
+        <div style="display: flex; gap: 20px;">
+            <div onclick="location.href='nice.html'" style="cursor:pointer;">
+                 <img src="img_left.jpg" width="200" style="border-radius:10px;"><br>
+                 <span style="display:inline-block; margin-top:10px;">Я ЛЮБЛЮ ПОКОЙ</span>
+            </div>
+            <div onclick="startSite()" style="cursor:pointer;">
+                 <img src="img_right.jpg" width="200" style="border-radius:10px;"><br>
+                 <span style="display:inline-block; margin-top:10px;">ШУМ / ВХОД</span>
+            </div>
         </div>
-        <div onclick="startSite()" style="cursor:pointer;">
-             <img src="img_right.jpg" width="200" style="border-radius:10px;"><br>ШУМ / ВХОД
-        </div>
+
     </div>
 </div>
+
+
+      
+        
 
 <div class="alva-grid"></div>
 
