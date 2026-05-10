@@ -363,7 +363,7 @@ h1::after {
 <div class="art-item"><img src="m8SBsQvwA1GV72MMnlgVWp44seLJrT8WaTv9afzo5WxXMD0l7YVujDSqhfVcNCjlj39k82osW109nA-llm2B6MLq.jpg" alt=""></div>
     <div class="art-item"><img src="vaka.jpg" alt=""></div>
     
-Здесь будет наш с вами проект Если вы напишите мне, а пока здесь просто буквы 
+[ Здесь будет наш с вами проект если вы напишите мне, а пока здесь просто буквы ] 
 
   <div class="art-item">
         <video loop muted autoplay playsinline><source data-src="VID_20260502_072919_416.mp4" type="video/mp4"></video>
@@ -389,7 +389,7 @@ h1::after {
     </div>
 
 
-<div id="guestbook" style="padding: 20px; color: black; font-family: monospace; position: relative; z-index: 10003;">
+<div id="guestbook" style="padding: 20px; color: black; font-family: monospace; position: relative; z-index: 20003; background: transparent;">
     <h2 style="font-size: 11px; color: black; text-transform: uppercase; border-bottom: 1px solid black; display: inline-block;">ОСТАВИТЬ СЛЕД [GUESTBOOK]</h2>
     
     <!-- Форма -->
