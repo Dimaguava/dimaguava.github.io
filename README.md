@@ -134,7 +134,7 @@ h1::after {
     text-decoration: none;
     transition: all 0.3s ease;   
     white-space: nowrap;
-    backdrop-filter: blur(2px);  
+    backdrop-filter: blur(3px);  
 } 
 
 .glitch-button:hover {
@@ -285,6 +285,8 @@ h1::after {
 
 <div id="entry-banner">
     <div style="text-align: center; color: black; display: flex; gap: 20px; font-family: monospace;">
+
+        этот сайт представляет собой самодостаточный арт-объект Нажмите на правую картинку чтобы получить полный экспириенс в верхней части сайта находятся кнопки управления звуком в Нижней - кругом
         <div onclick="location.href='nice.html'" style="cursor:pointer;">
              <img src="img_left.jpg" width="200" style="border-radius:10px;"><br>Я ЛЮБЛЮ ПОКОЙ
         </div>
@@ -316,6 +318,9 @@ h1::after {
     <a href="manifest.html" class="glitch-button">Обо мне</a>
     <a href="contact.html" class="glitch-button">Контакты</a>
 </div>
+
+композитор и художник из санкт-петербурга, работающий в смешанной технике. инсталляции, звуковые diy-объекты, работы в вакуумных пакетах, circuit bend, 2d и 3d сканирование
+<div classмультимедиа
 
 <div class="controls-panel">
     <div class="control-group">
