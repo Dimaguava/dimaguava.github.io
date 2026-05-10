@@ -283,9 +283,12 @@ h1::after {
 
 
 
-<div id="entry-banner"> этот сайт представляет собой самодостаточный арт-объект Нажмите на правую картинку чтобы получить полный экспириенс в верхней части сайта находятся кнопки управления звуком в Нижней - кругом <br>
+<div id="entry-banner"> 
     <div style="text-align: center; color: black; display: flex; gap: 20px; font-family: monospace;">
-
+        
+<div style="font-size: 12px; font letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid black; padding-bottom: 10px; max-width: 420px; line-height: 1.4;">
+            ВЫБЕРИТЕ РЕЖИМ ВОСПРИЯТИЯ / SELECT MODE
+        </div>
     
         <div onclick="location.href='nice.html'" style="cursor:pointer;">
              <img src="img_left.jpg" width="200" style="border-radius:10px;"><br>Я ЛЮБЛЮ ПОКОЙ
