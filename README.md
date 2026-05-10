@@ -508,41 +508,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     
+    
     function startSite() {
-    // 1. Убираем баннер
-    const banner = document.getElementById('entry-banner');
-    if (banner) {
+        // Убираем баннер
+        const banner = document.getElementById('entry-banner');
         banner.style.opacity = '0';
         setTimeout(() => banner.style.display = 'none', 500);
-    }
 
-    // 2. Запускаем рандомный трек
-    const audio = document.getElementById('bg-music');
-    if (audio) {
-        audio.onended = nextTrack; 
+        const audio = document.getElementById('bg-music');
+        
+        // Рандом от 1 до 7
         const randomTrack = Math.floor(Math.random() * 7) + 1;
+        
+        // Установка трека
         audio.src = 'audio' + randomTrack + '.mp3';
         audio.setAttribute('data-current', randomTrack);
-        audio.load();
-        audio.play().catch(() => {});
-    }
-
-    // 3. ЗАПРОС К ГИРОСКОПУ (iOS / Android)
-    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-        // Запрос для современных iPhone (iOS)
-        DeviceOrientationEvent.requestPermission()
-            .then(permissionState => {
-                if (permissionState === 'granted') {
-                    window.addEventListener('deviceorientation', handleGravityTilt);
-                }
-            })
-            .catch(e => console.log("Гироскоп заблокирован: ", e));
-    } else {
-        // Доступ для Android и старых версий iOS
-        window.addEventListener('deviceorientation', handleGravityTilt);
-    }
-}
-
         
         // Принудительная загрузка и старт
         audio.load();
@@ -682,53 +662,6 @@ function nextTrack() {
     document.getElementById('speedRange').addEventListener('input', (e) => {
         circle.style.setProperty('--circle-speed', (32 - e.target.value) + 's');
     });
-
-function handleGravityTilt(event) {
-    // Получаем углы наклона устройства
-    let x = event.gamma || 0; // Наклон влево/вправо (от -90 до 90)
-    let y = event.beta || 0;  // Наклон вперед/назад (от -180 до 180)
-
-    // Корректируем базовое положение: люди обычно держат телефон под углом ~45 градусов к себе
-    let targetY = y - 45;
-
-    // Рассчитываем физическое смещение (умножаем на коэффициент чувствительности)
-    let moveX = x * 0.8;
-    let moveY = targetY * 0.8;
-
-    // 1. Двигаем основной заголовок H1 (тяжелый сдвиг)
-    const mainTitle = document.querySelector('header h1');
-    if (mainTitle) mainTitle.style.transform = `translate(${moveX * 1.5}px, ${moveY * 1.5}px)`;
-
-    // 2. Двигаем все картинки и видео в галерее (индивидуальный хаотичный параллакс)
-    document.querySelectorAll('.art-item').forEach((item, index) => {
-        // Разная скорость для четных и нечетных элементов, чтобы они "сталкивались"
-        let speed = (index % 2 === 0) ? 0.6 : 0.4;
-        item.style.transition = 'transform 0.1s ease-out'; // Плавность хода
-        item.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
-    });
-
-    // 3. Двигаем инвертирующие полосы Noto-Stream (только по горизонтали)
-    document.querySelectorAll('.noto-stream').forEach((stream, index) => {
-        let direction = (index % 2 === 0) ? 1 : -1;
-        stream.style.transform = `translateX(${moveX * 2 * direction}px)`;
-    });
-
-    // 4. Двигаем наслоенный текст "ЧЕЛОВЕК / БЕЛОЕ" в финальной степи
-    document.querySelectorAll('.layering-text h1').forEach((h1, index) => {
-        let speed = 0.3 + (index * 0.2); // Чем глубже слой, тем сильнее он уплывает
-        h1.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
-    });
-
-    // 5. Двигаем панель управления ползунками и Гостевую Книгу
-    const controls = document.querySelector('.controls-panel');
-    if (controls) controls.style.transform = `translate(${moveX * 0.5}px, ${moveY * 0.5}px)`;
-    
-    const guestbook = document.getElementById('guestbook');
-    if (guestbook) guestbook.style.transform = `translate(${moveX * 0.3}px, ${moveY * 0.3}px)`;
-}
-
-
-    
 </script>
 
 </body>
