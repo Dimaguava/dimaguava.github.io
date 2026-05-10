@@ -286,7 +286,7 @@ h1::after {
 <div id="entry-banner">
     <div style="text-align: center; color: black; display: flex; gap: 20px; font-family: monospace;">
 
-        этот сайт представляет собой самодостаточный арт-объект Нажмите на правую картинку чтобы получить полный экспириенс в верхней части сайта находятся кнопки управления звуком в Нижней - кругом
+        этот сайт представляет собой самодостаточный арт-объект Нажмите на правую картинку чтобы получить полный экспириенс в верхней части сайта находятся кнопки управления звуком в Нижней - кругом <br>
         <div onclick="location.href='nice.html'" style="cursor:pointer;">
              <img src="img_left.jpg" width="200" style="border-radius:10px;"><br>Я ЛЮБЛЮ ПОКОЙ
         </div>
@@ -311,7 +311,7 @@ h1::after {
 
 <div class="moving-element"></div>
 
-<header><h1>АНУФРИЕВ ДМИТРИЙ</h1></header>
+<header><h1>АНУФРИЕВ ДМИТРИЙ</h1> <br>композитор и художник из санкт-петербурга, работающий в смешанной технике. инсталляции, звуковые diy-объекты, работы в вакуумных пакетах, circuit bend, 2d и 3d сканирование</header>
 
 <div class="menu">
     <a href="gallery.html" class="glitch-button">Галерея</a>
@@ -319,8 +319,7 @@ h1::after {
     <a href="contact.html" class="glitch-button">Контакты</a>
 </div>
 
-композитор и художник из санкт-петербурга, работающий в смешанной технике. инсталляции, звуковые diy-объекты, работы в вакуумных пакетах, circuit bend, 2d и 3d сканирование
-<div classмультимедиа
+
 
 <div class="controls-panel">
     <div class="control-group">
@@ -393,13 +392,13 @@ h1::after {
     </div>
 
 
-<div id="guestbook" style="padding: 20px; color: black; font-family: monospace; position: relative; z-index: 20003; background: transparent;">
+<div id="guestbook" style="padding: 20px; color: black; font-family: monospace; position: relative; z-index: 20003; font-size: 22px; background: transparent;">
     <h2 style="font-size: 11px; color: black; text-transform: uppercase; border-bottom: 1px solid black; display: inline-block;">ОСТАВИТЬ СЛЕД [GUESTBOOK]</h2>
     
     <!-- Форма -->
     <div style="margin: 20px 0 30px 0; display: flex; gap: 10px; flex-wrap: wrap;">
         <input type="text" id="guestName" placeholder="ИМЯ/Контакт" 
-               style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 10px; font-weight: normal; outline: none;">
+               style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 12px; font-weight: normal; outline: none;">
     
 
 <!-- (Тег textarea для многострочного текста): -->
@@ -447,7 +446,7 @@ function loadMessages() {
         .then(data => {
             const container = document.getElementById('messages-container');
             // Переворачиваем массив, чтобы новые сообщения были сверху
-            container.innerHTML = data.reverse().map(row => `<div style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px; font-family: 'Courier New', monospace; white-space: pre-wrap; line-height: 1.1; letter-spacing: -0.5px;"><span style="font-weight: normal; display: block; margin-bottom: 8px; color: black;">[${row[1] || 'АНОНИМ'}]</span>${row[2]}</div>`).join('');
+            container.innerHTML = data.reverse().map(row => `<div style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px; font-family: 'Courier New', monospace; font-size: 10px; white-space: pre-wrap; line-height: 1.1; letter-spacing: -0.5px;"><span style="font-weight: normal; display: block; margin-bottom: 8px; color: black;">[${row[1] || 'АНОНИМ'}]</span>${row[2]}</div>`).join('');
         });
 }
 
