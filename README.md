@@ -283,10 +283,10 @@ h1::after {
 
 
 
-<div id="entry-banner">
+<div id="entry-banner"> этот сайт представляет собой самодостаточный арт-объект Нажмите на правую картинку чтобы получить полный экспириенс в верхней части сайта находятся кнопки управления звуком в Нижней - кругом <br>
     <div style="text-align: center; color: black; display: flex; gap: 20px; font-family: monospace;">
 
-        этот сайт представляет собой самодостаточный арт-объект Нажмите на правую картинку чтобы получить полный экспириенс в верхней части сайта находятся кнопки управления звуком в Нижней - кругом <br>
+    
         <div onclick="location.href='nice.html'" style="cursor:pointer;">
              <img src="img_left.jpg" width="200" style="border-radius:10px;"><br>Я ЛЮБЛЮ ПОКОЙ
         </div>
