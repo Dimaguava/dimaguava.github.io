@@ -748,7 +748,7 @@ function startGravityEngine() {
             
             // Заголовок H1
             const mainTitle = document.querySelector('header h1');
-            if (mainTitle) mainTitle.style.transform = `translate(${currentPosX * 1.2}px, ${currentPosY * 1.2}px)`;
+            if (mainTitle) mainTitle.style.transform = `translate(${currentPosX * -1}px, ${currentPosY * 1.2}px)`;
 
             // Карточки галереи (разный вес элементов создает хаос при качении)
             document.querySelectorAll('.art-item').forEach((item, index) => {
@@ -756,10 +756,10 @@ function startGravityEngine() {
                 item.style.transform = `translate(${currentPosX * weight}px, ${currentPosY * weight}px)`;
             });
 
-            // Полосы Noto-Stream (реагируют только на горизонтальный наклон)
+            // Полосы Noto-Stream
             document.querySelectorAll('.noto-stream').forEach((stream, index) => {
                 let direction = (index % 2 === 0) ? 1 : -1;
-                stream.style.transform = `translateX(${currentPosX * 1.2}px, ${currentPosY * 0.5}px)`;
+                stream.style.transform = `translateX(${currentPosX * 1.4 * direction}px),${currentPosY * 0.5 * direction}px)`;
             });
 
             // Наслоенный текст в "Белой степи"
@@ -770,10 +770,8 @@ function startGravityEngine() {
 
             // Гостевая книга
             const guestbook = document.getElementById('guestbook');
-            if (guestbook) guestbook.style.transform = `translate(${currentPosX * 0.7}px, ${currentPosY * 0.7}px)`;
+            if (guestbook) guestbook.style.transform = `translate(${currentPosX * 0.9}px, ${currentPosY * 1}px)`;
 
-
-            
         }, 16); 
     }
 }
