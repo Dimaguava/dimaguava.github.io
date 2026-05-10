@@ -279,7 +279,7 @@ h1::after {
 
 
 <!-- Добавь onended="nextTrack()" внутрь тега: -->
-<audio id="bg-music" loop data-current="1" onended="nextTrack()"></audio>
+<audio id="bg-music" data-current="1" onended="nextTrack()"></audio>
 
 
 
@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => res.json())
         .then(data => {
             const container = document.getElementById('messages-container');
-            container.innerHTML = data.reverse().map(row => `<div style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px; font-family: 'Courier New', monospace; white-space: pre-wrap; line-height: 1.1; letter-spacing: -0.5px;"><span style="font-weight: bold; display: block; margin-bottom: 8px; color: black;">[${row[1] || 'АНОНИМ'}]</span>${row[2]}</div>`).join('');
+            container.innerHTML = data.reverse().map(row => `<div style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px; font-family: 'Courier New', monospace; white-space: pre-wrap; line-height: 1.1; letter-spacing: -0.5px;"><span style="font-weight: normal; display: block; margin-bottom: 8px; color: black;">[${row[1] || 'АНОНИМ'}]</span>${row[2]}</div>`).join('');
             
             // ЭТАП 2: Даем зеленый свет тяжелой галерее
             // Музыку отсюда полностью убрали, теперь она не конфликтует с баннером!
