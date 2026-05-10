@@ -202,8 +202,8 @@ h1::after {
 }
 
 .controls-panel {
-    position: fixed; bottom: 20px; left: 10px; z-index: 10001;
-    background: rgba(0, 0, 0, 0); padding: 8px; border: 1px solid #fff;
+    position: fixed; bottom: 10px; left: 10px; z-index: 10001;
+    background: rgba(0, 0, 0, 0); padding: 8px; border: 0px solid #fff;
     width: 130px; color: white; font-family: monospace;
 }
 .control-group label { display: block; font-size: 10px; margin-bottom: 5px; }
@@ -319,11 +319,11 @@ h1::after {
 
 <div class="controls-panel">
     <div class="control-group">
-        <label>Рзмр крг</label>
+        <label>size</label>
         <input type="range" id="sizeRange" min="20" max="900" value="200">
     </div>
     <div class="control-group">
-        <label>Скрст крг</label>
+        <label>speed</label>
         <input type="range" id="speedRange" min="0" max="33" value="1">
     </div>
 </div>
@@ -406,7 +406,7 @@ h1::after {
     </div>
 
     <!-- Сюда будет подгружаться текст -->
-    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 14px; line-height: 1.2; white-space: pre-wrap; font-family: 'Courier New', monospace;">
+    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 20px; line-height: 1.2; white-space: pre-wrap; font-family: 'Courier New', monospace;">
         ЗАГРУЗКА СООБЩЕНИЙ...
     </div>
 </div>
