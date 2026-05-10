@@ -394,7 +394,7 @@ h1::after {
     <!-- Форма -->
     <div style="margin: 20px 0 30px 0; display: flex; gap: 10px; flex-wrap: wrap;">
         <input type="text" id="guestName" placeholder="ИМЯ/Контакт" 
-               style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 12px; outline: none;">
+               style="background: transparent; color: black; border: 1px solid black; padding: 8px; font-family: monospace; font-size: 12px; font-weight: normal; outline: none;">
     
 
 <!-- (Тег textarea для многострочного текста): -->
@@ -406,7 +406,7 @@ h1::after {
     </div>
 
     <!-- Сюда будет подгружаться текст -->
-    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 20px; line-height: 1.2; white-space: pre-wrap; font-family: 'Courier New', monospace;">
+    <div id="messages-container" style="border-top: 1px solid black; padding-top: 15px; color: black; font-size: 14px; line-height: 1.2; white-space: pre-wrap; font-family: 'Courier New', monospace;">
         ЗАГРУЗКА СООБЩЕНИЙ...
     </div>
 </div>
