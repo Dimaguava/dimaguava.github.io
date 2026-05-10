@@ -508,39 +508,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     
-    
     function startSite() {
-        // Убираем баннер
-        const banner = document.getElementById('entry-banner');
+    // 1. Убираем баннер
+    const banner = document.getElementById('entry-banner');
+    if (banner) {
         banner.style.opacity = '0';
         setTimeout(() => banner.style.display = 'none', 500);
-    
+    }
 
-    // Запрос доступа к гироскопу для iOS (Apple)
+    // 2. Запускаем рандомный трек
+    const audio = document.getElementById('bg-music');
+    if (audio) {
+        audio.onended = nextTrack; 
+        const randomTrack = Math.floor(Math.random() * 7) + 1;
+        audio.src = 'audio' + randomTrack + '.mp3';
+        audio.setAttribute('data-current', randomTrack);
+        audio.load();
+        audio.play().catch(() => {});
+    }
+
+    // 3. ЗАПРОС К ГИРОСКОПУ (iOS / Android)
     if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        // Запрос для современных iPhone (iOS)
         DeviceOrientationEvent.requestPermission()
             .then(permissionState => {
                 if (permissionState === 'granted') {
-                    window.addEventListener('deviceorientation', handleTilt);
+                    window.addEventListener('deviceorientation', handleGravityTilt);
                 }
             })
-            .catch(console.error);
+            .catch(e => console.log("Гироскоп заблокирован: ", e));
     } else {
-        // Для Android и старых iOS доступ работает сразу
-        window.addEventListener('deviceorientation', handleTilt);
+        // Доступ для Android и старых версий iOS
+        window.addEventListener('deviceorientation', handleGravityTilt);
     }
 }
 
-        
-
-        const audio = document.getElementById('bg-music');
-        
-        // Рандом от 1 до 7
-        const randomTrack = Math.floor(Math.random() * 7) + 1;
-        
-        // Установка трека
-        audio.src = 'audio' + randomTrack + '.mp3';
-        audio.setAttribute('data-current', randomTrack);
         
         // Принудительная загрузка и старт
         audio.load();
