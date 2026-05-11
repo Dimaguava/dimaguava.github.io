@@ -327,6 +327,7 @@ h1::after {
 <header><h1>АНУФРИЕВ ДМИТРИЙ</h1> <br>композитор и художник из санкт-петербурга, работающий в смешанной технике. инсталляции, звуковые diy-объекты, работы в вакуумных пакетах, circuit bend, 2d и 3d сканирование</header>
 
 <div class="menu">
+     <span id="vfx-toggle" onclick="toggleVFX()" class="glitch-button" style="color: #ff0000; border-color: rgba(255,0,0,0.5);">VFX OFF</span>
     <a href="gallery.html" class="glitch-button">Галерея</a>
     <a href="manifest.html" class="glitch-button">Обо мне</a>
     <a href="contact.html" class="glitch-button">Контакты</a>
@@ -777,6 +778,61 @@ function startGravityEngine() {
 }
 
 
+let vfxEnabled = true;
+
+function toggleVFX() {
+    const toggleBtn = document.getElementById('vfx-toggle');
+    const circle = document.querySelector('.moving-element');
+    const controls = document.querySelector('.controls-panel');
+    
+    if (vfxEnabled) {
+        // === ОТКЛЮЧАЕМ ВСЕ ЭФФЕКТЫ ===
+        vfxEnabled = false;
+        toggleBtn.innerHTML = 'VFX ON';
+        toggleBtn.style.color = '#0f0';
+        toggleBtn.style.borderColor = 'rgba(0,255,0,0.5)';
+
+        // 1. Прячем круг и ползунки управления
+        if (circle) circle.style.display = 'none';
+        if (controls) controls.style.display = 'none';
+
+        // 2. Останавливаем движок гироскопа, если он работал
+        if (gravityInterval) {
+            clearInterval(gravityInterval);
+            gravityInterval = null;
+        }
+
+        // 3. Мгновенно возвращаем ВСЕ элементы на свои законные места (сбрасываем трансформации)
+        document.documentElement.style.filter = ''; // Сброс цветового фильтра
+        
+        const mainTitle = document.querySelector('header h1');
+        if (mainTitle) mainTitle.style.transform = '';
+
+        document.querySelectorAll('.art-item').forEach(item => item.style.transform = '');
+        document.querySelectorAll('.noto-stream').forEach(stream => stream.style.transform = '');
+        document.querySelectorAll('.layering-text h1').forEach(h1 => h1.style.transform = '');
+        
+        const guestbook = document.getElementById('guestbook');
+        if (guestbook) guestbook.style.transform = '';
+
+    } else {
+        // === ВКЛЮЧАЕМ ЭФФЕКТЫ ОБРАТНО ===
+        vfxEnabled = true;
+        toggleBtn.innerHTML = 'VFX OFF';
+        toggleBtn.style.color = '#ff0000';
+        toggleBtn.style.borderColor = 'rgba(255,0,0,0.5)';
+
+        // Возвращаем видимость кругу и панели ползунков
+        if (circle) circle.style.display = 'block';
+        if (controls) controls.style.display = 'block';
+
+        // Если до этого гироскоп был запущен кнопкой, перезапускаем его движок
+        // (Если он не был запущен, сайт просто вернется в исходное динамическое состояние с кругом)
+        if (typeof gyroX !== 'undefined' && (gyroX !== 0 || gyroY !== 0)) {
+            startGravityEngine();
+        }
+    }
+}
 
 
     
