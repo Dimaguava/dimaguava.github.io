@@ -272,9 +272,17 @@ h1::after {
 </head>
 <body>
 
+<div id="invert-layer" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: transparent; mix-blend-mode: difference; pointer-events: none; z-index: 999999; transition: background 0.3s ease;"></div>
+
+
+
+
 <div class="music-player">
     <span id="audio-control" onclick="toggleMusic()">[ || ]</span>
     <span id="next-track" onclick="nextTrack()">[ >> ]</span>
+
+    <span id="vfx-toggle" onclick="toggleVFX()">[ VFX OFF ]</span>
+
 </div>
 
 
@@ -327,7 +335,7 @@ h1::after {
 <header><h1>АНУФРИЕВ ДМИТРИЙ</h1> <br>композитор и художник из санкт-петербурга, работающий в смешанной технике. инсталляции, звуковые diy-объекты, работы в вакуумных пакетах, circuit bend, 2d и 3d сканирование</header>
 
 <div class="menu">
-     <span id="vfx-toggle" onclick="toggleVFX()" class="glitch-button" style="color: #ff0000; border-color: rgba(255,0,0,0.5);">VFX OFF</span>
+    
     <a href="gallery.html" class="glitch-button">Галерея</a>
     <a href="manifest.html" class="glitch-button">Обо мне</a>
     <a href="contact.html" class="glitch-button">Контакты</a>
@@ -340,6 +348,13 @@ h1::after {
         <label>size</label>
         <input type="range" id="sizeRange" min="20" max="900" value="200">
     </div>
+
+    
+<div class="control-group" style="margin-top: 10px; border-top: 1px dashed #555; padding-top: 10px; text-align: center;">
+    <span id="inv-btn" onclick="toggleInvert()" style="font-size: 12px; color: white; cursor: pointer; font-family: monospace;">[ 🔘 ]</span>
+</div>
+
+    
     <div class="control-group">
         <label>speed</label>
         <input type="range" id="speedRange" min="0" max="33" value="1">
@@ -412,6 +427,7 @@ h1::after {
 
 <div id="guestbook" style="padding: 20px; color: black; font-family: monospace; position: relative; z-index: 20003; font-size: 22px; background: transparent;">
     <h2 style="font-size: 11px; color: black; text-transform: uppercase; border-bottom: 1px solid black; display: inline-block;">ОСТАВИТЬ СЛЕД [GUESTBOOK]</h2>
+    <br><h3><a href="https://patorjk.com/software/taag/">сгенерировать ASCII из текста</a></h3>
     
     <!-- Форма -->
     <div style="margin: 20px 0 30px 0; display: flex; gap: 10px; flex-wrap: wrap;">
@@ -779,60 +795,87 @@ function startGravityEngine() {
 
 
 let vfxEnabled = true;
+let isInverted = false;
 
+// Функция инверсии (слоем)
+function toggleInvert() {
+    const layer = document.getElementById('invert-layer');
+    const btn = document.getElementById('inv-btn');
+    if (!layer) return;
+
+    if (!isInverted) {
+        layer.style.background = 'white'; // Заливка белым в режиме difference дает полную инверсию
+        if (btn) btn.innerHTML = '[ ◯ ]'; // Меняем символ на незакрашенный
+        isInverted = true;
+    } else {
+        layer.style.background = 'transparent';
+        if (btn) btn.innerHTML = '[ 🔘 ]'; // Меняем символ на закрашенный
+        isInverted = false;
+    }
+}
+
+// Функция отключения ВСЕХ эффектов (включая полосы и инверсию)
 function toggleVFX() {
     const toggleBtn = document.getElementById('vfx-toggle');
     const circle = document.querySelector('.moving-element');
     const controls = document.querySelector('.controls-panel');
+    const layer = document.getElementById('invert-layer');
     
     if (vfxEnabled) {
-        // === ОТКЛЮЧАЕМ ВСЕ ЭФФЕКТЫ ===
         vfxEnabled = false;
-        toggleBtn.innerHTML = 'VFX ON';
-        toggleBtn.style.color = '#0f0';
-        toggleBtn.style.borderColor = 'rgba(0,255,0,0.5)';
+        if (toggleBtn) toggleBtn.innerHTML = '[ VFX ON ]';
 
-        // 1. Прячем круг и ползунки управления
+        // 1. Скрываем физические элементы и ползунки
         if (circle) circle.style.display = 'none';
         if (controls) controls.style.display = 'none';
 
-        // 2. Останавливаем движок гироскопа, если он работал
+        // 2. Выключаем слой инверсии, если он был активен
+        if (layer) layer.style.background = 'transparent';
+        const btn = document.getElementById('inv-btn');
+        if (btn) btn.innerHTML = '[ 🔘 ]';
+        isInverted = false;
+
+        // 3. Останавливаем гироскоп
         if (gravityInterval) {
             clearInterval(gravityInterval);
             gravityInterval = null;
         }
 
-        // 3. Мгновенно возвращаем ВСЕ элементы на свои законные места (сбрасываем трансформации)
-        document.documentElement.style.filter = ''; // Сброс цветового фильтра
-        
+        // 4. Полный сброс трансформаций (включая анимированные полосы .noto-stream)
+        document.documentElement.style.filter = ''; 
         const mainTitle = document.querySelector('header h1');
         if (mainTitle) mainTitle.style.transform = '';
 
         document.querySelectorAll('.art-item').forEach(item => item.style.transform = '');
-        document.querySelectorAll('.noto-stream').forEach(stream => stream.style.transform = '');
         document.querySelectorAll('.layering-text h1').forEach(h1 => h1.style.transform = '');
+        
+        // ДОБАВЛЕНО: Полный сброс для двигающихся полос
+        document.querySelectorAll('.noto-stream').forEach(stream => {
+            stream.style.transform = '';
+            stream.style.display = 'none'; // Полностью скрываем полосы, чтобы они не мешали
+        });
         
         const guestbook = document.getElementById('guestbook');
         if (guestbook) guestbook.style.transform = '';
 
     } else {
-        // === ВКЛЮЧАЕМ ЭФФЕКТЫ ОБРАТНО ===
         vfxEnabled = true;
-        toggleBtn.innerHTML = 'VFX OFF';
-        toggleBtn.style.color = '#ff0000';
-        toggleBtn.style.borderColor = 'rgba(255,0,0,0.5)';
+        if (toggleBtn) toggleBtn.innerHTML = '[ VFX OFF ]';
 
-        // Возвращаем видимость кругу и панели ползунков
+        // Возвращаем всё назад
         if (circle) circle.style.display = 'block';
         if (controls) controls.style.display = 'block';
+        
+        document.querySelectorAll('.noto-stream').forEach(stream => {
+            stream.style.display = 'block'; // Возвращаем видимость полосам
+        });
 
-        // Если до этого гироскоп был запущен кнопкой, перезапускаем его движок
-        // (Если он не был запущен, сайт просто вернется в исходное динамическое состояние с кругом)
         if (typeof gyroX !== 'undefined' && (gyroX !== 0 || gyroY !== 0)) {
             startGravityEngine();
         }
     }
 }
+
 
 
     
