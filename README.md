@@ -18,6 +18,7 @@
     cursor: pointer;
     mix-blend-mode: difference;
     pointer-events: auto;
+    white-space: nowrap; 
 }
 .music-player span {
     background: rgba(0, 0, 0, 0.4);
@@ -348,11 +349,6 @@ h1::after {
         <label>size</label>
         <input type="range" id="sizeRange" min="20" max="900" value="200">
     </div>
-
-    
-<div class="control-group" style="margin-top: 10px; border-top: 1px dashed #555; padding-top: 10px; text-align: center;">
-    <span id="inv-btn" onclick="toggleInvert()" style="font-size: 12px; color: white; cursor: pointer; font-family: monospace;">[ 🔘 ]</span>
-</div>
 
     
     <div class="control-group">
@@ -795,53 +791,27 @@ function startGravityEngine() {
 
 
 let vfxEnabled = true;
-let isInverted = false;
 
-// Функция инверсии (слоем)
-function toggleInvert() {
-    const layer = document.getElementById('invert-layer');
-    const btn = document.getElementById('inv-btn');
-    if (!layer) return;
-
-    if (!isInverted) {
-        layer.style.background = 'white'; // Заливка белым в режиме difference дает полную инверсию
-        if (btn) btn.innerHTML = '[ ◯ ]'; // Меняем символ на незакрашенный
-        isInverted = true;
-    } else {
-        layer.style.background = 'transparent';
-        if (btn) btn.innerHTML = '[ 🔘 ]'; // Меняем символ на закрашенный
-        isInverted = false;
-    }
-}
-
-// Функция отключения ВСЕХ эффектов (включая полосы и инверсию)
 function toggleVFX() {
     const toggleBtn = document.getElementById('vfx-toggle');
     const circle = document.querySelector('.moving-element');
     const controls = document.querySelector('.controls-panel');
-    const layer = document.getElementById('invert-layer');
     
     if (vfxEnabled) {
         vfxEnabled = false;
         if (toggleBtn) toggleBtn.innerHTML = '[ VFX ON ]';
 
-        // 1. Скрываем физические элементы и ползунки
+        // 1. Скрываем круг и ползунки
         if (circle) circle.style.display = 'none';
         if (controls) controls.style.display = 'none';
 
-        // 2. Выключаем слой инверсии, если он был активен
-        if (layer) layer.style.background = 'transparent';
-        const btn = document.getElementById('inv-btn');
-        if (btn) btn.innerHTML = '[ 🔘 ]';
-        isInverted = false;
-
-        // 3. Останавливаем гироскоп
+        // 2. Выключаем движок гироскопа
         if (gravityInterval) {
             clearInterval(gravityInterval);
             gravityInterval = null;
         }
 
-        // 4. Полный сброс трансформаций (включая анимированные полосы .noto-stream)
+        // 3. Полный сброс фильтров и позиций элементов
         document.documentElement.style.filter = ''; 
         const mainTitle = document.querySelector('header h1');
         if (mainTitle) mainTitle.style.transform = '';
@@ -849,10 +819,10 @@ function toggleVFX() {
         document.querySelectorAll('.art-item').forEach(item => item.style.transform = '');
         document.querySelectorAll('.layering-text h1').forEach(h1 => h1.style.transform = '');
         
-        // ДОБАВЛЕНО: Полный сброс для двигающихся полос
+        // 4. Сброс и полное скрытие полос шума
         document.querySelectorAll('.noto-stream').forEach(stream => {
             stream.style.transform = '';
-            stream.style.display = 'none'; // Полностью скрываем полосы, чтобы они не мешали
+            stream.style.display = 'none';
         });
         
         const guestbook = document.getElementById('guestbook');
@@ -862,12 +832,12 @@ function toggleVFX() {
         vfxEnabled = true;
         if (toggleBtn) toggleBtn.innerHTML = '[ VFX OFF ]';
 
-        // Возвращаем всё назад
+        // Возвращаем все эффекты назад
         if (circle) circle.style.display = 'block';
         if (controls) controls.style.display = 'block';
         
         document.querySelectorAll('.noto-stream').forEach(stream => {
-            stream.style.display = 'block'; // Возвращаем видимость полосам
+            stream.style.display = 'block';
         });
 
         if (typeof gyroX !== 'undefined' && (gyroX !== 0 || gyroY !== 0)) {
