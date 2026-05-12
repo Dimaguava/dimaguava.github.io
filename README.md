@@ -8,7 +8,7 @@
 
 .music-player {
     position: fixed;
-    top: 10px; left: 245px;
+    top: 10px; left: 248px;
     transform: translateX(-50%);
     z-index: 100003;
     font-family: monospace;
@@ -113,7 +113,7 @@ h1::after {
 
 .menu {
     position: absolute;
-    top: 15px;       /* Отступ сверху */
+    top: 35px;       /* Отступ сверху */
     right: 15px;     /* Отступ справа */
     display: flex;
     flex-direction: column; /* Выстраиваем в столбик */
@@ -205,7 +205,7 @@ h1::after {
 .controls-panel {
     position: fixed; bottom: 10px; left: 10px; z-index: 10001;
     background: rgba(0, 0, 0, 0); padding: 8px; border: 0px solid #fff;
-    width: 130px; color: white; font-family: monospace; mix-blend-mode: difference;
+    width: 130px; color: white; font-family: monospace; 
 }
 .control-group label { display: block; font-size: 10px; margin-bottom: 5px; mix-blend-mode: difference;}
 
