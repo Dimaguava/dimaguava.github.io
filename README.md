@@ -205,7 +205,7 @@ h1::after {
 .controls-panel {
     position: fixed; bottom: 10px; left: 10px; z-index: 10001;
     background: rgba(0, 0, 0, 0); padding: 8px; border: 0px solid #fff;
-    width: 130px; color: white; font-family: monospace; 
+    width: 130px; color: black; font-family: monospace; 
 }
 .control-group label { display: block; font-size: 10px; margin-bottom: 5px; mix-blend-mode: difference;}
 
