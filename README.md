@@ -8,7 +8,7 @@
 
 .music-player {
     position: fixed;
-    top: 10px; left: 90px;
+    top: 10px; left: 300px;
     transform: translateX(-50%);
     z-index: 100003;
     font-family: monospace;
