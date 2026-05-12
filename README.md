@@ -8,7 +8,7 @@
 
 .music-player {
     position: fixed;
-    top: 10px; left: 250px;
+    top: 10px; left: 245px;
     transform: translateX(-50%);
     z-index: 100003;
     font-family: monospace;
@@ -205,9 +205,9 @@ h1::after {
 .controls-panel {
     position: fixed; bottom: 10px; left: 10px; z-index: 10001;
     background: rgba(0, 0, 0, 0); padding: 8px; border: 0px solid #fff;
-    width: 130px; color: white; font-family: monospace;
+    width: 130px; color: white; font-family: monospace; mix-blend-mode: difference;
 }
-.control-group label { display: block; font-size: 10px; margin-bottom: 5px; }
+.control-group label { display: block; font-size: 10px; margin-bottom: 5px; mix-blend-mode: difference;}
 
 #entry-banner {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -273,7 +273,6 @@ h1::after {
 </head>
 <body>
 
-<div id="invert-layer" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: transparent; mix-blend-mode: difference; pointer-events: none; z-index: 999999; transition: background 0.3s ease;"></div>
 
 
 
@@ -357,7 +356,7 @@ h1::after {
     </div>
     <!-- ДОБАВЬ ЭТУ КНОПКУ СЮДА: -->
     <div class="control-group" style="margin-top: 10px; border-top: 1px dashed #555; padding-top: 10px; text-align: center;">
-        <span onclick="activateGyro()" style="font-size: 11px; color: white; cursor: pointer; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; border: 1px;">[ВКЛЮЧИТЬ ГИРОСКОП]</span>
+        <span onclick="activateGyro()" style="font-size: 11px; color: white; cursor: pointer; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; border: 1px; mix-blend-mode: difference;">[ВКЛЮЧИТЬ ГИРОСКОП]</span>
     </div>
 </div>
 
@@ -423,7 +422,6 @@ h1::after {
 
 <div id="guestbook" style="padding: 20px; color: black; font-family: monospace; position: relative; z-index: 20003; font-size: 22px; background: transparent;">
     <h2 style="font-size: 11px; color: black; text-transform: uppercase; border-bottom: 1px solid black; display: inline-block;">ОСТАВИТЬ СЛЕД [GUESTBOOK]</h2>
-    <br><h3><a href="https://patorjk.com/software/taag/">сгенерировать ASCII из текста</a></h3>
     
     <!-- Форма -->
     <div style="margin: 20px 0 30px 0; display: flex; gap: 10px; flex-wrap: wrap;">
