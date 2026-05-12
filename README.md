@@ -203,7 +203,7 @@ h1::after {
 }
 
 .controls-panel {
-    position: fixed; bottom: 10px; left: 10px; z-index: 10001;
+    position: fixed; bottom: 10px; left: 10px; z-index: 10001; opacity: 0.6; 
     background: rgba(0, 0, 0, 0); padding: 8px; border: 0px solid #fff;
     width: 130px; color: black; font-family: monospace; 
 }
@@ -355,7 +355,7 @@ h1::after {
         <input type="range" id="speedRange" min="0" max="33" value="1">
     </div>
     <!-- ДОБАВЬ ЭТУ КНОПКУ СЮДА: -->
-    <div class="control-group" style="margin-top: 10px; border-top: 1px dashed #555; padding-top: 10px; text-align: center;">
+    <div class="control-group" style="margin-top: 10px; border-top: 1px dashed #555; padding-top: 10px; text-align: center; opacity: 0.7;">
         <span onclick="activateGyro()" style="font-size: 11px; color: white; cursor: pointer; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; border: 1px; mix-blend-mode: difference;">[ВКЛЮЧИТЬ ГИРОСКОП]</span>
     </div>
 </div>
