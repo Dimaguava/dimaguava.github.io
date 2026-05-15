@@ -113,7 +113,7 @@ h1::after {
 
 .menu {
     position: absolute;
-    top: 35px;       /* Отступ сверху */
+    top: 45px;       /* Отступ сверху */
     right: 15px;     /* Отступ справа */
     display: flex;
     flex-direction: column; /* Выстраиваем в столбик */
@@ -125,7 +125,7 @@ h1::after {
 .glitch-button {
     padding: 6px 12px;           
     background: rgba(0, 0, 0, 0); 
-    color: #0f0;                 
+    color: black;                 
     border: 1px solid rgba(0, 255, 0, 0.5); 
     text-transform: uppercase;
     cursor: pointer;
@@ -337,7 +337,9 @@ h1::after {
 <div class="menu">
     
     <a href="gallery.html" class="glitch-button">Галерея</a>
-    <a href="manifest.html" class="glitch-button">Обо мне</a>
+    
+<span onclick="openBio()" class="glitch-button">CV/Bio</span>
+
     <a href="contact.html" class="glitch-button">Контакты</a>
 </div>
 
@@ -449,6 +451,54 @@ h1::after {
 <div id="viewer-overlay" onclick="closeFull()">
     <div id="viewer-content" ></div>
 </div>
+
+
+<div id="bio-overlay" onclick="closeBio()" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #ffffff; z-index: 1000001; overflow-y: auto; padding: 60px 20px; box-sizing: border-box;">
+    <!-- Кнопка закрытия в углу -->
+    <div style="position: fixed; top: 15px; right: 15px; font-family: monospace; font-size: 12px; color: black; cursor: pointer;">[ CLOSE_X ]</div>
+    
+    <!-- Текстовый контейнер -->
+    <div onclick="event.stopPropagation()" style="max-width: 600px; margin: 0 auto; color: black; font-family: 'Courier New', Courier, monospace; font-size: 13px; line-height: 1.6;">
+        <h2 style="font-size: 18px; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid black; padding-bottom: 10px; margin-bottom: 30px; letter-spacing: 1px;">АНУФРИЕВ ДМИТРИЙ / БИОГРАФИЯ</h2>
+        
+        <p>Ануфриев Дмитрий, мультиинструменталист и композитор из санкт-петербурга, перформер и художник работающий в смешанных техниках.
+Звук:
+Образование: Музыкальная школа по классу баяна, классическая гитара, ударная установка, афрокубинская перкуссия, лаборатории дома радио и музея звука по современным композиторским техникам, графической нотации, пространственному звуку и т.д.
+  
+
+На данный момент инструментарий включает струнные и ударные инструменты, флейты и другие духовые, Ableton 12 и midi контроллеры, iPad с виртуальными модулярами (miRack/Vcv), diy синтезаторы, микрофоны, эффекты, circuit bend системы, zero input, радио и кассетные плееры (в т. ч. tape loop), field recording и др.
+
+
+Выступал на таких площадках как ЦСИ Курёхина, Ласточка, Сердце, Темнеет, Сдвиг, Пушкинская 10, Музей звука, Брусницын Лофт, Левашевский хлебзавод, мастерская Аникушина, Лахисис, Мутабор и другие площадки и всевозможные лесные фестивали, выступал в Турции и Индии. 
+
+Участие в коллективах: лучимпров, слепой оркестр, санкт-петербургский оркестр импровизации, Холмы, Электрохолм, Bholenath project, Atelia Princeps, Blue tape и др.
+
+Охотно сотрудничаю с театрами и делаю звук для выставок/инсталляций.
+
+Однажды звучал на радио Россия и на каком-то австралийском радио. </p>
+        
+        <p>Немного занимался перформансом, участвовал в АХЕ лаб, учился у Олега Жуковского, Антона Адасинского и других.
+
+Участие в недраматических постановках какого-то молодёжного театра по Твин Пикс,  фестиваль ад Данте в БТК, проект Постереализм и проект Алины Герр - Пир, чума.
+
+
+
+Как оператор долгое время снимал на кассетные камеры документальный блог в стиле гонзо - журналистики Хроники прекрасного, освещая культурную жизнь в разных городах.
+
+
+
+Образование - незаконченное высшее в области реставрации темперной живописи, керамики и художественной обработки металла (СПбГПА) учителя - Вильгений Мельников, Геннадьева Алиса,  Агастасия Зенова и др.
+
+Используемые медиумы:  2D и 3D сканирование и видеоарт, инсталляции из разных материалов, работы в вакуумных пакетах, металл.
+
+Соавтор проекта Чужое, включающего в себя тотальные инсталляции и ready-made.
+ 
+Несколько раз самостоятельно организовывал фестивали, умею обустроить быт и инфраструктуру с нуля.</p>
+        
+        <p style="margin-top: 40px; font-size: 11px; color: #666; border-top: 1px dashed #ccc; padding-top: 10px;">█║▌│█│║▌║││█║▌ STATUS: ACTIVE</p>
+    </div>
+</div>
+
 
 
 <script>
@@ -845,6 +895,29 @@ function toggleVFX() {
 }
 
 
+
+function openBio() {
+    const bio = document.getElementById('bio-overlay');
+    if (bio) {
+        bio.style.display = 'block';
+        document.body.classList.add('no-scroll'); // Отключаем скролл основного сайта под текстом
+    }
+}
+
+function closeBio() {
+    const bio = document.getElementById('bio-overlay');
+    if (bio) {
+        bio.style.display = 'none';
+        document.body.classList.remove('no-scroll'); // Возвращаем скролл сайту
+    }
+}
+
+
+
+
+
+
+    
 
     
 </script>
