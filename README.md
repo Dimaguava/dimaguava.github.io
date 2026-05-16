@@ -25,7 +25,7 @@
     padding: 3px 8px;
     border: 2px solid rgba(255, 255, 255, 0.3);
     margin: 0 3px;
-         color: #ffffff !important;
+         color: white !important;
     font-weight: 1000 !important;
     font-size: 12px !important;
 }
@@ -475,7 +475,7 @@ h1::after {
 
 Выступал на таких площадках как ЦСИ Курёхина, Ласточка, Сердце, Темнеет, Сдвиг, Пушкинская 10, Музей звука, Брусницын Лофт, Левашевский хлебзавод, мастерская Аникушина, Лахисис, <span style="font-size: 16px;"><strong>Мутабор</strong></span> и другие площадки и всевозможные лесные фестивали, выступал в Турции и Индии. <br><br>
 
-Участие в коллективах: лучимпров, слепой оркестр, санкт-петербургский оркестр импровизации, Холмы, Электрохолм, Bholenath project, Atelia Princeps, Blue tape и др.<br><br>
+<span style="font-size: 17px;"><strong>Участие в коллективах:</strong></span> лучимпров, слепой оркестр, санкт-петербургский оркестр импровизации, Холмы, Электрохолм, Bholenath project, Atelia Princeps, Blue tape и др.<br><br>
 
 Охотно сотрудничаю с театрами и делаю звук для выставок/инсталляций.
 
@@ -505,14 +505,14 @@ h1::after {
 
 <div id="contact-overlay" onclick="closeContact()" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #ffffff; z-index: 1000001; overflow-y: auto; padding: 60px 20px; box-sizing: border-box;">
     <!-- Кнопка закрытия в углу -->
-    <div style="position: fixed; top: 15px; right: 15px; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 12px; color: black; cursor: pointer;">[ CLOSE_X ]</div>
+    <div style="position: fixed; top: 15px; right: 15px; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 14px; color: black; cursor: pointer;">[ CLOSE_X ]</div>
     
     <!-- К О Н Т А К Т Ы -->
     <div onclick="event.stopPropagation()" style="max-width: 600px; margin: 0 auto; color: black; font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace; font-size: 13px; line-height: 1.6; font-weight: 300; -webkit-font-smoothing: antialiased;">
         <h2 style="font-size: 15px; font-weight: 400; text-transform: uppercase; border-bottom: 1px solid black; padding-bottom: 10px; margin-bottom: 30px; letter-spacing: 1px; color: black; font-family: inherit;">АНУФРИЕВ ДМИТРИЙ / КОНТАКТЫ</h2>
         
         <p style="font-weight: 300; margin-bottom: 15px; font-family: inherit; color: black;">
-            <a href="mailto:ijtttcomsalbed@gmail.com" style="color: black; text-decoration: underline;">E-MAIL</a>
+            <a href="mailto:ijtttcomsalbed@gmail.com" style="color: black;">E-MAIL</a>
         </p>
         
         <p style="font-weight: 300; margin-bottom: 15px; font-family: inherit; color: black;">
@@ -523,16 +523,14 @@ h1::after {
             <a href="https://www.instagram.com/outsideofwords" target="_blank" style="color: black;">INSTAGRAM</a>
         </p>
         <a href="https://vk.com/dimaguava" target="_blank" style="color: black;">VK</a>
-        </p>
         
         <p style="font-weight: 300; margin-bottom: 15px; font-family: inherit; color: black;">
             +79500490902
             </p>
         
         <!-- Штрих-код внизу -->
-        <p style="margin-top: 40px; font-size: 11px; color: #333; border-top: 1px dashed #000; padding-top: 15px; font-weight: 300; font-family: inherit;">█║▌│█│║▌║││█║▌ POSITION:SAINT-PETERSBURG</p>
+        <p style="margin-top: 40px; font-size: 11px; color: #333; border-top: 1px dashed #000; padding-top: 15px; font-weight: 300; font-family: inherit;">█║▌│█│║ POSITION:SAINT-PETERSBURG ▌║││█║▌</p>
     </div>
-    <div style="font-size: 8px; color: #555; font-family: monospace; letter-spacing: 0;">░▒▓█ GRID_COORD_59.9342_30.3351 █▓▒░</div>
 </div>
 
 
@@ -561,7 +559,7 @@ function loadMessages() {
         .then(data => {
             const container = document.getElementById('messages-container');
             // Переворачиваем массив, чтобы новые сообщения были сверху
-            container.innerHTML = data.reverse().map(row => `<div style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px; font-family: 'Courier New', monospace; font-size: 10px; white-space: pre-wrap; line-height: 1.1; letter-spacing: -0.5px;"><span style="font-weight: normal; display: block; margin-bottom: 8px; color: black;">[${row[1] || 'АНОНИМ'}]</span>${row[2]}</div>`).join('');
+            container.innerHTML = data.reverse().map(row => `<div style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px; font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace; font-size: 10px; white-space: pre-wrap; line-height: 1.1; letter-spacing: -0.5px;"><span style="font-weight: normal; display: block; margin-bottom: 8px; color: black;">[${row[1] || 'АНОНИМ'}]</span>${row[2]}</div>`).join('');
         });
 }
 
