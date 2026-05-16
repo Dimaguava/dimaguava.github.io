@@ -459,12 +459,12 @@ h1::after {
     
     <!-- Текстовый контейнер -->
     
-<div onclick="event.stopPropagation()" style="max-width: 600px; margin: 0 auto; color: black; font-family: 'Courier New', Courier, monospace; font-size: 13px; line-height: 1.6; font-weight: normal; -webkit-font-smoothing: antialiased;">
+<div onclick="event.stopPropagation()" style="max-width: 600px; margin: 0 auto; color: black; font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace; font-size: 13px; line-height: 1.6; font-weight: normal; -webkit-font-smoothing: antialiased;">
         <h2 style="font-size: 18px; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid black; padding-bottom: 10px; margin-bottom: 30px; letter-spacing: 1px;">АНУФРИЕВ ДМИТРИЙ / БИОГРАФИЯ</h2>
         
-        <p>Ануфриев Дмитрий, мультиинструменталист и композитор из санкт-петербурга, перформер и художник работающий в смешанных техниках.
+        Ануфриев Дмитрий, мультиинструменталист и композитор из санкт-петербурга, перформер и художник работающий в смешанных техниках.
 <br>
-<span style="font-size: 20px;"><strong>Звук</strong></span>
+<span style="font-size: 20px;"><strong>Звук</strong></span><br>
 <span style="font-size: 16px;"><strong>Образование:</strong></span>
 Музыкальная школа по классу баяна, классическая гитара, ударная установка, афрокубинская перкуссия, лаборатории дома радио и музея звука по современным композиторским техникам, графической нотации, пространственному звуку и т.д.
  <br> <br>
