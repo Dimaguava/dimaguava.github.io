@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ануфриев Дмитрий - Digital Art, композитор, diy, noise, художник Санкт-Петербург, Circuit bend</title>
+    <title>Электрохолм, Ануфриев Дмитрий - Digital Art, dimaguava, outsideofwords, композитор, diy, noise, художник Санкт-Петербург, Circuit bend</title>
     
     <style>
 
